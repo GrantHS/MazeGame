@@ -5,54 +5,69 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovementScript : MonoBehaviour
 {
-    //notes to designer do we want a Min look distace and a Max look distance 
-
-    //Player looking Stuff
-    [SerializeField]
-    private Vector2 mouseLook;
-    public float MouseSen = 100f;
     private PlayerMovement controls;
-
-
-     private Vector3 playerBody;
-
-    public float xRotation = 0f;
-    //Player Movement Stuff
-    public float playerSpeed = 10.0f;
-
+    private float moveSpeed = 6f;
+    private Vector3 velocity;
+    private float gravity = -9.81f;
+    private Vector2 move;
+    private float JumpHeight = 2.4f;
+    private CharacterController controller;
+    public Transform ground;
+    public float distancetoGround = 0.4f;
+    public LayerMask groundMask;
+    private bool isGrounded;
 
 
     private void Awake()
     {
         controls = new PlayerMovement();
-        this.transform.position = playerBody;
-        Cursor.lockState = CursorLockMode.Locked;
+        controller = GetComponent<CharacterController>();
     }
-    
-    
-    // Update is called once per frame
-    void Update()
+  private void Update()
     {
-        Look();
-
+        Gravity();
+        PlayerMoving();
+        Jump();
 
     }
 
-    private void Look()
+    private void Gravity()
     {
-        mouseLook = controls.PlayerActions.Look.ReadValue<Vector2>();
-         
-        //notr getting any Y input?? 
+        isGrounded = Physics.CheckSphere(ground.position, distancetoGround, groundMask);
+        if (isGrounded && velocity.y <0)
+        {
+            velocity.y = -2f;
+        }
 
-        float mouseX = Input.GetAxis("Mouse X") * MouseSen * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * MouseSen * Time.deltaTime;
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90);
-        transform.rotation = Quaternion.Euler(xRotation, 0, 0);
-        playerBody = (Vector3.up * mouseX);
     }
 
+    private void PlayerMoving()
+    {
+        move = controls.PlayerActions.Movement.ReadValue<Vector2>();
 
+        Vector3 movement = (move.y * transform.forward) + (move.x * transform.right);
+        controller.Move(movement * moveSpeed * Time.deltaTime);
+    }
 
+    private void Jump()
+    {
+        if (controls.PlayerActions.Jump.triggered)
+        {
+            velocity.y = Mathf.Sqrt(JumpHeight * -2f * gravity);
+        }
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+  
 }
