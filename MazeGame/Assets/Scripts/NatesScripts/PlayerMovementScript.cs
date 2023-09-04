@@ -9,36 +9,50 @@ public class PlayerMovementScript : MonoBehaviour
 
     //Player looking Stuff
     [SerializeField]
-    private float minLookDis = 25;
+    private Vector2 mouseLook;
     public float MouseSen = 100f;
+    private PlayerMovement controls;
 
-    [SerializeField]
-    Transform playerBody;
+
+     private Vector3 playerBody;
 
     public float xRotation = 0f;
     //Player Movement Stuff
     public float playerSpeed = 10.0f;
 
 
-    private void Start()
+
+    private void Awake()
     {
+        controls = new PlayerMovement();
+        this.transform.position = playerBody;
         Cursor.lockState = CursorLockMode.Locked;
     }
+    
+    
     // Update is called once per frame
     void Update()
     {
+        Look();
+
+
+    }
+
+    private void Look()
+    {
+        mouseLook = controls.PlayerActions.Look.ReadValue<Vector2>();
+         
+        //notr getting any Y input?? 
+
         float mouseX = Input.GetAxis("Mouse X") * MouseSen * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * MouseSen * Time.deltaTime;
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, minLookDis);
-
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        playerBody.Rotate(Vector3.up * mouseX);
+        xRotation = Mathf.Clamp(xRotation, -90f, 90);
+        transform.rotation = Quaternion.Euler(xRotation, 0, 0);
+        playerBody = (Vector3.up * mouseX);
     }
-     
 
-   
 
 
 }
