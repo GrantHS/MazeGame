@@ -7,21 +7,21 @@ public class PlayerMovementScript : MonoBehaviour
 {
     private PlayerMovement controls;
     private float moveSpeed = 6f;
-    private Vector3 velocity;
+    public Vector3 velocity;
     private float gravity = -9.81f;
     private Vector2 move;
     private float JumpHeight = 2.4f;
     private CharacterController controller;
     public Transform ground;
-    public float distancetoGround = 0.4f;
+    public float distancetoGround = 0.2f;
     public LayerMask groundMask;
-    private bool isGrounded;
+    public bool isGrounded;
 
 
     private void Awake()
     {
         controls = new PlayerMovement();
-        controller = GetComponent<CharacterController>();
+        controller = this.GetComponent<CharacterController>();
     }
   private void Update()
     {
@@ -34,7 +34,7 @@ public class PlayerMovementScript : MonoBehaviour
     private void Gravity()
     {
         isGrounded = Physics.CheckSphere(ground.position, distancetoGround, groundMask);
-        if (isGrounded && velocity.y <0)
+        if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
@@ -54,10 +54,12 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void Jump()
     {
-        if (controls.PlayerActions.Jump.triggered)
+
+        if (controls.PlayerActions.Jump.triggered && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(JumpHeight * -2f * gravity);
+            velocity.y = Mathf.Sqrt(JumpHeight * -2f * -9.81f);
         }
+       
     }
 
     private void OnEnable()
