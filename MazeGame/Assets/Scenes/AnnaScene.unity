@@ -2196,12 +2196,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceDanger: 10
+  distanceAlert: 20
   distance: 0
   mazekeeper: {fileID: 172853313}
   player: {fileID: 1542209122}
   dangerIndicator: {fileID: 1819664081}
-  red: {r: 1, g: 0, b: 0, a: 0}
-  green: {r: 0, g: 1, b: 0, a: 0}
+  red: {r: 1, g: 0, b: 0, a: 1}
+  yellow: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  green: {r: 0, g: 1, b: 0, a: 1}
   changeSpeed: 50
 --- !u!1 &1840587667
 GameObject:
