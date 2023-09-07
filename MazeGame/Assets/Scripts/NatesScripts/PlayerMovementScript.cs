@@ -28,6 +28,8 @@ public class PlayerMovementScript : MonoBehaviour
         Gravity();
         PlayerMoving();
         Jump();
+        LeftClick();
+        RightClick();
 
     }
 
@@ -61,6 +63,25 @@ public class PlayerMovementScript : MonoBehaviour
         }
        
     }
+
+    private void LeftClick()
+    {
+        if (controls.PlayerActions.PickUp.triggered)
+        {
+            Debug.Log("Player will PICK UP an object to be stored");
+
+        }
+    }
+
+    private void RightClick()
+    {
+        if (controls.PlayerActions.UseItems.triggered)
+        {
+            Debug.Log("Player will USE up an object that is stored");
+
+        }
+    }
+
 
     private void OnEnable()
     {
