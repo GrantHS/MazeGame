@@ -25,11 +25,14 @@ public class PlayerMovementScript : MonoBehaviour
     }
   private void Update()
     {
-        Gravity();
-        PlayerMoving();
-        Jump();
-        LeftClick();
+        Interactables();
+        PlayerMoving();  
         RightClick();
+        LeftClick(); 
+        Gravity();
+        Jump();
+
+
 
     }
 
@@ -78,6 +81,15 @@ public class PlayerMovementScript : MonoBehaviour
         if (controls.PlayerActions.UseItems.triggered)
         {
             Debug.Log("Player will USE up an object that is stored");
+
+        }
+    }
+
+    private void Interactables()
+    {
+        if (controls.PlayerActions.Interactables.triggered)
+        {
+            Debug.Log("Player will INTERACT with an object");
 
         }
     }

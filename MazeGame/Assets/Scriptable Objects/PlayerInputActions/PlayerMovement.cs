@@ -71,6 +71,15 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interactables"",
+                    ""type"": ""Button"",
+                    ""id"": ""a7a0349c-a0de-43df-afa4-d9a5a9c20041"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -260,6 +269,28 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
                     ""action"": ""UseItems"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5db5043f-b9f0-4c31-859b-d41af5ed70d4"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interactables"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7538ee32-b8ed-4f8d-a60c-1d5b310955eb"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interactables"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -273,6 +304,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_PickUp = m_PlayerActions.FindAction("PickUp", throwIfNotFound: true);
         m_PlayerActions_UseItems = m_PlayerActions.FindAction("UseItems", throwIfNotFound: true);
+        m_PlayerActions_Interactables = m_PlayerActions.FindAction("Interactables", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,6 +371,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_PickUp;
     private readonly InputAction m_PlayerActions_UseItems;
+    private readonly InputAction m_PlayerActions_Interactables;
     public struct PlayerActionsActions
     {
         private @PlayerMovement m_Wrapper;
@@ -348,6 +381,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @PickUp => m_Wrapper.m_PlayerActions_PickUp;
         public InputAction @UseItems => m_Wrapper.m_PlayerActions_UseItems;
+        public InputAction @Interactables => m_Wrapper.m_PlayerActions_Interactables;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -372,6 +406,9 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
             @UseItems.started += instance.OnUseItems;
             @UseItems.performed += instance.OnUseItems;
             @UseItems.canceled += instance.OnUseItems;
+            @Interactables.started += instance.OnInteractables;
+            @Interactables.performed += instance.OnInteractables;
+            @Interactables.canceled += instance.OnInteractables;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -391,6 +428,9 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
             @UseItems.started -= instance.OnUseItems;
             @UseItems.performed -= instance.OnUseItems;
             @UseItems.canceled -= instance.OnUseItems;
+            @Interactables.started -= instance.OnInteractables;
+            @Interactables.performed -= instance.OnInteractables;
+            @Interactables.canceled -= instance.OnInteractables;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -415,5 +455,6 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnPickUp(InputAction.CallbackContext context);
         void OnUseItems(InputAction.CallbackContext context);
+        void OnInteractables(InputAction.CallbackContext context);
     }
 }
