@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovementScript : MonoBehaviour
 {
     private PlayerMovement controls;
+    private GameManager manager;
     private float moveSpeed = 6f;
     public Vector3 velocity;
     private float gravity = -9.81f;
@@ -30,9 +31,10 @@ public class PlayerMovementScript : MonoBehaviour
         RightClick();
         LeftClick(); 
         Gravity();
+        Paused();
         Jump();
 
-
+        
 
     }
 
@@ -92,6 +94,11 @@ public class PlayerMovementScript : MonoBehaviour
             Debug.Log("Player will INTERACT with an object");
 
         }
+    }
+
+    private void Paused()
+    {
+        GameManager.FindAnyObjectByType<GameManager>().PauseDaGame();
     }
 
 
