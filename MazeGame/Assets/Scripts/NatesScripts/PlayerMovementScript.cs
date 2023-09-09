@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovementScript : MonoBehaviour
 {
     private PlayerMovement controls;
+    private GameManager manager;
     private float moveSpeed = 6f;
     public Vector3 velocity;
     private float gravity = -9.81f;
@@ -25,9 +26,15 @@ public class PlayerMovementScript : MonoBehaviour
     }
   private void Update()
     {
+        Interactables();
+        PlayerMoving();  
+        RightClick();
+        LeftClick(); 
         Gravity();
-        PlayerMoving();
+        Paused();
         Jump();
+
+        
 
     }
 
@@ -61,6 +68,39 @@ public class PlayerMovementScript : MonoBehaviour
         }
        
     }
+
+    private void LeftClick()
+    {
+        if (controls.PlayerActions.PickUp.triggered)
+        {
+            Debug.Log("Player will PICK UP an object to be stored");
+
+        }
+    }
+
+    private void RightClick()
+    {
+        if (controls.PlayerActions.UseItems.triggered)
+        {
+            Debug.Log("Player will USE up an object that is stored");
+
+        }
+    }
+
+    private void Interactables()
+    {
+        if (controls.PlayerActions.Interactables.triggered)
+        {
+            Debug.Log("Player will INTERACT with an object");
+
+        }
+    }
+
+    private void Paused()
+    {
+        GameManager.FindAnyObjectByType<GameManager>().PauseDaGame();
+    }
+
 
     private void OnEnable()
     {

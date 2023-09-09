@@ -62,6 +62,24 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseItems"",
+                    ""type"": ""Button"",
+                    ""id"": ""fb8b3e83-5349-48de-9887-b7d9dd879572"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interactables"",
+                    ""type"": ""Button"",
+                    ""id"": ""a7a0349c-a0de-43df-afa4-d9a5a9c20041"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -143,9 +161,75 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Controller"",
+                    ""id"": ""75363391-feb4-4d25-97eb-5585cf164aed"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""a7e14d75-ca1d-4a3f-8f20-7fa2d333195f"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""f64eeab1-e918-4394-b7c5-280e10ed69d4"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""463c245b-5022-489f-a70a-7ecf12f5d0ca"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""e7e50950-b77a-4c43-8129-97531dff5e5a"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""772d658d-65b8-4cd3-9062-eca2a6198935"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aa219871-35cf-45a0-a040-da4467aea4cd"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -163,6 +247,50 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
                     ""action"": ""PickUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80568fea-f92f-4ca3-bb4e-e791e832fc56"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseItems"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f04581fe-16a7-47c1-8d3a-23487fffb5db"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseItems"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5db5043f-b9f0-4c31-859b-d41af5ed70d4"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interactables"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7538ee32-b8ed-4f8d-a60c-1d5b310955eb"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interactables"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -175,6 +303,8 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         m_PlayerActions_Look = m_PlayerActions.FindAction("Look", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_PickUp = m_PlayerActions.FindAction("PickUp", throwIfNotFound: true);
+        m_PlayerActions_UseItems = m_PlayerActions.FindAction("UseItems", throwIfNotFound: true);
+        m_PlayerActions_Interactables = m_PlayerActions.FindAction("Interactables", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -240,6 +370,8 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Look;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_PickUp;
+    private readonly InputAction m_PlayerActions_UseItems;
+    private readonly InputAction m_PlayerActions_Interactables;
     public struct PlayerActionsActions
     {
         private @PlayerMovement m_Wrapper;
@@ -248,6 +380,8 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_PlayerActions_Look;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @PickUp => m_Wrapper.m_PlayerActions_PickUp;
+        public InputAction @UseItems => m_Wrapper.m_PlayerActions_UseItems;
+        public InputAction @Interactables => m_Wrapper.m_PlayerActions_Interactables;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -269,6 +403,12 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
             @PickUp.started += instance.OnPickUp;
             @PickUp.performed += instance.OnPickUp;
             @PickUp.canceled += instance.OnPickUp;
+            @UseItems.started += instance.OnUseItems;
+            @UseItems.performed += instance.OnUseItems;
+            @UseItems.canceled += instance.OnUseItems;
+            @Interactables.started += instance.OnInteractables;
+            @Interactables.performed += instance.OnInteractables;
+            @Interactables.canceled += instance.OnInteractables;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -285,6 +425,12 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
             @PickUp.started -= instance.OnPickUp;
             @PickUp.performed -= instance.OnPickUp;
             @PickUp.canceled -= instance.OnPickUp;
+            @UseItems.started -= instance.OnUseItems;
+            @UseItems.performed -= instance.OnUseItems;
+            @UseItems.canceled -= instance.OnUseItems;
+            @Interactables.started -= instance.OnInteractables;
+            @Interactables.performed -= instance.OnInteractables;
+            @Interactables.canceled -= instance.OnInteractables;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -308,5 +454,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnPickUp(InputAction.CallbackContext context);
+        void OnUseItems(InputAction.CallbackContext context);
+        void OnInteractables(InputAction.CallbackContext context);
     }
 }
