@@ -98,7 +98,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void Paused()
     {
-        GameManager.FindAnyObjectByType<GameManager>().PauseDaGame();
+        //GameManager.FindAnyObjectByType<GameManager>().PauseDaGame();
     }
 
 
