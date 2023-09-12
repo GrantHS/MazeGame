@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -988,7 +988,7 @@ PrefabInstance:
     - target: {fileID: 3971691089335379619, guid: b227fa6601dead446ab03d5c77213006,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2518,6 +2518,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527379008}
   m_CullTransparentMesh: 1
+--- !u!1 &551416682 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9103704048836501423, guid: 3eee96c204a53c6499b6ef782d285fee,
+    type: 3}
+  m_PrefabInstance: {fileID: 3523060590312723083}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &654784423
 GameObject:
   m_ObjectHideFlags: 0
@@ -4164,6 +4170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 854092330}
   - component: {fileID: 854092329}
+  - component: {fileID: 854092331}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4221,6 +4228,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &854092331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854092328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386ba6465bc8ab64b810b8b2cbe7e032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 551416682}
 --- !u!1 &863599568
 GameObject:
   m_ObjectHideFlags: 0
@@ -8247,7 +8267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1768924589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10044,7 +10064,7 @@ PrefabInstance:
     - target: {fileID: 9103704048836501423, guid: 3eee96c204a53c6499b6ef782d285fee,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

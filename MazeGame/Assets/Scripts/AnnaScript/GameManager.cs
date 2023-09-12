@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
-    private GameSceneManager controls;
     private bool isPaused;
-
-
+    public GameObject pauseMenu;
+    [SerializeField] private InputControls controls;
 
 
     private void Awake()
     {
-        controls = new GameSceneManager();
+        controls = new InputControls();
+        pauseMenu.SetActive(false);
     }
 
 
@@ -21,7 +22,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PauseDaGame();
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            pauseMenu.SetActive(true);
+            PauseDaGame();
+        }
+        if (Input.GetButtonDown("Pause"))
+        {
+            pauseMenu.SetActive(true);
+            PauseDaGame();
+        }
     }
     private void OnEnable()
     {
@@ -35,6 +45,6 @@ public class GameManager : MonoBehaviour
 
     public void PauseDaGame()
     {
-        Debug.Log("The game will pause here and UI elements will be displayed");
+        
     }
 }
