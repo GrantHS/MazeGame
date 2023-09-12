@@ -15,12 +15,14 @@ public class PushDoor : MonoBehaviour
         if (hit.gameObject.CompareTag("Door"))
         {
             _door = hit.gameObject.GetComponent<LockedDoor>();
+
             if(_door == null || _door.isLocked)
             {
                 Debug.Log("I can't open the door");
                 return;
             }
 
+            //dont push the door if it is already on the ground
             if(_door.gameObject.transform.position.y <= this.gameObject.transform.position.y)
             {
                 return;
