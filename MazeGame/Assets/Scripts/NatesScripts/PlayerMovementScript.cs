@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovementScript : MonoBehaviour
 {
     private PlayerMovement controls;
-    private GameManager manager;
+    
     private float moveSpeed = 6f;
     public Vector3 velocity;
     private float gravity = -9.81f;
@@ -29,7 +29,8 @@ public class PlayerMovementScript : MonoBehaviour
         Interactables();
         PlayerMoving();  
         RightClick();
-        LeftClick(); 
+        LeftClick();
+        Attacking();
         Gravity();
         Paused();
         Jump();
@@ -84,6 +85,14 @@ public class PlayerMovementScript : MonoBehaviour
         {
             Debug.Log("Player will USE up an object that is stored");
 
+        }
+    }
+
+    private void Attacking()
+    {
+        if (controls.PlayerActions.Attack.triggered)
+        {
+            Debug.Log("Attacking Enemies ahhhhhhhhhhhhh");
         }
     }
 
