@@ -986,6 +986,7 @@ GameObject:
   - component: {fileID: 8349162890869458074}
   - component: {fileID: 7202729710201850068}
   - component: {fileID: 9159201710221631232}
+  - component: {fileID: 5567324607705597857}
   m_Layer: 5
   m_Name: Pause Menu
   m_TagString: Untagged
@@ -1080,3 +1081,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &5567324607705597857
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9103704048836501423}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

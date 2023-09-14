@@ -29,9 +29,9 @@ public class PlayerMovementScript : MonoBehaviour
         Interactables();
         PlayerMoving();  
         RightClick();
-        LeftClick(); 
+        //LeftClick(); 
         Gravity();
-        Paused();
+        //Paused(); //I think this interferes with the pause in the game manager script
         Jump();
 
         

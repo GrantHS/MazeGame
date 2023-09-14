@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     {
         controls = new InputControls();
         pauseMenu.SetActive(false);
-        optionsMenu.SetActive(false);
+        //optionsMenu.SetActive(false);
     }
 
 
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             pauseMenu.SetActive(true);
             PauseDaGame();
@@ -54,6 +54,10 @@ public class GameManager : MonoBehaviour
     {
         //i have zero fuckin idea why this keeps running in update even though it doesn't satisfy the if statement
         Debug.Log("Ideally, when this function runs, it should freeze the scene and open the pause menu and also not constantly run in update.");
+    }
+
+    public void PauseGame(InputAction action)
+    {
     }
 
     public void UnpauseDaGame()
