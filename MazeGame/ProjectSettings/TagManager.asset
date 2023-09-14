@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - Door
+  - Red Key
+  - Orange Key
+  - Yellow Key
   layers:
   - Default
   - TransparentFX

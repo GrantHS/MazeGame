@@ -10,11 +10,31 @@ public class PushDoor : MonoBehaviour
     [SerializeField]
     private float _pushPower;
 
+    public bool yellowKey;
+    public bool orangeKey;
+    public bool redKey;
+
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.CompareTag("Door"))
         {
             _door = hit.gameObject.GetComponent<LockedDoor>();
+
+            switch (_door.color)
+            {
+                case DoorColor.Yellow:
+                    if (yellowKey) _door.isLocked = false;
+                    break;
+                case DoorColor.Orange:
+                    if (orangeKey) _door.isLocked = false;
+                    break;
+                case DoorColor.Red:
+                    if (redKey) _door.isLocked = false;
+                    break;
+                default:
+                    Debug.Log("Color of door unknown");
+                    break;
+            }
 
             if(_door == null || _door.isLocked)
             {
@@ -34,7 +54,26 @@ public class PushDoor : MonoBehaviour
 
             rb.velocity = pushDirection * _pushPower;
         }
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Red Key"))
+        {
+            redKey = true;
+            other.gameObject.SetActive(false);
+        }
 
+        if (other.gameObject.CompareTag("Orange Key"))
+        {
+            orangeKey = true;
+            other.gameObject.SetActive(false);
+        }
+
+        if (other.gameObject.CompareTag("Yellow Key"))
+        {
+            yellowKey = true;
+            other.gameObject.SetActive(false);
+        }
     }
 }
