@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Door
+  - Red Key
+  - Orange Key
+  - Yellow Key
   layers:
   - Default
   - TransparentFX
