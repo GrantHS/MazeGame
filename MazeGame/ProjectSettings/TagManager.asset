@@ -9,6 +9,9 @@ TagManager:
   - Red Key
   - Orange Key
   - Yellow Key
+  - Checkpoint
+  - Barrel
+  - PowerUp
   layers:
   - Default
   - TransparentFX
