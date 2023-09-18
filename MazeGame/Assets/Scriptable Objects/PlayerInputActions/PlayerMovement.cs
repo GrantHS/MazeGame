@@ -80,6 +80,15 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""4f6c7eb0-adf5-4306-8151-ba4e4ddb2264"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -291,6 +300,17 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
                     ""action"": ""Interactables"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e686d3a-c676-40b0-b637-04bb15ad1574"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -305,6 +325,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         m_PlayerActions_PickUp = m_PlayerActions.FindAction("PickUp", throwIfNotFound: true);
         m_PlayerActions_UseItems = m_PlayerActions.FindAction("UseItems", throwIfNotFound: true);
         m_PlayerActions_Interactables = m_PlayerActions.FindAction("Interactables", throwIfNotFound: true);
+        m_PlayerActions_Attack = m_PlayerActions.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -372,6 +393,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_PickUp;
     private readonly InputAction m_PlayerActions_UseItems;
     private readonly InputAction m_PlayerActions_Interactables;
+    private readonly InputAction m_PlayerActions_Attack;
     public struct PlayerActionsActions
     {
         private @PlayerMovement m_Wrapper;
@@ -382,6 +404,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         public InputAction @PickUp => m_Wrapper.m_PlayerActions_PickUp;
         public InputAction @UseItems => m_Wrapper.m_PlayerActions_UseItems;
         public InputAction @Interactables => m_Wrapper.m_PlayerActions_Interactables;
+        public InputAction @Attack => m_Wrapper.m_PlayerActions_Attack;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -409,6 +432,9 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
             @Interactables.started += instance.OnInteractables;
             @Interactables.performed += instance.OnInteractables;
             @Interactables.canceled += instance.OnInteractables;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -431,6 +457,9 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
             @Interactables.started -= instance.OnInteractables;
             @Interactables.performed -= instance.OnInteractables;
             @Interactables.canceled -= instance.OnInteractables;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -456,5 +485,6 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         void OnPickUp(InputAction.CallbackContext context);
         void OnUseItems(InputAction.CallbackContext context);
         void OnInteractables(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }

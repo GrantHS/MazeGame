@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovementScript : MonoBehaviour
 {
     private PlayerMovement controls;
-    private GameManager manager;
+    
     private float moveSpeed = 6f;
     public Vector3 velocity;
     private float gravity = -9.81f;
@@ -29,9 +29,10 @@ public class PlayerMovementScript : MonoBehaviour
         Interactables();
         PlayerMoving();  
         RightClick();
-        //LeftClick(); 
+        LeftClick();
+        Attacking();
         Gravity();
-        //Paused(); //I think this interferes with the pause in the game manager script
+        Paused();
         Jump();
 
         
@@ -87,6 +88,14 @@ public class PlayerMovementScript : MonoBehaviour
         }
     }
 
+    private void Attacking()
+    {
+        if (controls.PlayerActions.Attack.triggered)
+        {
+            Debug.Log("Attacking Enemies ahhhhhhhhhhhhh");
+        }
+    }
+
     private void Interactables()
     {
         if (controls.PlayerActions.Interactables.triggered)
@@ -98,7 +107,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void Paused()
     {
-        GameManager.FindAnyObjectByType<GameManager>().PauseDaGame();
+        //GameManager.FindAnyObjectByType<GameManager>().PauseDaGame();
     }
 
 
