@@ -6,6 +6,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
+public enum UIMenu
+{
+    MainMenu,
+    LevelSelect,
+    Options,
+    Pause,
+    Victory
+}
+
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private bool isPaused;
