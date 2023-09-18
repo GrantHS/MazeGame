@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pauseMenu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
             PauseDaGame();
         }
         if (controls.Player1.Pause.triggered)
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
     public void UnpauseDaGame()
     {
         pauseMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
     
     public void OpenOptionsMenu()
