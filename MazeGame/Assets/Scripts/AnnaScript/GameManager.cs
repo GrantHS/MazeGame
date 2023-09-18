@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
-    private bool isPaused;
+    [SerializeField] private bool isPaused;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private InputControls controls;
@@ -20,51 +20,61 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         //optionsMenu.SetActive(false);
     }
-
+    private void OnEnable() => controls.Enable();
+    private void OnDisable() => controls.Disable();
 
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (Input.GetKeyDown(KeyCode.Escape))
+
+        /*if (Input.GetKeyDown(KeyCode.Escape)) //currently doesn't work for some reason
         {
-            pauseMenu.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
+            if (!isPaused)
+            {
+                PauseDaGame();
+            }
+            else
+            {
+                Debug.Log("this happened");
+                UnpauseDaGame();
+            }
+        }
+        if (controls.Player1.Pause.triggered)
+        {
+            if (isPaused == false)
+            {
+                PauseDaGame();
+            }
+            else
+            {
+                Debug.Log("this happened");
+                UnpauseDaGame();
+            }
+        }*/
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
             PauseDaGame();
         }
         if (controls.Player1.Pause.triggered)
         {
-            pauseMenu.SetActive(true);
             PauseDaGame();
         }
     }
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
-
-    
-
     public void PauseDaGame()
     {
-        //i have zero fuckin idea why this keeps running in update even though it doesn't satisfy the if statement
-        Debug.Log("Ideally, when this function runs, it should freeze the scene and open the pause menu and also not constantly run in update.");
-    }
-
-    public void PauseGame(InputAction action)
-    {
+        pauseMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        isPaused = !isPaused;
+        Time.timeScale = 0;
     }
 
     public void UnpauseDaGame()
     {
         pauseMenu.SetActive(false);
+        isPaused = !isPaused;
         Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1;
     }
     
     public void OpenOptionsMenu()

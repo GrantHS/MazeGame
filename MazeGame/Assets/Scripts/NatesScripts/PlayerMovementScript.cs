@@ -32,7 +32,7 @@ public class PlayerMovementScript : MonoBehaviour
         LeftClick();
         Attacking();
         Gravity();
-        Paused();
+        //Paused();
         Jump();
 
         
