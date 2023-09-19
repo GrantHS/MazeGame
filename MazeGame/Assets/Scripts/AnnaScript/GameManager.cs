@@ -5,6 +5,7 @@ using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 public enum UIMenu
 {
@@ -22,12 +23,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private InputControls controls;
 
-
+    public float playerTime;
+    public bool countingTime;
     private void Awake()
     {
         controls = new InputControls();
+        countingTime = true;
         pauseMenu.SetActive(false);
-        //optionsMenu.SetActive(false);
+        optionsMenu.SetActive(false);
     }
     private void OnEnable() => controls.Enable();
     private void OnDisable() => controls.Disable();
@@ -69,7 +72,13 @@ public class GameManager : MonoBehaviour
         {
             PauseDaGame();
         }
+        
+        if(countingTime == true)
+        {
+            playerTime += Time.deltaTime;
+        }
     }
+
     public void PauseDaGame()
     {
         pauseMenu.SetActive(true);
