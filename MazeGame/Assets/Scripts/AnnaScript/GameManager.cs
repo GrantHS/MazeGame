@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool isPaused;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
-    [SerializeField] private InputControls controls;
-
+    public InputControls controls;
+    public bool levelFinished;
     public float playerTime;
     public bool countingTime;
     
@@ -66,11 +66,11 @@ public class GameManager : MonoBehaviour
                 UnpauseDaGame();
             }
         }*/
-        if (Input.GetKeyDown(KeyCode.Escape)) 
+        if (Input.GetKeyDown(KeyCode.Escape) && levelFinished == false) 
         {
             PauseDaGame();
         }
-        if (controls.Player1.Pause.triggered)
+        if (controls.Player1.Pause.triggered && levelFinished == false)
         {
             PauseDaGame();
         }

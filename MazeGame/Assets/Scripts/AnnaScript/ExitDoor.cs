@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ExitDoor : MonoBehaviour
@@ -15,9 +16,11 @@ public class ExitDoor : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {
+    {    
+
         if (other.gameObject.CompareTag("Player"))
         {
+            FindAnyObjectByType<GameManager>().levelFinished = true;
             FindAnyObjectByType<GameManager>().countingTime = false;
             Cursor.lockState = CursorLockMode.None;
             victoryScreen.SetActive(true);
