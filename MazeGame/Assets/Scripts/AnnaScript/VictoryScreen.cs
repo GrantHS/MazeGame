@@ -8,6 +8,12 @@ public class VictoryScreen : MonoBehaviour
     [SerializeField] private UIMenu menu;
     [SerializeField] private TextMeshProUGUI timeText;
 
+
+    private void OnEnable()
+    {
+        DisplayTime();
+    }
+
     private void DisplayTime()
     {
         timeText.text = "Time: " + FindAnyObjectByType<GameManager>().TimeCounter();
