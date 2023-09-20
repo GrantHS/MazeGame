@@ -7,6 +7,7 @@ using UnityEngine;
 public class PushDoor : MonoBehaviour
 {
     private LockedDoor _door;
+
     [SerializeField]
     private float _pushPower;
 
@@ -36,23 +37,25 @@ public class PushDoor : MonoBehaviour
                     break;
             }
 
-            if(_door == null || _door.isLocked)
+            if(_door == null || _door.isLocked || _door.gameObject.transform.position.y <= this.gameObject.transform.position.y)
             {
                 Debug.Log("I can't open the door");
                 return;
             }
+            else
+            {
+                StartCoroutine(PushOpen(hit, 3f));
+                
+            }
 
-            //dont push the door if it is already on the ground
+            /*dont push the door if it is already on the ground
             if(_door.gameObject.transform.position.y <= this.gameObject.transform.position.y)
             {
                 return;
             }
+            */
 
-            Rigidbody rb = hit.collider.attachedRigidbody;
-
-            Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-
-            rb.velocity = pushDirection * _pushPower;
+            
         }
     }
 
@@ -75,5 +78,20 @@ public class PushDoor : MonoBehaviour
             yellowKey = true;
             other.gameObject.SetActive(false);
         }
+    }
+
+    private IEnumerator PushOpen(ControllerColliderHit hit, float vanishTime)
+    {
+        Debug.Log("pushing");
+        Rigidbody rb = hit.collider.attachedRigidbody;
+
+        Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+
+        rb.velocity = pushDirection * _pushPower;
+        hit.gameObject.GetComponent<BoxCollider>().enabled = false;
+
+        yield return new WaitForSeconds(vanishTime);
+
+        hit.gameObject.SetActive(false);
     }
 }
