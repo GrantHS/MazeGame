@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class ExitDoor : MonoBehaviour
 {
     [SerializeField] private GameObject victoryScreen;
-    [SerializeField] private float finishedTime;
-    [SerializeField] private TextMeshPro timeText;
+
 
     private void Awake()
     {
@@ -20,8 +19,8 @@ public class ExitDoor : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             FindAnyObjectByType<GameManager>().countingTime = false;
+            Cursor.lockState = CursorLockMode.None;
             victoryScreen.SetActive(true);
-            timeText.text = "Time: " + FindAnyObjectByType<GameManager>().playerTime;
         }
     }
 }

@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     public float playerTime;
     public bool countingTime;
+    
     private void Awake()
     {
         controls = new InputControls();
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);
     }
+
     private void OnEnable() => controls.Enable();
     private void OnDisable() => controls.Disable();
 
@@ -76,6 +78,7 @@ public class GameManager : MonoBehaviour
         if(countingTime == true)
         {
             playerTime += Time.deltaTime;
+            TimeCounter();
         }
     }
 
@@ -95,6 +98,16 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
     
+    public string TimeCounter()
+    {
+        int minutes = Mathf.FloorToInt(playerTime/60f);
+        int seconds = Mathf.FloorToInt(playerTime - minutes * 60f);
+
+        string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
+
+        return niceTime;
+    }
+
     public void OpenOptionsMenu()
     {
         optionsMenu.SetActive(true);
