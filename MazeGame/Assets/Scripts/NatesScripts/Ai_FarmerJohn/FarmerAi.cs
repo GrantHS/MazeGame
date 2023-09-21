@@ -79,6 +79,7 @@ public class FarmerAi : MonoBehaviour
     {
         nav.SetDestination(transform.position);
         Debug.Log("Attacking Player");
+        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(7, 0.5f, -5);
     }
 
     private void ChasingPlayer()

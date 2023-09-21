@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8987577289515460140}
   - component: {fileID: 5723351130474048872}
-  - component: {fileID: 4496751542366561493}
-  - component: {fileID: 5897374349382602438}
   - component: {fileID: 2434849843504271272}
   m_Layer: 0
   m_Name: FarmerAI
@@ -58,33 +56,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4496751542366561493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2367596265597185797}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31ad22092f4e9a8439cb3e5973086525, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navAgent: {fileID: 5723351130474048872}
-  pathDelay: 0.2
---- !u!114 &5897374349382602438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2367596265597185797}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b634bc2280a0290469f7431f1cb2decc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!114 &2434849843504271272
 MonoBehaviour:
   m_ObjectHideFlags: 0
