@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class ItemCollection : MonoBehaviour
@@ -7,7 +8,7 @@ public class ItemCollection : MonoBehaviour
     public GameObject itemPrefab;
     private GameObject _barrel;
     private Vector3 _barrelSpawn;
-    private float _barrelSpawnDistance = 50f;
+    private float _barrelSpawnDistance = 100f;
     private ItemCollectables _activeItem;
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -31,7 +32,7 @@ public class ItemCollection : MonoBehaviour
         {
             _activeItem = hit.gameObject.GetComponent<PowerUp>().power;
             hit.gameObject.SetActive(false);
-            Debug.Log("You found a " + " orb!");
+            Debug.Log("You found a " +_activeItem + " orb!");
 
             switch (_activeItem)
             {
@@ -49,6 +50,16 @@ public class ItemCollection : MonoBehaviour
                     break;
             }
         }
+
+        
+    }
+    private IEnumerator Respawn(float respawnTime)
+    {
+        _barrelSpawn = _barrel.transform.position;
+        _barrelSpawn.y += _barrelSpawnDistance;
+        yield return new WaitForSeconds(respawnTime);
+        _barrel.transform.position = _barrelSpawn;
+        _barrel.GetComponent<MeshRenderer>().enabled = true;
     }
 
 
