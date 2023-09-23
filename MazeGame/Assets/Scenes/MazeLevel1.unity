@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12359,6 +12359,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1474492400}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &559633935 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1736088614494781373, guid: b227fa6601dead446ab03d5c77213006,
+    type: 3}
+  m_PrefabInstance: {fileID: 1056715568}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &565130054
 GameObject:
   m_ObjectHideFlags: 0
@@ -22604,6 +22610,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 5127660294392933327, guid: 2032c708bad78af43b75c1c4c77ebecb,
     type: 3}
+  itemSprite: {fileID: 559633935}
+  speedSprite: {fileID: 0}
+  strengthSprite: {fileID: 0}
+  invisibleSprite: {fileID: 0}
+  clairvoyanceSprite: {fileID: 0}
 --- !u!4 &999514976 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1924791278039599393, guid: 3360bbae49225324094866abb7041da1,
@@ -23983,6 +23994,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1736088614494781373, guid: b227fa6601dead446ab03d5c77213006,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2002083961464488887, guid: b227fa6601dead446ab03d5c77213006,
         type: 3}
       propertyPath: m_Name
@@ -24028,7 +24044,7 @@ PrefabInstance:
     - target: {fileID: 4262699203750320170, guid: b227fa6601dead446ab03d5c77213006,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4731910353467284941, guid: b227fa6601dead446ab03d5c77213006,
         type: 3}

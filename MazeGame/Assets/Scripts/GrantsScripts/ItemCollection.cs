@@ -2,14 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemCollection : MonoBehaviour
 {
     public GameObject itemPrefab;
+    public GameObject itemSprite;
+    public Sprite speedSprite;
+    public Sprite strengthSprite;
+    public Sprite invisibleSprite;
+    public Sprite clairvoyanceSprite;
     private GameObject _barrel;
     private Vector3 _barrelSpawn;
     private float _barrelSpawnDistance = 100f;
     private ItemCollectables _activeItem;
+
+    private void Start()
+    {
+        itemSprite.SetActive(false);
+    }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -32,18 +43,36 @@ public class ItemCollection : MonoBehaviour
         {
             _activeItem = hit.gameObject.GetComponent<PowerUp>().power;
             hit.gameObject.SetActive(false);
-            Debug.Log("You found a " +_activeItem + " orb!");
 
             switch (_activeItem)
             {
                 case ItemCollectables.Speed:
                     //Give player super speed when they push ability button
+                    Debug.Log("You found a " + _activeItem + " orb!");
+                    //itemSprite.GetComponent<Image>().sprite = speedSprite; (Swap this with line below after sprites are generated)
+                    itemSprite.GetComponent<Image>().color = Color.yellow;
+                    itemSprite.SetActive(true);
                     break;
                 case ItemCollectables.Strength:
                     //Give player super strength when they push ability button
+                    Debug.Log("You found a " + _activeItem + " orb!");
+                    //itemSprite.GetComponent<Image>().sprite = strengthSprite; (Swap this with line below after sprites are generated)
+                    itemSprite.GetComponent<Image>().color = Color.red;
+                    itemSprite.SetActive(true);
                     break;
                 case ItemCollectables.Invisibility:
                     //Give player invisibility when they push ability button
+                    Debug.Log("You found an " + _activeItem + " orb!");
+                    //itemSprite.GetComponent<Image>().sprite = invisibleSprite; (Swap this with line below after sprites are generated)
+                    itemSprite.GetComponent<Image>().color = Color.black;
+                    itemSprite.SetActive(true);
+                    break;
+                case ItemCollectables.Clairvoyance:
+                    //Give player invisibility when they push ability button
+                    Debug.Log("You found a " + _activeItem + " orb!");
+                    //itemSprite.GetComponent<Image>().sprite = clairvoyanceSprite; (Swap this with line below after sprites are generated)
+                    itemSprite.GetComponent<Image>().color = Color.white;
+                    itemSprite.SetActive(true);
                     break;
                 default:
                     Debug.Log("Unknown orb power");
@@ -53,6 +82,8 @@ public class ItemCollection : MonoBehaviour
 
         
     }
+
+    //Using this makes the orbs spawn like crazy; fix if there's enough time
     private IEnumerator Respawn(float respawnTime)
     {
         _barrelSpawn = _barrel.transform.position;
