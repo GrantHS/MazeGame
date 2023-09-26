@@ -33527,6 +33527,11 @@ PrefabInstance:
       objectReference: {fileID: 1513485695}
     - target: {fileID: 3745477645785403084, guid: dd5756e78bb21a648994eb49d5464d3e,
         type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745477645785403084, guid: dd5756e78bb21a648994eb49d5464d3e,
+        type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -33542,7 +33547,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5401242513088404723, guid: dd5756e78bb21a648994eb49d5464d3e,
         type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5401242513088404723, guid: dd5756e78bb21a648994eb49d5464d3e,
+        type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5401242513088404723, guid: dd5756e78bb21a648994eb49d5464d3e,
+        type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5670145491562410582, guid: dd5756e78bb21a648994eb49d5464d3e,
@@ -33649,6 +33664,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sensitivity Slider
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069610985012310004, guid: dd5756e78bb21a648994eb49d5464d3e,
+        type: 3}
+      propertyPath: m_Value
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7484883017173934999, guid: dd5756e78bb21a648994eb49d5464d3e,
         type: 3}

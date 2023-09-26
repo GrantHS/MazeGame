@@ -10,12 +10,11 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private GameObject gameplayHUD;
     [SerializeField] private Slider mouseSensitivitySlider;
     [SerializeField] private TextMeshProUGUI sensitivityText;
-    [SerializeField, Range(0f,100f)] private float mouseSensitivity;
 
     private void Awake()
     {
-        mouseSensitivity = FindAnyObjectByType<MouseLook>().mouseSen;
-        sensitivityText.text = mouseSensitivity.ToString();
+        FindAnyObjectByType<MouseLook>().mouseSen = mouseSensitivitySlider.value * 10;
+        sensitivityText.text = mouseSensitivitySlider.value.ToString();
     }
 
     public void HUDOn()
@@ -25,8 +24,10 @@ public class OptionsMenu : MonoBehaviour
     }
     public void HUDOff() => gameplayHUD.SetActive(false);
 
-    public void MouseSensitivitySlider()
+    public void MouseSensitivitySlider(float mouseSensitivity)
     {
-
+        mouseSensitivity = mouseSensitivitySlider.value * 10;
+        FindAnyObjectByType<MouseLook>().mouseSen = mouseSensitivity;
+        sensitivityText.text = mouseSensitivitySlider.value.ToString();
     }
 }
