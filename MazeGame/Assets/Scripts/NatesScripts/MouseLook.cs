@@ -7,7 +7,7 @@ public class MouseLook : MonoBehaviour
 {
     private PlayerMovement controls;
 
-    private float mouseSen = 100f;
+    [Range(1f, 100f)] public float mouseSen = 100f;
     private Vector2 mouseLook;
     private float xRotation;
     private Transform PlayerBody;

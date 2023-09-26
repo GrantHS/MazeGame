@@ -1,13 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class OptionsMenu : MonoBehaviour
 {
     [SerializeField] private UIMenu menu;
     [SerializeField] private GameObject gameplayHUD;
-    // Start is called before the first frame update
-    
+    [SerializeField] private Slider mouseSensitivitySlider;
+    [SerializeField] private TextMeshProUGUI sensitivityText;
+    [SerializeField, Range(0f,100f)] private float mouseSensitivity;
+
+    private void Awake()
+    {
+        mouseSensitivity = FindAnyObjectByType<MouseLook>().mouseSen;
+        sensitivityText.text = mouseSensitivity.ToString();
+    }
+
     public void HUDOn()
     {
         gameplayHUD.SetActive(true);
@@ -15,5 +25,8 @@ public class OptionsMenu : MonoBehaviour
     }
     public void HUDOff() => gameplayHUD.SetActive(false);
 
+    public void MouseSensitivitySlider()
+    {
 
+    }
 }
