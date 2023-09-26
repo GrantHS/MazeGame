@@ -32,6 +32,7 @@ public class FarmerAi : MonoBehaviour
     {
         playerInSight = Physics.CheckSphere(transform.position, sightRange, thisIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, thisIsPlayer);
+        
 
         if (!playerInSight && !playerInAttackRange) 
         {
@@ -40,6 +41,7 @@ public class FarmerAi : MonoBehaviour
         if (playerInSight && !playerInAttackRange)
         {
             ChasingPlayer();
+            
         }
         if (playerInAttackRange && playerInAttackRange)
         {
@@ -85,6 +87,16 @@ public class FarmerAi : MonoBehaviour
     private void ChasingPlayer()
     {
         nav.SetDestination(player.position);
+    }
+
+
+  
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(transform.position, attackRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, sightRange);
     }
 
 }
