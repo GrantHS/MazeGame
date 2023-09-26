@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovementScript : MonoBehaviour
 {
     private PlayerMovement controls;
-    
+    private ItemCollection _itemCollection;
     private float moveSpeed = 6f;
     public Vector3 velocity;
     private float gravity = -9.81f;
@@ -23,6 +24,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         controls = new PlayerMovement();
         controller = this.GetComponent<CharacterController>();
+        _itemCollection = GetComponent<ItemCollection>();
     }
   private void Update()
     {
@@ -83,7 +85,31 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (controls.PlayerActions.UseItems.triggered)
         {
-            Debug.Log("Player will USE up an object that is stored");
+            if (_itemCollection != null && _itemCollection.itemSprite.activeSelf)
+            {
+                _itemCollection.itemSprite.SetActive(false);
+
+                switch (_itemCollection._activeItem)
+                {
+                    case ItemCollectables.Speed:
+                        
+                        Debug.Log("You used " + _itemCollection._activeItem);
+                        break;
+                    case ItemCollectables.Strength:
+                        Debug.Log("You used " + _itemCollection._activeItem);
+                        break;
+                    case ItemCollectables.Invisibility:
+                        Debug.Log("You used " + _itemCollection._activeItem);
+                        break;
+                    case ItemCollectables.Clairvoyance:
+                        Debug.Log("You used " + _itemCollection._activeItem);
+                        break;
+                    default:
+                        Debug.Log("Unknown power used");
+                        break;
+                }
+            }
+            else Debug.Log("You have no item to use");
 
         }
     }

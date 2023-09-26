@@ -1151,6 +1151,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 5127660294392933327, guid: 2032c708bad78af43b75c1c4c77ebecb,
     type: 3}
+  itemSprite: {fileID: 0}
+  speedSprite: {fileID: 0}
+  strengthSprite: {fileID: 0}
+  invisibleSprite: {fileID: 0}
+  clairvoyanceSprite: {fileID: 0}
 --- !u!1 &1613207133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,7 +1282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1822961823
 Transform:
   m_ObjectHideFlags: 0
@@ -1564,6 +1569,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ItemBarrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223772030687803217, guid: d090a4095a012a945a57129e25e80de6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8458411096259916061, guid: d090a4095a012a945a57129e25e80de6,
         type: 3}

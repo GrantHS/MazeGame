@@ -15,7 +15,7 @@ public class ItemCollection : MonoBehaviour
     private GameObject _barrel;
     private Vector3 _barrelSpawn;
     private float _barrelSpawnDistance = 100f;
-    private ItemCollectables _activeItem;
+    public ItemCollectables _activeItem;
 
     private void Start()
     {
