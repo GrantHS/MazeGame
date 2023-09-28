@@ -19,11 +19,18 @@ public class LevelSelectMenu : MonoBehaviour
     [SerializeField] private float scrollSpeed = 0.01f;
     private bool isUpdated;
     private Vector2 scrollVelocity;
+
     private void Awake()
     {
         isUpdated = false;
         scrollVelocity = Vector2.zero;
         int itemsToAdd = Mathf.CeilToInt(levelViewportTransform.rect.width / (levelList[0].rect.width + levelHLG.spacing));
+
+        for (int i = 0; i < itemsToAdd; i++)
+        {
+            RectTransform rt = Instantiate(levelList[i % levelList.Length], levelContentTransform);
+            rt.SetAsLastSibling();
+        }
 
         for (int i = 0; i < itemsToAdd; i++)
         {
@@ -33,9 +40,11 @@ public class LevelSelectMenu : MonoBehaviour
                 num += levelList.Length;
             }
             RectTransform rt = Instantiate(levelList[num], levelContentTransform);
-            rt.SetAsLastSibling();
+            rt.SetAsFirstSibling();
         }
-        levelContentTransform.localPosition = new Vector3(0 - (levelList[0].rect.width + levelHLG.spacing)*itemsToAdd, levelContentTransform.localPosition.y, levelContentTransform.localPosition.z);
+
+        levelContentTransform.localPosition = new Vector3((0 - (levelList[0].rect.width + levelHLG.spacing)*itemsToAdd), 
+            levelContentTransform.localPosition.y, levelContentTransform.localPosition.z);
         
     }
 
