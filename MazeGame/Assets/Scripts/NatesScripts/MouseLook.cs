@@ -17,7 +17,7 @@ public class MouseLook : MonoBehaviour
         PlayerBody = transform.parent;
 
         controls = new PlayerMovement();
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnEnable()
