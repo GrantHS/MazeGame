@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,9 @@ public class LevelSelectMenu : MonoBehaviour
     [SerializeField] private float scrollSpeed = 0.01f;
     private bool isUpdated;
     private Vector2 scrollVelocity;
+
+    [SerializeField] private int selectedLevelIndex = 0;
+    public TextMeshProUGUI selectedLevelNameText;
 
     private void Awake()
     {
@@ -45,7 +49,9 @@ public class LevelSelectMenu : MonoBehaviour
 
         levelContentTransform.localPosition = new Vector3((0 - (levelList[0].rect.width + levelHLG.spacing)*itemsToAdd), 
             levelContentTransform.localPosition.y, levelContentTransform.localPosition.z);
-        
+
+        selectedLevelNameText.text = levelList[selectedLevelIndex].GetComponent<LevelInfoHolder>().levelInfo.levelName;
+        //please take note of anchored position, perhaps that might help in getting the element centered when selected
     }
 
     private void Update()
@@ -94,16 +100,30 @@ public class LevelSelectMenu : MonoBehaviour
             {
                 levelScrollRect.horizontalNormalizedPosition -= scrollSpeed;
             }
+
+            selectedLevelIndex--;
+            if(selectedLevelIndex < 0)
+            {
+                selectedLevelIndex = levelList.Length - 1;
+            }
+            selectedLevelNameText.text = levelList[selectedLevelIndex].GetComponent<LevelInfoHolder>().levelInfo.levelName;
         }
     } 
     public void ScrollRight()
     {
         if(levelScrollRect != null)
         {
-            if(levelScrollRect.horizontalNormalizedPosition <= 1f)
+            if(levelScrollRect.horizontalNormalizedPosition <= 2f)
             {
                 levelScrollRect.horizontalNormalizedPosition += scrollSpeed;
             }
+
+            selectedLevelIndex++;
+            if (selectedLevelIndex > levelList.Length - 1)
+            {
+                selectedLevelIndex = 0;
+            }
+            selectedLevelNameText.text = levelList[selectedLevelIndex].GetComponent<LevelInfoHolder>().levelInfo.levelName;
         }
     }
 }
