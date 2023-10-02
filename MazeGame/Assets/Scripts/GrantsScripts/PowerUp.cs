@@ -13,8 +13,8 @@ public class PowerUp : MonoBehaviour
     {
         Array values = Enum.GetValues(typeof(ItemCollectables));
         System.Random random = new System.Random();
-        power = (ItemCollectables)values.GetValue(random.Next(values.Length));
-        Debug.Log("Item power: " +  power);
+        power = ItemCollectables.Speed; //(ItemCollectables)values.GetValue(random.Next(values.Length));
+        //Debug.Log("Item power: " +  power);
 
         switch (power)
         {
