@@ -1,14 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovementScript : MonoBehaviour
 {
     private PlayerMovement controls;
-    private ItemCollection _itemCollection;
+    
     private float moveSpeed = 6f;
     public Vector3 velocity;
     private float gravity = -9.81f;
@@ -19,20 +17,12 @@ public class PlayerMovementScript : MonoBehaviour
     public float distancetoGround = 0.2f;
     public LayerMask groundMask;
     public bool isGrounded;
-    Array values = Enum.GetValues(typeof(ItemCollectables));
-    private IAbility[] abilities;
-    private float speedBoost;
-    private float _duration = 5f;
 
 
     private void Awake()
     {
-        speedBoost = moveSpeed / 1.5f;
-        abilities = new IAbility[values.Length - 1];
-        abilities[1] = gameObject.AddComponent<Invisibility>();
         controls = new PlayerMovement();
         controller = this.GetComponent<CharacterController>();
-        _itemCollection = GetComponent<ItemCollection>();
     }
   private void Update()
     {
@@ -93,49 +83,9 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (controls.PlayerActions.UseItems.triggered)
         {
-            if (_itemCollection != null && _itemCollection.itemSprite.activeSelf)
-            {
-                _itemCollection.itemSprite.SetActive(false);
-
-                switch (_itemCollection._activeItem)
-                {
-                    case ItemCollectables.Speed:
-                        StartCoroutine(SpeedBoost());
-                        Debug.Log("You used " + _itemCollection._activeItem);
-                        break;
-                    case ItemCollectables.Strength:
-                        Debug.Log("You used " + _itemCollection._activeItem);
-                        break;
-                    case ItemCollectables.Invisibility:
-                        UseAbility(abilities[1]);
-                        Debug.Log("You used " + _itemCollection._activeItem);
-                        break;
-                    case ItemCollectables.Clairvoyance:
-                        Debug.Log("You used " + _itemCollection._activeItem);
-                        break;
-                    default:
-                        Debug.Log("Unknown power used");
-                        break;
-                }
-
-                
-            }
-            else Debug.Log("You have no item to use");
+            Debug.Log("Player will USE up an object that is stored");
 
         }
-    }
-    public void UseAbility(IAbility ability)
-    {
-        ability.activateAbility();
-    }
-
-    private IEnumerator SpeedBoost()
-    {
-        moveSpeed += speedBoost;
-        Debug.Log("Zoom");
-        yield return new WaitForSeconds(_duration);
-        Debug.Log("No Zoom");
-        moveSpeed -= speedBoost;
     }
 
     private void Attacking()
