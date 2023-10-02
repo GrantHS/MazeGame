@@ -2,5 +2,6 @@ public enum ItemCollectables
 {
     Speed,
     Strength,
-    Invisibility
+    Invisibility,
+    Clairvoyance
 }
