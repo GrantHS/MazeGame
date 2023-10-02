@@ -4,9 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelSelectMenu : MonoBehaviour
+public class LevelSelectMenu : MenuParent
 {
-    public UIMenu menu;
     public RectTransform[] levelList;
     [SerializeField] private ScrollRect levelScrollRect;
     [SerializeField] private RectTransform levelViewportTransform;

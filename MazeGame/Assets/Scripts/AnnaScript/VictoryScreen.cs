@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class VictoryScreen : MonoBehaviour
+public class VictoryScreen : MenuParent
 {
-    [SerializeField] private UIMenu menu;
     [SerializeField] private TextMeshProUGUI timeText;
 
 

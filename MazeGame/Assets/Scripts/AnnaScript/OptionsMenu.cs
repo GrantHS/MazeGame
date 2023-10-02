@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class OptionsMenu : MonoBehaviour
+public class OptionsMenu : MenuParent
 {
-    [SerializeField] private UIMenu menu;
     [SerializeField] private GameObject gameplayHUD;
     [SerializeField] private Slider mouseSensitivitySlider;
     [SerializeField] private TextMeshProUGUI sensitivityText;
@@ -17,6 +16,10 @@ public class OptionsMenu : MonoBehaviour
         sensitivityText.text = mouseSensitivitySlider.value.ToString();
     }
 
+    private void OnEnable() => FindAnyObjectByType<GameManager>().currentMenuOpened = UIMenu.Options;
+
+    private void OnDisable() => FindAnyObjectByType<GameManager>().lastMenuOpened = UIMenu.Options;
+
     public void HUDOn()
     {
         gameplayHUD.SetActive(true);
@@ -24,9 +27,9 @@ public class OptionsMenu : MonoBehaviour
     }
     public void HUDOff() => gameplayHUD.SetActive(false);
 
-    public void MouseSensitivitySlider(float mouseSensitivity)
+    public void MouseSensitivitySlider()
     {
-        mouseSensitivity = mouseSensitivitySlider.value * 10;
+        float mouseSensitivity = mouseSensitivitySlider.value * 10;
         FindAnyObjectByType<MouseLook>().mouseSen = mouseSensitivity;
         sensitivityText.text = mouseSensitivitySlider.value.ToString();
     }

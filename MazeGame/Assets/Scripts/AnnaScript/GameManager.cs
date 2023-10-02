@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool isPaused;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject levelSelectMenu;
+
+    public UIMenu lastMenuOpened;
+    public UIMenu currentMenuOpened;
     public InputControls controls;
     public bool levelFinished;
     public float playerTime;
@@ -80,12 +85,35 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void BackButton() //goes back to the previous menu accessed
+    {
+        switch (lastMenuOpened)
+        {
+            case UIMenu.MainMenu:
+                mainMenu.SetActive(true);
+                break;
+            case UIMenu.LevelSelect:
+                levelSelectMenu.SetActive(true);
+                break;
+            case UIMenu.Options:
+                optionsMenu.SetActive(true);
+                break;
+            case UIMenu.Pause:
+                PauseDaGame();
+                break;
+            default:
+                Debug.Log("something is wrong with the back button");
+                break;
+        }
+    }
+
     public void PauseDaGame()
     {
         pauseMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         isPaused = !isPaused;
         Time.timeScale = 0;
+        currentMenuOpened = UIMenu.Pause;
     }
 
     public void UnpauseDaGame()
@@ -94,6 +122,7 @@ public class GameManager : MonoBehaviour
         isPaused = !isPaused;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
+        lastMenuOpened = UIMenu.Pause;
     }
     
     public string TimeCounter()
@@ -108,6 +137,25 @@ public class GameManager : MonoBehaviour
 
     public void OpenOptionsMenu()
     {
+        lastMenuOpened = currentMenuOpened;
+        switch (lastMenuOpened)
+        {
+            case UIMenu.MainMenu:
+                mainMenu.SetActive(false);
+                break;
+            case UIMenu.LevelSelect:
+                levelSelectMenu.SetActive(false);
+                break;
+            case UIMenu.Options:
+                optionsMenu.SetActive(false);
+                break;
+            case UIMenu.Pause:
+                pauseMenu.SetActive(false);
+                break;
+            default:
+                Debug.Log("something is wrong with the transition between options and another menu");
+                break;
+        }
         optionsMenu.SetActive(true);
     }
     public void CloseOptionsMenu()
