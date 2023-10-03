@@ -22,10 +22,13 @@ public class FarmerAi : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSight, playerInAttackRange;
 
+    private PlayerMovementScript invisPower;
+
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
         nav = GetComponent<NavMeshAgent>();
+        invisPower = new PlayerMovementScript();
     }
 
     private void Update()
@@ -34,11 +37,11 @@ public class FarmerAi : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, thisIsPlayer);
         
 
-        if (!playerInSight && !playerInAttackRange) 
+        if (!playerInSight && !playerInAttackRange && !invisPower._isInvisible) 
         {
             Patrolling();
         }
-        if (playerInSight && !playerInAttackRange)
+        if (playerInSight && !playerInAttackRange && !invisPower._isInvisible)
         {
             ChasingPlayer();
             
