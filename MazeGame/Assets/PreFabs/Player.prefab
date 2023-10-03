@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3647172035470096221
 Transform:
   m_ObjectHideFlags: 0
@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 5557454581861409675}
   - component: {fileID: 299286314883138134}
   - component: {fileID: 1803762352328754140}
+  - component: {fileID: 5886048393310845539}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -283,11 +284,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3153964295812162545}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0841aa1157660304fb410ce85bc98047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5886048393310845539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3153964295812162545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74e54dde2e92794681e8bd446a4fee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Copying: MouseLook
+  mouseSen: 25
 --- !u!1 &3225447278143719000
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +420,9 @@ GameObject:
   - component: {fileID: 9101896115943229253}
   - component: {fileID: 1011996479535599246}
   - component: {fileID: 5329249737227488754}
+  - component: {fileID: 4631183201801353744}
+  - component: {fileID: 8280940614530307161}
+  - component: {fileID: 4405808814039031499}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -422,7 +440,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.08, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6048411834985920341}
@@ -449,6 +467,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   isGrounded: 0
+  _isInvisible: 0
 --- !u!143 &1011996479535599246
 CharacterController:
   m_ObjectHideFlags: 0
@@ -502,6 +521,59 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &4631183201801353744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932027171121385652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b2b8667686dac42a56b33cfdac7973, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pushPower: 20
+  yellowKey: 0
+  orangeKey: 0
+  redKey: 0
+--- !u!114 &8280940614530307161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932027171121385652}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e3bbaca69910440a358b78d19484a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPos: {x: 0, y: 0, z: 0}
+  minYPos: {fileID: 0}
+  bud: {fileID: 0}
+--- !u!114 &4405808814039031499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932027171121385652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c90a079e6d6aeb4e9a99aa65496bc62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 5127660294392933327, guid: 2032c708bad78af43b75c1c4c77ebecb,
+    type: 3}
+  itemSprite: {fileID: 0}
+  speedSprite: {fileID: 0}
+  strengthSprite: {fileID: 0}
+  invisibleSprite: {fileID: 0}
+  clairvoyanceSprite: {fileID: 0}
+  jumpSprite: {fileID: 0}
+  invisibleMat: {fileID: 2100000, guid: b70c792dcf1c3434eb8bbeb9399af029, type: 2}
+  _activeItem: 0
 --- !u!1 &6214212023304432286
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,7 +884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2765096476889562602
 Transform:
   m_ObjectHideFlags: 0
