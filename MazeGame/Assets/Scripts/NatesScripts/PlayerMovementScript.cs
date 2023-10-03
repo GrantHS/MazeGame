@@ -13,7 +13,7 @@ public class PlayerMovementScript : MonoBehaviour
     public Vector3 velocity;
     private float gravity = -9.81f;
     private Vector2 move;
-    private float JumpHeight = 2.4f;
+    private float JumpHeight = 4.2f;
     private CharacterController controller;
     public Transform ground;
     public float distancetoGround = 0.2f;
@@ -23,6 +23,11 @@ public class PlayerMovementScript : MonoBehaviour
     private IAbility[] abilities;
     private float speedBoost;
     private float _duration = 5f;
+    private bool _canJump = false;
+    private int maxJumps = 3;
+    private int jumpCount = 0;
+    public bool _isInvisible = false;
+    private Material originMat;
 
 
     private void Awake()
@@ -65,17 +70,26 @@ public class PlayerMovementScript : MonoBehaviour
     private void PlayerMoving()
     {
         move = controls.PlayerActions.Movement.ReadValue<Vector2>();
-
-        Vector3 movement = (move.y * transform.forward) + (move.x * transform.right);
-        controller.Move(movement * moveSpeed * Time.deltaTime);
+        if (isGrounded)
+        {
+            Vector3 movement = (move.y * transform.forward) + (move.x * transform.right);
+            controller.Move(movement * moveSpeed * Time.deltaTime);
+        }
+        
     }
 
     private void Jump()
     {
 
-        if (controls.PlayerActions.Jump.triggered && isGrounded)
+        if (controls.PlayerActions.Jump.triggered && isGrounded && _canJump && jumpCount < maxJumps)
         {
             velocity.y = Mathf.Sqrt(JumpHeight * -2f * -9.81f);
+            jumpCount++;
+        }
+        else if(jumpCount >= maxJumps)
+        {
+            _canJump = false;
+            jumpCount = 0;
         }
        
     }
@@ -107,11 +121,15 @@ public class PlayerMovementScript : MonoBehaviour
                         Debug.Log("You used " + _itemCollection._activeItem);
                         break;
                     case ItemCollectables.Invisibility:
-                        UseAbility(abilities[1]);
+                        StartCoroutine(BecomeInvisible());
                         Debug.Log("You used " + _itemCollection._activeItem);
                         break;
                     case ItemCollectables.Clairvoyance:
                         Debug.Log("You used " + _itemCollection._activeItem);
+                        break;
+                    case ItemCollectables.Jump:
+                        _canJump = true;
+                        Debug.Log("You used: " + _itemCollection._activeItem);
                         break;
                     default:
                         Debug.Log("Unknown power used");
@@ -129,6 +147,21 @@ public class PlayerMovementScript : MonoBehaviour
         ability.activateAbility();
     }
 
+    private IEnumerator BecomeInvisible()
+    {
+        Debug.Log("Is Invisible");
+        originMat = this.gameObject.GetComponentInChildren<MeshRenderer>().material;
+        this.gameObject.GetComponentInChildren<MeshRenderer>().material = _itemCollection.invisibleMat;
+        //Need GameManager to send invisible signal to AI
+        _isInvisible = true;
+        yield return new WaitForSeconds(_duration);
+        _isInvisible = false;
+        Debug.Log("Is not Invisible");
+        this.gameObject.GetComponentInChildren<MeshRenderer>().material = originMat;
+
+
+    }
+
     private IEnumerator SpeedBoost()
     {
         moveSpeed += speedBoost;
@@ -137,6 +170,13 @@ public class PlayerMovementScript : MonoBehaviour
         Debug.Log("No Zoom");
         moveSpeed -= speedBoost;
     }
+    /*
+    private IEnumerator SupaJump()
+    {
+        velocity.y = Mathf.Sqrt(JumpHeight * -2f * -9.81f);
+        jumpCount++;
+    }
+    */
 
     private void Attacking()
     {
