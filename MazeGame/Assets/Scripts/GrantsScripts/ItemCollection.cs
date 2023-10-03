@@ -13,6 +13,7 @@ public class ItemCollection : MonoBehaviour
     public Sprite strengthSprite;
     public Sprite invisibleSprite;
     public Sprite clairvoyanceSprite;
+    public Sprite jumpSprite;
     public Material invisibleMat;
     private GameObject _barrel;
     private Vector3 _barrelSpawn;
@@ -76,6 +77,12 @@ public class ItemCollection : MonoBehaviour
                     Debug.Log("You found a " + _activeItem + " orb!");
                     //itemSprite.GetComponent<Image>().sprite = clairvoyanceSprite; (Swap this with line below after sprites are generated)
                     itemSprite.GetComponent<Image>().color = Color.white;
+                    itemSprite.SetActive(true);
+                    break;
+                case ItemCollectables.Jump:
+                    Debug.Log("You found a " + _activeItem + " orb!");
+                    //itemSprite.GetComponent<Image>().sprite = clairvoyanceSprite; (Swap this with line below after sprites are generated)
+                    itemSprite.GetComponent<Image>().color = Color.blue;
                     itemSprite.SetActive(true);
                     break;
                 default:

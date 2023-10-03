@@ -3,5 +3,6 @@ public enum ItemCollectables
     Speed,
     Strength,
     Invisibility,
-    Clairvoyance
+    Clairvoyance,
+    Jump
 }
