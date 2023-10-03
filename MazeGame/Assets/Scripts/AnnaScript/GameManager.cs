@@ -110,27 +110,9 @@ public class GameManager : MonoBehaviour
     }
     public void BackButton() //goes back to the previous menu accessed
     {
-        switch (lastMenuOpened)
-        {
-            case UIMenu.MainMenu:
-                mainMenu.SetActive(true);
-                break;
-            case UIMenu.LevelSelect:
-                levelSelectMenu.SetActive(true);
-                break;
-            case UIMenu.Options:
-                optionsMenu.SetActive(true);
-                break;
-            case UIMenu.Pause:
-                
-                PauseDaGame();
-                break;
-            default:
-                Debug.Log("something is wrong with the back button");
-                break;
-        }
-        //EnableMenu(lastMenuOpened);
-        //DisableMenu(currentMenuOpened);
+        EnableMenu(lastMenuOpened);
+        DisableMenu(currentMenuOpened);
+
     }
 
     public void PauseDaGame()
@@ -138,6 +120,7 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         isPaused = !isPaused;
+        countingTime = !countingTime;
         Time.timeScale = 0;
         currentMenuOpened = UIMenu.Pause;
     }
@@ -146,6 +129,7 @@ public class GameManager : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         isPaused = !isPaused;
+        countingTime = !countingTime;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
         lastMenuOpened = UIMenu.Pause;

@@ -53,6 +53,9 @@ public class LevelSelectMenu : MenuParent
         //please take note of anchored position, perhaps that might help in getting the element centered when selected
     }
 
+    private void OnEnable() => FindAnyObjectByType<GameManager>().currentMenuOpened = UIMenu.LevelSelect;
+    private void OnDisable() => FindAnyObjectByType<GameManager>().lastMenuOpened = UIMenu.LevelSelect;
+
     private void Update()
     {
         if(isUpdated)
