@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,10 +13,13 @@ public class ItemCollection : MonoBehaviour
     public Sprite strengthSprite;
     public Sprite invisibleSprite;
     public Sprite clairvoyanceSprite;
+    public Material invisibleMat;
     private GameObject _barrel;
     private Vector3 _barrelSpawn;
     private float _barrelSpawnDistance = 100f;
     public ItemCollectables _activeItem;
+    public IAbility _activeAbility;
+    private List<IAbility> _abilities;
 
     private void Start()
     {
@@ -82,6 +86,8 @@ public class ItemCollection : MonoBehaviour
 
         
     }
+
+    
 
     //Using this makes the orbs spawn like crazy; fix if there's enough time
     private IEnumerator Respawn(float respawnTime)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -18,10 +19,17 @@ public class PlayerMovementScript : MonoBehaviour
     public float distancetoGround = 0.2f;
     public LayerMask groundMask;
     public bool isGrounded;
+    Array values = Enum.GetValues(typeof(ItemCollectables));
+    private IAbility[] abilities;
+    private float speedBoost;
+    private float _duration = 5f;
 
 
     private void Awake()
     {
+        speedBoost = moveSpeed / 1.5f;
+        abilities = new IAbility[values.Length - 1];
+        abilities[1] = gameObject.AddComponent<Invisibility>();
         controls = new PlayerMovement();
         controller = this.GetComponent<CharacterController>();
         _itemCollection = GetComponent<ItemCollection>();
@@ -92,13 +100,14 @@ public class PlayerMovementScript : MonoBehaviour
                 switch (_itemCollection._activeItem)
                 {
                     case ItemCollectables.Speed:
-                        
+                        StartCoroutine(SpeedBoost());
                         Debug.Log("You used " + _itemCollection._activeItem);
                         break;
                     case ItemCollectables.Strength:
                         Debug.Log("You used " + _itemCollection._activeItem);
                         break;
                     case ItemCollectables.Invisibility:
+                        UseAbility(abilities[1]);
                         Debug.Log("You used " + _itemCollection._activeItem);
                         break;
                     case ItemCollectables.Clairvoyance:
@@ -108,10 +117,25 @@ public class PlayerMovementScript : MonoBehaviour
                         Debug.Log("Unknown power used");
                         break;
                 }
+
+                
             }
             else Debug.Log("You have no item to use");
 
         }
+    }
+    public void UseAbility(IAbility ability)
+    {
+        ability.activateAbility();
+    }
+
+    private IEnumerator SpeedBoost()
+    {
+        moveSpeed += speedBoost;
+        Debug.Log("Zoom");
+        yield return new WaitForSeconds(_duration);
+        Debug.Log("No Zoom");
+        moveSpeed -= speedBoost;
     }
 
     private void Attacking()
