@@ -1183,6 +1183,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4479911898734473548, guid: dd5756e78bb21a648994eb49d5464d3e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 854092331}
+    - target: {fileID: 4479911898734473548, guid: dd5756e78bb21a648994eb49d5464d3e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackButton
+      objectReference: {fileID: 0}
     - target: {fileID: 5401242513088404723, guid: dd5756e78bb21a648994eb49d5464d3e,
         type: 3}
       propertyPath: m_AnchorMax.y

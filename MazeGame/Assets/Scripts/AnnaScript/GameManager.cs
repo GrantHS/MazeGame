@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     public UIMenu lastMenuOpened;
     public UIMenu currentMenuOpened;
+    [SerializeField] private Dictionary<UIMenu, GameObject> menuDictionary = new Dictionary<UIMenu, GameObject>();
     public InputControls controls;
     public bool levelFinished;
     public float playerTime;
@@ -33,6 +34,12 @@ public class GameManager : MonoBehaviour
     {
         controls = new InputControls();
         countingTime = true;
+
+        menuDictionary.Add(UIMenu.LevelSelect, levelSelectMenu);
+        menuDictionary.Add(UIMenu.MainMenu, mainMenu);
+        menuDictionary.Add(UIMenu.Options, optionsMenu);
+        menuDictionary.Add(UIMenu.Pause, pauseMenu);
+
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);
     }
@@ -85,6 +92,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void EnableMenu(UIMenu menu)
+    {
+        if (!menuDictionary.ContainsKey(menu))
+            return;
+
+        GameObject menuToEnable = menuDictionary[menu];
+        menuToEnable.SetActive(true);
+    }
+
+    public void DisableMenu(UIMenu menu)
+    {
+        if (!menuDictionary.ContainsKey(menu))
+            return;
+        GameObject menuToDisable = menuDictionary[menu];
+        menuToDisable.SetActive(false);
+    }
     public void BackButton() //goes back to the previous menu accessed
     {
         switch (lastMenuOpened)
@@ -99,12 +122,15 @@ public class GameManager : MonoBehaviour
                 optionsMenu.SetActive(true);
                 break;
             case UIMenu.Pause:
+                
                 PauseDaGame();
                 break;
             default:
                 Debug.Log("something is wrong with the back button");
                 break;
         }
+        //EnableMenu(lastMenuOpened);
+        //DisableMenu(currentMenuOpened);
     }
 
     public void PauseDaGame()
@@ -138,24 +164,8 @@ public class GameManager : MonoBehaviour
     public void OpenOptionsMenu()
     {
         lastMenuOpened = currentMenuOpened;
-        switch (lastMenuOpened)
-        {
-            case UIMenu.MainMenu:
-                mainMenu.SetActive(false);
-                break;
-            case UIMenu.LevelSelect:
-                levelSelectMenu.SetActive(false);
-                break;
-            case UIMenu.Options:
-                optionsMenu.SetActive(false);
-                break;
-            case UIMenu.Pause:
-                pauseMenu.SetActive(false);
-                break;
-            default:
-                Debug.Log("something is wrong with the transition between options and another menu");
-                break;
-        }
+
+        DisableMenu(lastMenuOpened);
         optionsMenu.SetActive(true);
     }
     public void CloseOptionsMenu()
