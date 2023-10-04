@@ -20,7 +20,7 @@ public class VictoryScreen : MenuParent
 
     public void ExitGame()
     {
-        //Application.Quit(); //use for quitting in builds
-        UnityEditor.EditorApplication.isPlaying = false; //use for quitting play mode
+        Application.Quit(); //use for quitting in builds
+        //UnityEditor.EditorApplication.isPlaying = false; //use for quitting play mode
     }
 }
