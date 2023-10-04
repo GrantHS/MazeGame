@@ -78,11 +78,15 @@ public class GameManager : MonoBehaviour
         }*/
         if (Input.GetKeyDown(KeyCode.Escape) && levelFinished == false) 
         {
-            PauseDaGame();
+            pauseMenu.SetActive(true);
+            FindAnyObjectByType<PausingMenu>().PauseDaGame();
+            countingTime = false;
         }
         if (controls.Player1.Pause.triggered && levelFinished == false)
         {
-            PauseDaGame();
+            pauseMenu.SetActive(true);
+            FindAnyObjectByType<PausingMenu>().PauseDaGame();
+            countingTime = false;
         }
         
         if(countingTime == true)
@@ -115,7 +119,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void PauseDaGame()
+    /*public void PauseDaGame()
     {
         pauseMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
@@ -133,7 +137,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
         lastMenuOpened = UIMenu.Pause;
-    }
+    }*/
     
     public string TimeCounter()
     {
