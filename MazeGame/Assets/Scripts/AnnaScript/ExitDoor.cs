@@ -9,7 +9,6 @@ public class ExitDoor : MonoBehaviour
 {
     [SerializeField] private GameObject victoryScreen;
 
-
     private void Awake()
     {
         victoryScreen.SetActive(false);

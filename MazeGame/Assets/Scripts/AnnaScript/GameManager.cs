@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool isPaused;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject levelSelectMenu;
+
+    public UIMenu lastMenuOpened;
+    public UIMenu currentMenuOpened;
+    [SerializeField] private Dictionary<UIMenu, GameObject> menuDictionary = new Dictionary<UIMenu, GameObject>();
     public InputControls controls;
     public bool levelFinished;
     public float playerTime;
@@ -28,6 +34,12 @@ public class GameManager : MonoBehaviour
     {
         controls = new InputControls();
         countingTime = true;
+
+        menuDictionary.Add(UIMenu.LevelSelect, levelSelectMenu);
+        menuDictionary.Add(UIMenu.MainMenu, mainMenu);
+        menuDictionary.Add(UIMenu.Options, optionsMenu);
+        menuDictionary.Add(UIMenu.Pause, pauseMenu);
+
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);
     }
@@ -66,11 +78,15 @@ public class GameManager : MonoBehaviour
         }*/
         if (Input.GetKeyDown(KeyCode.Escape) && levelFinished == false) 
         {
-            PauseDaGame();
+            pauseMenu.SetActive(true);
+            FindAnyObjectByType<PausingMenu>().PauseDaGame();
+            countingTime = false;
         }
         if (controls.Player1.Pause.triggered && levelFinished == false)
         {
-            PauseDaGame();
+            pauseMenu.SetActive(true);
+            FindAnyObjectByType<PausingMenu>().PauseDaGame();
+            countingTime = false;
         }
         
         if(countingTime == true)
@@ -80,21 +96,48 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PauseDaGame()
+    public void EnableMenu(UIMenu menu)
+    {
+        if (!menuDictionary.ContainsKey(menu))
+            return;
+
+        GameObject menuToEnable = menuDictionary[menu];
+        menuToEnable.SetActive(true);
+    }
+
+    public void DisableMenu(UIMenu menu)
+    {
+        if (!menuDictionary.ContainsKey(menu))
+            return;
+        GameObject menuToDisable = menuDictionary[menu];
+        menuToDisable.SetActive(false);
+    }
+    public void BackButton() //goes back to the previous menu accessed
+    {
+        
+        DisableMenu(currentMenuOpened);
+        EnableMenu(lastMenuOpened);
+    }
+
+    /*public void PauseDaGame()
     {
         pauseMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         isPaused = !isPaused;
+        countingTime = !countingTime;
         Time.timeScale = 0;
+        currentMenuOpened = UIMenu.Pause;
     }
 
     public void UnpauseDaGame()
     {
         pauseMenu.SetActive(false);
         isPaused = !isPaused;
+        countingTime = !countingTime;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
-    }
+        lastMenuOpened = UIMenu.Pause;
+    }*/
     
     public string TimeCounter()
     {
@@ -108,10 +151,14 @@ public class GameManager : MonoBehaviour
 
     public void OpenOptionsMenu()
     {
+        lastMenuOpened = currentMenuOpened;
+
+        DisableMenu(lastMenuOpened);
         optionsMenu.SetActive(true);
     }
     public void CloseOptionsMenu()
     {
+        EnableMenu(lastMenuOpened);
         optionsMenu.SetActive(false);
     }
 }
