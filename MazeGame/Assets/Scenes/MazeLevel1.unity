@@ -22696,6 +22696,30 @@ PrefabInstance:
       propertyPath: itemSprite
       value: 
       objectReference: {fileID: 559633935}
+    - target: {fileID: 4405808814039031499, guid: 3360bbae49225324094866abb7041da1,
+        type: 3}
+      propertyPath: jumpSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 667c587de136118489210ae0c9e5531c,
+        type: 3}
+    - target: {fileID: 4405808814039031499, guid: 3360bbae49225324094866abb7041da1,
+        type: 3}
+      propertyPath: speedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5b5e5d7c176354742921b53c2069a4d4,
+        type: 3}
+    - target: {fileID: 4405808814039031499, guid: 3360bbae49225324094866abb7041da1,
+        type: 3}
+      propertyPath: strengthSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 80b5c64e26ab3fa4a8b61f10d84f4290,
+        type: 3}
+    - target: {fileID: 4405808814039031499, guid: 3360bbae49225324094866abb7041da1,
+        type: 3}
+      propertyPath: invisibleSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4bdac1807ce3a6c499962f5f3928ffb0,
+        type: 3}
     - target: {fileID: 4932027171121385652, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
       propertyPath: m_Name
@@ -22767,10 +22791,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 999514973}
-    - targetCorrespondingSourceObject: {fileID: 4932027171121385652, guid: 3360bbae49225324094866abb7041da1,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 999514975}
   m_SourcePrefab: {fileID: 100100000, guid: 3360bbae49225324094866abb7041da1, type: 3}
 --- !u!1 &999514972 stripped
 GameObject:
@@ -22809,28 +22829,6 @@ MonoBehaviour:
   yellowKey: 0
   orangeKey: 0
   redKey: 0
---- !u!114 &999514975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 999514972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c90a079e6d6aeb4e9a99aa65496bc62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 5127660294392933327, guid: 2032c708bad78af43b75c1c4c77ebecb,
-    type: 3}
-  itemSprite: {fileID: 559633935}
-  speedSprite: {fileID: 0}
-  strengthSprite: {fileID: 0}
-  invisibleSprite: {fileID: 0}
-  clairvoyanceSprite: {fileID: 0}
-  jumpSprite: {fileID: 0}
-  invisibleMat: {fileID: 0}
-  _activeItem: 0
 --- !u!4 &999514976 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1924791278039599393, guid: 3360bbae49225324094866abb7041da1,
