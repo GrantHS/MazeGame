@@ -114,9 +114,9 @@ public class GameManager : MonoBehaviour
     }
     public void BackButton() //goes back to the previous menu accessed
     {
-        EnableMenu(lastMenuOpened);
+        
         DisableMenu(currentMenuOpened);
-
+        EnableMenu(lastMenuOpened);
     }
 
     /*public void PauseDaGame()
@@ -158,6 +158,7 @@ public class GameManager : MonoBehaviour
     }
     public void CloseOptionsMenu()
     {
+        EnableMenu(lastMenuOpened);
         optionsMenu.SetActive(false);
     }
 }

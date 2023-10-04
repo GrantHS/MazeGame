@@ -31,6 +31,7 @@ public class PausingMenu : MenuParent
 
     public void UnpauseDaGame()
     {
+        gameObject.SetActive(false);
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;

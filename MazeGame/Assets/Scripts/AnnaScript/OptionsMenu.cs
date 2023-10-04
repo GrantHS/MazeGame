@@ -12,7 +12,7 @@ public class OptionsMenu : MenuParent
 
     private void Awake()
     {
-        FindAnyObjectByType<MouseLook>().mouseSen = mouseSensitivitySlider.value * 10;
+        mouseSensitivitySlider.value = FindAnyObjectByType<MouseLook>().mouseSen / 10;
         sensitivityText.text = mouseSensitivitySlider.value.ToString();
     }
 
