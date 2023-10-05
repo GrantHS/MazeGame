@@ -21,29 +21,41 @@ public class FarmerAi : MonoBehaviour
     //Farmer States
     public float sightRange, attackRange;
     public bool playerInSight, playerInAttackRange;
+    public bool playerInvisible;
 
-    private PlayerMovementScript invisPower;
+    private PlayerMovementScript isInvisible;
 
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
         nav = GetComponent<NavMeshAgent>();
-        invisPower = new PlayerMovementScript();
+
+       
     }
 
     private void Update()
     {
+        playerInvisible = player.GetComponent<PlayerMovementScript>()._isInvisible;
+       // playerInvisible = isInvisible._isInvisible;
         playerInSight = Physics.CheckSphere(transform.position, sightRange, thisIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, thisIsPlayer);
-        
-
-        if (!playerInSight && !playerInAttackRange && !invisPower._isInvisible) 
+       
+        if (!playerInSight && !playerInAttackRange) 
         {
             Patrolling();
         }
-        if (playerInSight && !playerInAttackRange && !invisPower._isInvisible)
+        if (playerInSight && !playerInAttackRange)
         {
-            ChasingPlayer();
+            if (playerInvisible)
+            {
+                Patrolling();
+            }
+            else
+            {
+                ChasingPlayer();
+            }
+            
+           
             
         }
         if (playerInAttackRange && playerInAttackRange)
@@ -89,6 +101,7 @@ public class FarmerAi : MonoBehaviour
 
     private void ChasingPlayer()
     {
+
         nav.SetDestination(player.position);
     }
 
@@ -97,9 +110,9 @@ public class FarmerAi : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(transform.position, attackRange);
+       // Gizmos.DrawSphere(transform.position, attackRange);
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, sightRange);
+       // Gizmos.DrawSphere(transform.position, sightRange);
     }
 
 }

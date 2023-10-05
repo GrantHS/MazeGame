@@ -23,7 +23,7 @@ public class Respawn : MonoBehaviour
 
     private void Awake()
     {
-        bud.GetComponent<MeshRenderer>().material.color = _inactiveColor;
+       // bud.GetComponent<MeshRenderer>().material.color = _inactiveColor;
     }
     void Start()
     {

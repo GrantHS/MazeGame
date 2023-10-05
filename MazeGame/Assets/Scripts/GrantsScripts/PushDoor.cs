@@ -82,13 +82,15 @@ public class PushDoor : MonoBehaviour
 
     private IEnumerator PushOpen(ControllerColliderHit hit, float vanishTime)
     {
-        Debug.Log("pushing");
+        
         Rigidbody rb = hit.collider.attachedRigidbody;
 
         Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
 
-        rb.velocity = pushDirection * _pushPower;
+        //rb.velocity = pushDirection * _pushPower;
         hit.gameObject.GetComponent<BoxCollider>().enabled = false;
+
+        Debug.Log("pushing");
 
         yield return new WaitForSeconds(vanishTime);
 

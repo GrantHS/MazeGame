@@ -35,5 +35,6 @@ public class PausingMenu : MenuParent
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
+        FindAnyObjectByType<GameManager>().countingTime = true;
     }
 }
