@@ -17555,6 +17555,10 @@ MonoBehaviour:
   isPaused: 0
   pauseMenu: {fileID: 1905320584}
   optionsMenu: {fileID: 809847427}
+  mainMenu: {fileID: 0}
+  levelSelectMenu: {fileID: 0}
+  lastMenuOpened: 0
+  currentMenuOpened: 0
   levelFinished: 0
   playerTime: 0
   countingTime: 0
@@ -26318,7 +26322,7 @@ PrefabInstance:
     - target: {fileID: 8458411096259916061, guid: d090a4095a012a945a57129e25e80de6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.684717
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8458411096259916061, guid: d090a4095a012a945a57129e25e80de6,
         type: 3}
