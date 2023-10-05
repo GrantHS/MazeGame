@@ -21875,6 +21875,11 @@ PrefabInstance:
       objectReference: {fileID: 999514976}
     - target: {fileID: 2434849843504271272, guid: 41742ae267972cd4abe703e7bd7ed550,
         type: 3}
+      propertyPath: spotlight
+      value: 
+      objectReference: {fileID: 1534366855}
+    - target: {fileID: 2434849843504271272, guid: 41742ae267972cd4abe703e7bd7ed550,
+        type: 3}
       propertyPath: walkRange
       value: 5
       objectReference: {fileID: 0}
@@ -36489,6 +36494,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c01f2769bfb2ff94ab80c3b01aad32f9,
     type: 3}
   m_PrefabInstance: {fileID: 1697847960}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &1534366855 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 8842199636275585191, guid: 41742ae267972cd4abe703e7bd7ed550,
+    type: 3}
+  m_PrefabInstance: {fileID: 972642844}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1534674946
 GameObject:
