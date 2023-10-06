@@ -11,6 +11,12 @@ public class VictoryScreen : MenuParent
     private void OnEnable()
     {
         DisplayTime();
+        FindAnyObjectByType<GameManager>().currentMenuOpened = UIMenu.Victory;
+    }
+
+    private void OnDisable()
+    {
+        FindAnyObjectByType<GameManager>().lastMenuOpened = UIMenu.Victory;
     }
 
     private void DisplayTime()

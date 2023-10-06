@@ -19,6 +19,9 @@ public class FarmerAi : MonoBehaviour
     public float timeToAttack;
     bool attacked;
 
+    //Respawn Placeholder
+    public GameObject playerSpawn;
+
     //Farmer States
     public float sightRange, attackRange;
     public bool playerInSight, playerInAttackRange;
@@ -118,7 +121,7 @@ public class FarmerAi : MonoBehaviour
     {
         nav.SetDestination(transform.position);
         Debug.Log("Attacking Player");
-        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(7, 0.5f, -5);
+        GameObject.FindGameObjectWithTag("Player").transform.position = playerSpawn.transform.position;
     }
 
     private void ChasingPlayer()

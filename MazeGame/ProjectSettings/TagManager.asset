@@ -13,6 +13,7 @@ TagManager:
   - Barrel
   - PowerUp
   - Breakable Wall
+  - Farmer
   layers:
   - Default
   - TransparentFX

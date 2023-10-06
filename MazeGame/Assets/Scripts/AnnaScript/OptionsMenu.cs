@@ -16,7 +16,11 @@ public class OptionsMenu : MenuParent
         sensitivityText.text = mouseSensitivitySlider.value.ToString();
     }
 
-    private void OnEnable() => FindAnyObjectByType<GameManager>().currentMenuOpened = UIMenu.Options;
+    private void OnEnable()
+    {
+        FindAnyObjectByType<GameManager>().currentMenuOpened = UIMenu.Options;
+        Cursor.lockState = CursorLockMode.None;
+    }
 
     private void OnDisable() => FindAnyObjectByType<GameManager>().lastMenuOpened = UIMenu.Options;
 
