@@ -16,6 +16,9 @@ public enum UIMenu
 
 public class GameManager : MonoBehaviour
 {
+    public InputControls controls;
+
+    //controlling menus
     [SerializeField] private bool isPaused;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
@@ -25,11 +28,16 @@ public class GameManager : MonoBehaviour
     public UIMenu lastMenuOpened;
     public UIMenu currentMenuOpened;
     [SerializeField] private Dictionary<UIMenu, GameObject> menuDictionary = new Dictionary<UIMenu, GameObject>();
-    public InputControls controls;
+     
     public bool levelFinished;
+    
+    //Time Counter
     public float playerTime;
     public bool countingTime;
-    
+
+    public GameObject playerSpawn;
+    public GameObject farmerSpawn;
+
     private void Awake()
     {
         controls = new InputControls();
@@ -39,6 +47,7 @@ public class GameManager : MonoBehaviour
         menuDictionary.Add(UIMenu.MainMenu, mainMenu);
         menuDictionary.Add(UIMenu.Options, optionsMenu);
         menuDictionary.Add(UIMenu.Pause, pauseMenu);
+        menuDictionary.Add(UIMenu.Victory, FindAnyObjectByType<VictoryScreen>().game);
 
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);
@@ -79,13 +88,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && levelFinished == false) 
         {
             pauseMenu.SetActive(true);
-            FindAnyObjectByType<PausingMenu>().PauseDaGame();
             countingTime = false;
         }
         if (controls.Player1.Pause.triggered && levelFinished == false)
         {
             pauseMenu.SetActive(true);
-            FindAnyObjectByType<PausingMenu>().PauseDaGame();
             countingTime = false;
         }
         
@@ -147,6 +154,18 @@ public class GameManager : MonoBehaviour
         string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
 
         return niceTime;
+    }
+
+    public void RestartLevel()
+    {
+        GameObject.FindGameObjectWithTag("Player").transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
+        GameObject.FindGameObjectWithTag("Farmer").transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
+
+        playerTime = 0;
+        countingTime = true;
+
+        DisableMenu(currentMenuOpened);
+        lastMenuOpened = currentMenuOpened;
     }
 
     public void OpenOptionsMenu()
