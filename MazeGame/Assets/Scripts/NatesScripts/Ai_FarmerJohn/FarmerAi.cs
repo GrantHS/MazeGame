@@ -13,6 +13,7 @@ public class FarmerAi : MonoBehaviour
     public Vector3 wayPoints;
     bool wayPointSet;
     public float walkRange;
+    public Light spotlight;
 
     // Attacking 
     public float timeToAttack;
@@ -22,6 +23,9 @@ public class FarmerAi : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSight, playerInAttackRange;
     public bool playerInvisible;
+    private float viewDistance;
+    private float viewAngle;
+    public LayerMask viewMask;
 
     private PlayerMovementScript isInvisible;
 
@@ -29,7 +33,7 @@ public class FarmerAi : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         nav = GetComponent<NavMeshAgent>();
-
+        viewAngle = spotlight.spotAngle;
        
     }
 
@@ -40,11 +44,11 @@ public class FarmerAi : MonoBehaviour
         playerInSight = Physics.CheckSphere(transform.position, sightRange, thisIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, thisIsPlayer);
        
-        if (!playerInSight && !playerInAttackRange) 
+        if (!canSeePlayer() && !playerInAttackRange) 
         {
             Patrolling();
         }
-        if (playerInSight && !playerInAttackRange)
+        if (canSeePlayer() && !playerInAttackRange)
         {
             if (playerInvisible)
             {
@@ -79,6 +83,24 @@ public class FarmerAi : MonoBehaviour
         {
             wayPointSet = false;
         }
+    }
+
+    bool canSeePlayer()
+    {
+        if (Vector3.Distance(transform.position, player.position) < viewDistance)
+        {
+            Vector3 dirToPlayer = (player.position - transform.position).normalized;
+            float angleBetweenFarmer_Player = Vector3.Angle(transform.position, dirToPlayer);
+            if (angleBetweenFarmer_Player < viewAngle / 2f)
+            {
+                if (!Physics.Linecast(transform.position, player.position, viewMask))
+                    {
+                    return true;
+                }
+               
+            }
+        }
+        return false;
     }
     private void WalkPoints()
     {

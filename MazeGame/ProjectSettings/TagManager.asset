@@ -12,6 +12,7 @@ TagManager:
   - Checkpoint
   - Barrel
   - PowerUp
+  - Breakable Wall
   layers:
   - Default
   - TransparentFX

@@ -118,6 +118,14 @@ public class PlayerMovementScript : MonoBehaviour
                         Debug.Log("You used " + _itemCollection._activeItem);
                         break;
                     case ItemCollectables.Strength:
+                        if (!GetComponent<WallBreak>())
+                        {
+                            gameObject.AddComponent<WallBreak>();
+                        }
+                        else if (!GetComponent<WallBreak>().isActiveAndEnabled)
+                        {
+                            GetComponent<WallBreak>().enabled = true;
+                        }
                         Debug.Log("You used " + _itemCollection._activeItem);
                         break;
                     case ItemCollectables.Invisibility:
