@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         menuDictionary.Add(UIMenu.MainMenu, mainMenu);
         menuDictionary.Add(UIMenu.Options, optionsMenu);
         menuDictionary.Add(UIMenu.Pause, pauseMenu);
-        menuDictionary.Add(UIMenu.Victory, FindAnyObjectByType<VictoryScreen>().game);
+        menuDictionary.Add(UIMenu.Victory, FindAnyObjectByType<VictoryScreen>().gameObject);
 
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);
