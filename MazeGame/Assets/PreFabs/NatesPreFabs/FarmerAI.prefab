@@ -184,16 +184,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   wayPoints: {x: 0, y: 0, z: 0}
-  walkRange: 10
+  wayPointSet: 0
+  walkRange: 100
+  spotlight: {fileID: 8842199636275585191}
   timeToAttack: 0.5
-  sightRange: 9
+  playerSpawn: {fileID: 0}
+  sightRange: 13
   attackRange: 2
   playerInSight: 0
   playerInAttackRange: 0
   playerInvisible: 0
-  viewMask:
-    serializedVersion: 2
-    m_Bits: 0
+  viewAngle: 0
 --- !u!1 &2999828880155211726
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +222,7 @@ Transform:
   m_GameObject: {fileID: 2999828880155211726}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0045901956, y: -0, z: -0, w: 0.99998945}
-  m_LocalPosition: {x: 0, y: 0.592, z: 0.021}
+  m_LocalPosition: {x: -0, y: 0.73, z: 0.04}
   m_LocalScale: {x: 0.870074, y: 0.43085298, z: 0.538879}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -239,19 +240,19 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 68.60374
-  m_InnerSpotAngle: 44.94731
+  m_Intensity: 6.9
+  m_Range: 12.89
+  m_SpotAngle: 85.60869
+  m_InnerSpotAngle: 54.16966
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_Bias: 0
+    m_NormalBias: 0
+    m_NearPlane: 0.1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -281,7 +282,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 8.44
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
