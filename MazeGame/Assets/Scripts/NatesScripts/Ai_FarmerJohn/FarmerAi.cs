@@ -20,7 +20,7 @@ public class FarmerAi : MonoBehaviour
     bool attacked;
 
     //Respawn Placeholder
-    public GameObject playerSpawn;
+    //public GameObject playerSpawn; <= player already has one
 
     //Farmer States
     public float sightRange, attackRange;
@@ -36,7 +36,7 @@ public class FarmerAi : MonoBehaviour
         player = GameObject.Find("Player").transform;
         nav = GetComponent<NavMeshAgent>();
         viewAngle = spotlight.spotAngle;
-        playerSpawn.transform.position = player.transform.position;
+        //playerSpawn.transform.position = player.transform.position; <= Don't need
     }
 
     private void Update()
@@ -119,7 +119,8 @@ public class FarmerAi : MonoBehaviour
     {
         nav.SetDestination(player.transform.position);
         Debug.Log("Attacking Player");
-       player.transform.position = playerSpawn.transform.position;
+        //player.transform.position = playerSpawn.transform.position;
+        player.GetComponent<Respawn>().PlayerHealth = 0;
     }
 
     private void ChasingPlayer()
