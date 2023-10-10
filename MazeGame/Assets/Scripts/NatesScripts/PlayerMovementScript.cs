@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -28,6 +29,9 @@ public class PlayerMovementScript : MonoBehaviour
     private int jumpCount = 0;
     public bool _isInvisible = false;
     private Material originMat;
+    private GameObject compass;
+    public Animation compassAnims;
+    private Animator animator;
 
 
     private void Awake()
@@ -38,6 +42,10 @@ public class PlayerMovementScript : MonoBehaviour
         controls = new PlayerMovement();
         controller = this.GetComponent<CharacterController>();
         _itemCollection = GetComponent<ItemCollection>();
+        compass = GetComponentInChildren<Compass>().gameObject;
+        compass.SetActive(false);
+        compassAnims = compass.GetComponent<Animation>();
+        //animator = GetComponent<Animator>();
     }
   private void Update()
     {
@@ -133,6 +141,7 @@ public class PlayerMovementScript : MonoBehaviour
                         Debug.Log("You used " + _itemCollection._activeItem);
                         break;
                     case ItemCollectables.Clairvoyance:
+                        StartCoroutine(EquipCompass());
                         Debug.Log("You used " + _itemCollection._activeItem);
                         break;
                     case ItemCollectables.Jump:
@@ -177,6 +186,24 @@ public class PlayerMovementScript : MonoBehaviour
         yield return new WaitForSeconds(_duration);
         Debug.Log("No Zoom");
         moveSpeed -= speedBoost;
+    }
+
+    private IEnumerator EquipCompass()
+    {
+
+        if(!compass.activeInHierarchy)
+        {
+            compass.SetActive(true);
+        }
+
+        compassAnims.Play();
+        //animator.Play("CompassEquip");
+
+        yield return new WaitForSeconds(_duration);
+
+        compassAnims.Play("CompassDrop");
+        //animator.Play("CompassDrop");
+
     }
     /*
     private IEnumerator SupaJump()
