@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
-    float playerHealth = 100;
-    float playerYPos;
-    public Vector3 spawnPos;
+    public float PlayerHealth
+    {
+        get { return _playerHealth; }
+        set { _playerHealth = value; }
+    }
 
-    [Tooltip("Empty game object where the player will die if they fall below")]
-    public Transform minYPos;
+    private float _playerHealth = 100;
+    private float playerYPos;
+    private Vector3 spawnPos;
+
+    [Tooltip("The depth from spawn that the player respawns after passing")]
+    public float maxDepth = 20f;
+
+    private float minYPos;
 
     private List<GameObject> _checkPoints = new List<GameObject>();
 
@@ -23,11 +31,13 @@ public class Respawn : MonoBehaviour
 
     private void Awake()
     {
-       // bud.GetComponent<MeshRenderer>().material.color = _inactiveColor;
+        //bud.GetComponent<MeshRenderer>().material.color = _inactiveColor;
+        
     }
     void Start()
     {
         spawnPos = this.transform.position;
+        minYPos = transform.position.y - maxDepth;
     }
 
     void Update()
@@ -61,7 +71,7 @@ public class Respawn : MonoBehaviour
 
     bool CheckDeath()
     {
-        if (playerHealth <= 0 || playerYPos <= minYPos.position.y)
+        if (_playerHealth <= 0 || playerYPos <= minYPos)
         {
             return true;
         }
