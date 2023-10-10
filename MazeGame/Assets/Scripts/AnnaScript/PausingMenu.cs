@@ -10,10 +10,12 @@ public class PausingMenu : MenuParent
     {
         isPaused = true;
         FindAnyObjectByType<GameManager>().currentMenuOpened = UIMenu.Pause;
+        PauseDaGame();
     }
     private void OnDisable()
     {
         FindAnyObjectByType<GameManager>().lastMenuOpened = UIMenu.Pause;
+        UnpauseDaGame();
     }
 
     // Update is called once per frame
@@ -31,7 +33,8 @@ public class PausingMenu : MenuParent
 
     public void UnpauseDaGame()
     {
-        gameObject.SetActive(false);
+        if (gameObject.activeSelf == true)
+            gameObject.SetActive(false);
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;

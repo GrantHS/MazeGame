@@ -11,7 +11,7 @@ public class FarmerAi : MonoBehaviour
 
     //Patroling
     public Vector3 wayPoints;
-    bool wayPointSet;
+   public bool wayPointSet;
     public float walkRange;
     public Light spotlight;
 
@@ -19,13 +19,15 @@ public class FarmerAi : MonoBehaviour
     public float timeToAttack;
     bool attacked;
 
+    //Respawn Placeholder
+    public GameObject playerSpawn;
+
     //Farmer States
     public float sightRange, attackRange;
     public bool playerInSight, playerInAttackRange;
     public bool playerInvisible;
-    private float viewDistance;
-    private float viewAngle;
-    public LayerMask viewMask;
+    public float viewAngle;
+   
 
     private PlayerMovementScript isInvisible;
 
@@ -34,35 +36,24 @@ public class FarmerAi : MonoBehaviour
         player = GameObject.Find("Player").transform;
         nav = GetComponent<NavMeshAgent>();
         viewAngle = spotlight.spotAngle;
-       
+        playerSpawn.transform.position = player.transform.position;
     }
 
     private void Update()
     {
         playerInvisible = player.GetComponent<PlayerMovementScript>()._isInvisible;
-       // playerInvisible = isInvisible._isInvisible;
-        playerInSight = Physics.CheckSphere(transform.position, sightRange, thisIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, thisIsPlayer);
-       
-        if (!canSeePlayer() && !playerInAttackRange) 
+
+        if (canSeePlayer())
+        {
+            ChasingPlayer();
+        }
+        else
         {
             Patrolling();
         }
-        if (canSeePlayer() && !playerInAttackRange)
-        {
-            if (playerInvisible)
-            {
-                Patrolling();
-            }
-            else
-            {
-                ChasingPlayer();
-            }
-            
-           
-            
-        }
-        if (playerInAttackRange && playerInAttackRange)
+
+        if (playerInAttackRange && !playerInvisible)
         {
             Attacking();
         }
@@ -79,28 +70,38 @@ public class FarmerAi : MonoBehaviour
             nav.SetDestination(wayPoints);
         }
         Vector3 distanceToWalkPoint = transform.position - wayPoints;
-        if (distanceToWalkPoint.magnitude < 1f)
+      
+        if (distanceToWalkPoint.magnitude < 2f)
         {
             wayPointSet = false;
         }
     }
 
-    bool canSeePlayer()
+    private bool canSeePlayer()
     {
-        if (Vector3.Distance(transform.position, player.position) < viewDistance)
+     Vector3 dirToPlayer = (player.position - transform.position).normalized;
+     float angleBetweenFarmer_Player = Vector3.Angle(transform.forward, dirToPlayer);
+
+
+        if (Vector3.Distance(transform.position, player.position) < sightRange)
         {
-            Vector3 dirToPlayer = (player.position - transform.position).normalized;
-            float angleBetweenFarmer_Player = Vector3.Angle(transform.position, dirToPlayer);
+          
+           
             if (angleBetweenFarmer_Player < viewAngle / 2f)
             {
-                if (!Physics.Linecast(transform.position, player.position, viewMask))
+              //  Debug.Log("TARGET LOCKED");
+                playerInSight = true;
+                if (!Physics.Linecast(transform.position, player.position, thisIsGround))
                     {
                     return true;
                 }
-               
+
             }
+          
         }
+        playerInSight = false;
         return false;
+
     }
     private void WalkPoints()
     {
@@ -108,7 +109,7 @@ public class FarmerAi : MonoBehaviour
         float randomX = Random.Range(-walkRange, walkRange);
 
         wayPoints = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        if (Physics.Raycast(wayPoints, -transform.up, 2f, thisIsGround))
+        if (Physics.Raycast(wayPoints, -transform.up, 1f, thisIsGround))
         {
             wayPointSet = true;
         }
@@ -116,15 +117,17 @@ public class FarmerAi : MonoBehaviour
 
     private void Attacking()
     {
-        nav.SetDestination(transform.position);
+        nav.SetDestination(player.transform.position);
         Debug.Log("Attacking Player");
-        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(7, 0.5f, -5);
+       player.transform.position = playerSpawn.transform.position;
     }
 
     private void ChasingPlayer()
     {
 
         nav.SetDestination(player.position);
+
+
     }
 
 
@@ -132,9 +135,12 @@ public class FarmerAi : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-       // Gizmos.DrawSphere(transform.position, attackRange);
+        Gizmos.DrawSphere(transform.position, attackRange);
         Gizmos.color = Color.red;
-       // Gizmos.DrawSphere(transform.position, sightRange);
+        Gizmos.DrawRay(transform.position, transform.forward * sightRange);
+        Gizmos.color = Color.green;
+       // Gizmos.DrawRay(transform.position, transform.forward * sightRange);
+
     }
 
 }
