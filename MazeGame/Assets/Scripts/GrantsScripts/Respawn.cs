@@ -10,7 +10,8 @@ public class Respawn : MonoBehaviour
         set { _playerHealth = value; }
     }
 
-    private float _playerHealth = 100;
+    public float _playerHealth;
+    private float _fullHealth = 100f;
     private float playerYPos;
     private Vector3 spawnPos;
 
@@ -19,15 +20,14 @@ public class Respawn : MonoBehaviour
 
     private float minYPos;
 
-    private List<GameObject> _checkPoints = new List<GameObject>();
-
     private bool _isSpawning = false;
     private float _blinkInterval = 0.5f;
 
     //Temp parameters for animation alternative
-    public GameObject bud;
-    private Color _inactiveColor = Color.grey;
-    private Color _activeColor = Color.yellow;
+    private GameObject newCheckpoint;
+    private GameObject oldCheckpoint;
+    public Material _inactiveMat;
+    public Material _activeMat;
 
     private void Awake()
     {
@@ -38,6 +38,7 @@ public class Respawn : MonoBehaviour
     {
         spawnPos = this.transform.position;
         minYPos = transform.position.y - maxDepth;
+        _playerHealth = _fullHealth;
     }
 
     void Update()
@@ -48,9 +49,12 @@ public class Respawn : MonoBehaviour
         {
             if (!_isSpawning)
             {
+                Debug.Log("Respawning");
                 _isSpawning = true;
+                _playerHealth = _fullHealth;
                 this.transform.position = spawnPos;
-                StartCoroutine(Blink(this.gameObject, _blinkInterval));
+                _isSpawning = false;
+                //StartCoroutine(Blink(this.gameObject, _blinkInterval));
             } 
                 
         }
@@ -60,11 +64,25 @@ public class Respawn : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Checkpoint"))
         {
-            _checkPoints.Add(other.gameObject);
+            if(newCheckpoint == null)
+            {
+                newCheckpoint = other.gameObject;
+            }
+            else
+            {
+                oldCheckpoint = newCheckpoint;
+                newCheckpoint = other.gameObject;
+            }
+
+            if(oldCheckpoint != null)
+            {
+                oldCheckpoint.GetComponent<MeshRenderer>().material = _inactiveMat;
+            }
+
             spawnPos = this.transform.position;
             //Start bloom animation for flower
             //Alternative to animation
-            bud.GetComponent<MeshRenderer>().material.color = _activeColor;
+            newCheckpoint.GetComponent<MeshRenderer>().material = _activeMat;
             Debug.Log("Checkpoint Reached!");
         }
     }
