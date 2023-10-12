@@ -13,7 +13,7 @@ public class PowerUp : MonoBehaviour
     {
         Array values = Enum.GetValues(typeof(ItemCollectables));
         System.Random random = new System.Random();
-        power = ItemCollectables.Strength; //(ItemCollectables)values.GetValue(random.Next(values.Length));
+        power = ItemCollectables.Freeze; //(ItemCollectables)values.GetValue(random.Next(values.Length));
         //Debug.Log("Item power: " +  power);
 
         switch (power)
@@ -32,6 +32,9 @@ public class PowerUp : MonoBehaviour
                 break;
             case ItemCollectables.Jump:
                 this.gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+                break;
+            case ItemCollectables.Freeze:
+                this.gameObject.GetComponent<MeshRenderer>().material.color = Color.cyan;
                 break;
             default:
                 break;

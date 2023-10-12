@@ -30,8 +30,8 @@ public class PlayerMovementScript : MonoBehaviour
     public bool _isInvisible = false;
     private Material originMat;
     private GameObject compass;
-    public Animation compassAnims;
-    private Animator animator;
+    private Animation compassAnims;
+    public GameObject frostBallPrefab;
 
 
     private void Awake()
@@ -148,6 +148,10 @@ public class PlayerMovementScript : MonoBehaviour
                         _canJump = true;
                         Debug.Log("You used: " + _itemCollection._activeItem);
                         break;
+                    case ItemCollectables.Freeze:
+                        ShootFrostBall();
+                        Debug.Log("You used: " + _itemCollection._activeItem);
+                        break;
                     default:
                         Debug.Log("Unknown power used");
                         break;
@@ -162,6 +166,12 @@ public class PlayerMovementScript : MonoBehaviour
     public void UseAbility(IAbility ability)
     {
         ability.activateAbility();
+    }
+
+    private void ShootFrostBall()
+    {
+        GameObject frostBall = Instantiate(frostBallPrefab, transform.position, transform.rotation);
+        frostBall.AddComponent<FrostBall>();
     }
 
     private IEnumerator BecomeInvisible()
