@@ -11,12 +11,8 @@ public class VictoryScreen : MenuParent
     private void OnEnable()
     {
         DisplayTime();
+        Time.timeScale = 0;
         FindAnyObjectByType<GameManager>().currentMenuOpened = UIMenu.Victory;
-    }
-
-    private void OnDisable()
-    {
-        FindAnyObjectByType<GameManager>().lastMenuOpened = UIMenu.Victory;
     }
 
     private void DisplayTime()
@@ -26,7 +22,7 @@ public class VictoryScreen : MenuParent
 
     public void ExitGame()
     {
-        Application.Quit(); //use for quitting in builds
-        //UnityEditor.EditorApplication.isPlaying = false; //use for quitting play mode
+        //Application.Quit(); //use for quitting in builds
+        UnityEditor.EditorApplication.isPlaying = false; //use for quitting play mode
     }
 }

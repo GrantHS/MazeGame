@@ -21,6 +21,7 @@ public class LevelInfoHolder : MonoBehaviour
     public void OnLevelSelected()
     {
         FindAnyObjectByType<LevelSelectMenu>().selectedLevelNameText.text = levelInfo.levelName;
+        FindAnyObjectByType<LevelSelectMenu>().selectedMazeLevel = levelInfo.mazeLevelObject;
     }
 
 }

@@ -14,7 +14,7 @@ public class PausingMenu : MenuParent
     }
     private void OnDisable()
     {
-        FindAnyObjectByType<GameManager>().lastMenuOpened = UIMenu.Pause;
+        //FindAnyObjectByType<GameManager>().lastMenuOpened = UIMenu.Pause;
         UnpauseDaGame();
     }
 

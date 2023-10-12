@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class LevelSelectMenu : MenuParent
 {
+    //UI Related Variables
     public RectTransform[] levelList;
     [SerializeField] private ScrollRect levelScrollRect;
     [SerializeField] private RectTransform levelViewportTransform;
@@ -20,8 +21,11 @@ public class LevelSelectMenu : MenuParent
     private bool isUpdated;
     private Vector2 scrollVelocity;
 
-    [SerializeField] private int selectedLevelIndex = 0;
     public TextMeshProUGUI selectedLevelNameText;
+
+    //Selecting the Level Variables
+    [SerializeField] private int selectedLevelIndex = 0; //currently unused
+    public GameObject selectedMazeLevel;
 
     private void Awake()
     {
@@ -54,7 +58,6 @@ public class LevelSelectMenu : MenuParent
     }
 
     private void OnEnable() => FindAnyObjectByType<GameManager>().currentMenuOpened = UIMenu.LevelSelect;
-    private void OnDisable() => FindAnyObjectByType<GameManager>().lastMenuOpened = UIMenu.LevelSelect;
 
     private void Update()
     {
@@ -94,7 +97,7 @@ public class LevelSelectMenu : MenuParent
         }
     }
 
-    public void ScrollLeft()
+    public void ScrollLeft() //currently unused
     {
         if(levelScrollRect != null)
         {
@@ -111,7 +114,7 @@ public class LevelSelectMenu : MenuParent
             selectedLevelNameText.text = levelList[selectedLevelIndex].GetComponent<LevelInfoHolder>().levelInfo.levelName;
         }
     } 
-    public void ScrollRight()
+    public void ScrollRight() //currently unused
     {
         if(levelScrollRect != null)
         {
@@ -126,6 +129,25 @@ public class LevelSelectMenu : MenuParent
                 selectedLevelIndex = 0;
             }
             selectedLevelNameText.text = levelList[selectedLevelIndex].GetComponent<LevelInfoHolder>().levelInfo.levelName;
+        }
+    }
+
+    public void SelectLevel()
+    {
+        if(selectedMazeLevel != null)
+        {
+            GameObject farmerSpawn = selectedMazeLevel.transform.Find("FarmerSpawn").gameObject;
+            GameObject playerSpawn = selectedMazeLevel.transform.Find("PlayerSpawn").gameObject;
+
+            GameObject.FindGameObjectWithTag("Player").transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
+            GameObject.FindGameObjectWithTag("Farmer").transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
+
+            Time.timeScale = 1;
+            FindAnyObjectByType<GameManager>().playerTime = 0;
+            FindAnyObjectByType<GameManager>().countingTime = true;
+
+            FindAnyObjectByType<GameManager>().DisableMenu(FindAnyObjectByType<GameManager>().currentMenuOpened);
+            FindAnyObjectByType<GameManager>().lastMenuOpened = FindAnyObjectByType<GameManager>().currentMenuOpened;
         }
     }
 }

@@ -8,4 +8,5 @@ public class LevelSelectInfo : ScriptableObject
     public string levelName;
     public float rating;
     public string levelSize;
+    public GameObject mazeLevelObject;
 }

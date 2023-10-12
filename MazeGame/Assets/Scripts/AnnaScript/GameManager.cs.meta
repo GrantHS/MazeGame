@@ -3,7 +3,16 @@ guid: 57af7f05e4e31d845b33ac3bc7970d4d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - pauseMenu: {fileID: 9103704048836501423, guid: 3eee96c204a53c6499b6ef782d285fee,
+      type: 3}
+  - optionsMenu: {fileID: 459049006900843353, guid: dd5756e78bb21a648994eb49d5464d3e,
+      type: 3}
+  - mainMenu: {instanceID: 0}
+  - levelSelectMenu: {instanceID: 0}
+  - victoryScreen: {instanceID: 0}
+  - playerSpawn: {instanceID: 0}
+  - farmerSpawn: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
