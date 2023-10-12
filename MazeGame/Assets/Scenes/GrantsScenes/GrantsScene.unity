@@ -22461,6 +22461,11 @@ PrefabInstance:
       propertyPath: attackRange
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3436812867646487894, guid: 41742ae267972cd4abe703e7bd7ed550,
+        type: 3}
+      propertyPath: m_TagString
+      value: Farmer
+      objectReference: {fileID: 0}
     - target: {fileID: 5723351130474048872, guid: 41742ae267972cd4abe703e7bd7ed550,
         type: 3}
       propertyPath: m_Height
@@ -23131,7 +23136,7 @@ PrefabInstance:
     - target: {fileID: 1924791278039599393, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.6
+      value: -0.51
       objectReference: {fileID: 0}
     - target: {fileID: 1924791278039599393, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
@@ -23141,7 +23146,7 @@ PrefabInstance:
     - target: {fileID: 1924791278039599393, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.44
+      value: 10.98
       objectReference: {fileID: 0}
     - target: {fileID: 1924791278039599393, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
@@ -23317,6 +23322,11 @@ PrefabInstance:
       propertyPath: compass
       value: 
       objectReference: {fileID: 962771925}
+    - target: {fileID: 9101896115943229253, guid: 3360bbae49225324094866abb7041da1,
+        type: 3}
+      propertyPath: freezeMat
+      value: 
+      objectReference: {fileID: 2100000, guid: ec7610b0335f78a47bf4070642a7c4e0, type: 2}
     - target: {fileID: 9101896115943229253, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
       propertyPath: _isInvisible

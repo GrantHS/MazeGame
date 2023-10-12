@@ -32,6 +32,8 @@ public class PlayerMovementScript : MonoBehaviour
     private GameObject compass;
     private Animation compassAnims;
     public GameObject frostBallPrefab;
+    private Camera playerCam;
+    public Material freezeMat;
 
 
     private void Awake()
@@ -45,6 +47,7 @@ public class PlayerMovementScript : MonoBehaviour
         compass = GetComponentInChildren<Compass>().gameObject;
         compass.SetActive(false);
         compassAnims = compass.GetComponent<Animation>();
+        playerCam = GetComponentInChildren<Camera>();
         //animator = GetComponent<Animator>();
     }
   private void Update()
@@ -57,9 +60,6 @@ public class PlayerMovementScript : MonoBehaviour
         Gravity();
         //Paused();
         Jump();
-
-        
-
     }
 
     private void Gravity()
@@ -170,8 +170,12 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void ShootFrostBall()
     {
-        GameObject frostBall = Instantiate(frostBallPrefab, transform.position, transform.rotation);
-        frostBall.AddComponent<FrostBall>();
+        GameObject frostBall = Instantiate(frostBallPrefab, playerCam.transform.position + playerCam.transform.forward, playerCam.transform.rotation);
+        FrostBall ball = frostBall.AddComponent<FrostBall>();
+        //FrostBall ball = frostBall.GetComponent<FrostBall>();
+        ball.master = playerCam.transform;
+        ball.freezeMat = freezeMat;
+
     }
 
     private IEnumerator BecomeInvisible()
