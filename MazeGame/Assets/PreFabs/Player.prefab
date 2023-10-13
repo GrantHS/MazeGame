@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 5557454581861409675}
   - component: {fileID: 299286314883138134}
   - component: {fileID: 1803762352328754140}
+  - component: {fileID: 5886048393310845539}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -288,7 +289,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0841aa1157660304fb410ce85bc98047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSen: 50
+  mouseSen: 100
+--- !u!114 &5886048393310845539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3153964295812162545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74e54dde2e92794681e8bd446a4fee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Copying: MouseLook
+  mouseSen: 25
 --- !u!1 &3225447278143719000
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,7 +739,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2959243834807452456}
   - component: {fileID: 1927075536504432739}
-  - component: {fileID: 3154494510744317336}
   - component: {fileID: 4522860937550998404}
   m_Layer: 0
   m_Name: MiniMap
@@ -800,14 +814,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3154494510744317336
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7049903228240578231}
-  m_Enabled: 1
 --- !u!114 &4522860937550998404
 MonoBehaviour:
   m_ObjectHideFlags: 0

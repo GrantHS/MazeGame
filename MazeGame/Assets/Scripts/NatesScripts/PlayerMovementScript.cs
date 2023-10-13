@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -28,6 +29,11 @@ public class PlayerMovementScript : MonoBehaviour
     private int jumpCount = 0;
     public bool _isInvisible = false;
     private Material originMat;
+    private GameObject compass;
+    private Animation compassAnims;
+    public GameObject frostBallPrefab;
+    private Camera playerCam;
+    public Material freezeMat;
 
 
     private void Awake()
@@ -38,6 +44,11 @@ public class PlayerMovementScript : MonoBehaviour
         controls = new PlayerMovement();
         controller = this.GetComponent<CharacterController>();
         _itemCollection = GetComponent<ItemCollection>();
+        compass = GetComponentInChildren<Compass>().gameObject;
+        compass.SetActive(false);
+        compassAnims = compass.GetComponent<Animation>();
+        playerCam = GetComponentInChildren<Camera>();
+        //animator = GetComponent<Animator>();
     }
   private void Update()
     {
@@ -49,9 +60,6 @@ public class PlayerMovementScript : MonoBehaviour
         Gravity();
         //Paused();
         Jump();
-
-        
-
     }
 
     private void Gravity()
@@ -133,10 +141,15 @@ public class PlayerMovementScript : MonoBehaviour
                         Debug.Log("You used " + _itemCollection._activeItem);
                         break;
                     case ItemCollectables.Clairvoyance:
+                        StartCoroutine(EquipCompass());
                         Debug.Log("You used " + _itemCollection._activeItem);
                         break;
                     case ItemCollectables.Jump:
                         _canJump = true;
+                        Debug.Log("You used: " + _itemCollection._activeItem);
+                        break;
+                    case ItemCollectables.Freeze:
+                        ShootFrostBall();
                         Debug.Log("You used: " + _itemCollection._activeItem);
                         break;
                     default:
@@ -153,6 +166,16 @@ public class PlayerMovementScript : MonoBehaviour
     public void UseAbility(IAbility ability)
     {
         ability.activateAbility();
+    }
+
+    private void ShootFrostBall()
+    {
+        GameObject frostBall = Instantiate(frostBallPrefab, playerCam.transform.position + playerCam.transform.forward, playerCam.transform.rotation);
+        FrostBall ball = frostBall.AddComponent<FrostBall>();
+        //FrostBall ball = frostBall.GetComponent<FrostBall>();
+        ball.master = playerCam.transform;
+        ball.freezeMat = freezeMat;
+
     }
 
     private IEnumerator BecomeInvisible()
@@ -177,6 +200,24 @@ public class PlayerMovementScript : MonoBehaviour
         yield return new WaitForSeconds(_duration);
         Debug.Log("No Zoom");
         moveSpeed -= speedBoost;
+    }
+
+    private IEnumerator EquipCompass()
+    {
+
+        if(!compass.activeInHierarchy)
+        {
+            compass.SetActive(true);
+        }
+
+        compassAnims.Play();
+        //animator.Play("CompassEquip");
+
+        yield return new WaitForSeconds(_duration);
+
+        compassAnims.Play("CompassDrop");
+        //animator.Play("CompassDrop");
+
     }
     /*
     private IEnumerator SupaJump()
