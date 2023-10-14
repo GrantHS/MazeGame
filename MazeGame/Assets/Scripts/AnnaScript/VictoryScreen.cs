@@ -12,17 +12,17 @@ public class VictoryScreen : MenuParent
     {
         DisplayTime();
         Time.timeScale = 0;
-        FindAnyObjectByType<GameManager>().currentMenuOpened = UIMenu.Victory;
+        GameManager.Instance.currentMenuOpened = UIMenu.Victory;
     }
 
     private void DisplayTime()
     {
-        timeText.text = "Time: " + FindAnyObjectByType<GameManager>().TimeCounter();
+        timeText.text = "Time: " + GameManager.Instance.TimeCounter();
     }
 
     public void ExitGame()
     {
-        //Application.Quit(); //use for quitting in builds
-        UnityEditor.EditorApplication.isPlaying = false; //use for quitting play mode
+        Application.Quit(); //use for quitting in builds
+        //UnityEditor.EditorApplication.isPlaying = false; //use for quitting play mode
     }
 }

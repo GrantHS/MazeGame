@@ -18,12 +18,12 @@ public class OptionsMenu : MenuParent
 
     private void OnEnable()
     {
-        FindAnyObjectByType<GameManager>().currentMenuOpened = UIMenu.Options;
-        FindAnyObjectByType<GameManager>().countingTime = !FindAnyObjectByType<GameManager>().countingTime;
+        GameManager.Instance.currentMenuOpened = UIMenu.Options;
+        GameManager.Instance.countingTime = !GameManager.Instance.countingTime;
         Cursor.lockState = CursorLockMode.None;
     }
 
-    //private void OnDisable() => FindAnyObjectByType<GameManager>().lastMenuOpened = UIMenu.Options;
+    //private void OnDisable() => GameManager.Instance.lastMenuOpened = UIMenu.Options;
 
     public void HUDOn()
     {

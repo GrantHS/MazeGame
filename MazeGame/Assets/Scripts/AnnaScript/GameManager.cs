@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
 
 public enum UIMenu
 {
@@ -16,6 +14,7 @@ public enum UIMenu
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance; //singleton
     public InputControls controls;
 
     //controlling menus
@@ -41,9 +40,16 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        //singleton setup
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
+
         controls = new InputControls();
         countingTime = true;
 
+        //adding menus into the menu dictionary
         menuDictionary.Add(UIMenu.LevelSelect, levelSelectMenu);
         menuDictionary.Add(UIMenu.MainMenu, mainMenu);
         menuDictionary.Add(UIMenu.Options, optionsMenu);
@@ -195,5 +201,12 @@ public class GameManager : MonoBehaviour
 
         DisableMenu(lastMenuOpened);
         levelSelectMenu.SetActive(true);
+    }
+
+    public void LevelSelectToVictoryScreenTransition() //this is a placeholder
+    {
+        lastMenuOpened = currentMenuOpened;
+        DisableMenu(lastMenuOpened);
+        victoryScreen.SetActive(true);
     }
 }

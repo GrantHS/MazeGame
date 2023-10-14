@@ -57,7 +57,7 @@ public class LevelSelectMenu : MenuParent
         //please take note of anchored position, perhaps that might help in getting the element centered when selected
     }
 
-    private void OnEnable() => FindAnyObjectByType<GameManager>().currentMenuOpened = UIMenu.LevelSelect;
+    private void OnEnable() => GameManager.Instance.currentMenuOpened = UIMenu.LevelSelect;
 
     private void Update()
     {
@@ -143,11 +143,11 @@ public class LevelSelectMenu : MenuParent
             GameObject.FindGameObjectWithTag("Farmer").transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
 
             Time.timeScale = 1;
-            FindAnyObjectByType<GameManager>().playerTime = 0;
-            FindAnyObjectByType<GameManager>().countingTime = true;
+            GameManager.Instance.playerTime = 0;
+            GameManager.Instance.countingTime = true;
 
-            FindAnyObjectByType<GameManager>().DisableMenu(FindAnyObjectByType<GameManager>().currentMenuOpened);
-            FindAnyObjectByType<GameManager>().lastMenuOpened = FindAnyObjectByType<GameManager>().currentMenuOpened;
+            GameManager.Instance.DisableMenu(FindAnyObjectByType<GameManager>().currentMenuOpened);
+            GameManager.Instance.lastMenuOpened = FindAnyObjectByType<GameManager>().currentMenuOpened;
         }
     }
 }
