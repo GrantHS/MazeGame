@@ -9,12 +9,12 @@ public class PausingMenu : MenuParent
     private void OnEnable()
     {
         isPaused = true;
-        FindAnyObjectByType<GameManager>().currentMenuOpened = UIMenu.Pause;
+        GameManager.Instance.currentMenuOpened = UIMenu.Pause;
         PauseDaGame();
     }
     private void OnDisable()
     {
-        FindAnyObjectByType<GameManager>().lastMenuOpened = UIMenu.Pause;
+        //FindAnyObjectByType<GameManager>().lastMenuOpened = UIMenu.Pause;
         UnpauseDaGame();
     }
 
@@ -28,7 +28,7 @@ public class PausingMenu : MenuParent
     {
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
-        FindAnyObjectByType<GameManager>().countingTime = false;
+        GameManager.Instance.countingTime = false;
     }
 
     public void UnpauseDaGame()
@@ -38,6 +38,6 @@ public class PausingMenu : MenuParent
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
-        FindAnyObjectByType<GameManager>().countingTime = true;
+        GameManager.Instance.countingTime = true;
     }
 }

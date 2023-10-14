@@ -18,16 +18,17 @@ public class OptionsMenu : MenuParent
 
     private void OnEnable()
     {
-        FindAnyObjectByType<GameManager>().currentMenuOpened = UIMenu.Options;
+        GameManager.Instance.currentMenuOpened = UIMenu.Options;
+        GameManager.Instance.countingTime = !GameManager.Instance.countingTime;
         Cursor.lockState = CursorLockMode.None;
     }
 
-    private void OnDisable() => FindAnyObjectByType<GameManager>().lastMenuOpened = UIMenu.Options;
+    //private void OnDisable() => GameManager.Instance.lastMenuOpened = UIMenu.Options;
 
     public void HUDOn()
     {
         gameplayHUD.SetActive(true);
-        gameplayHUD.GetComponent<Canvas>().sortingOrder = this.GetComponent<Canvas>().sortingOrder - 2; //number probably subject to change
+        gameplayHUD.GetComponent<Canvas>().sortingOrder = GetComponent<Canvas>().sortingOrder - 2; //number probably subject to change
     }
     public void HUDOff() => gameplayHUD.SetActive(false);
 

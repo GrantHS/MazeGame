@@ -19,8 +19,8 @@ public class ExitDoor : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
         {
-            FindAnyObjectByType<GameManager>().levelFinished = true;
-            FindAnyObjectByType<GameManager>().countingTime = false;
+            GameManager.Instance.levelFinished = true;
+            GameManager.Instance.countingTime = false;
             Cursor.lockState = CursorLockMode.None;
             victoryScreen.SetActive(true);
         }

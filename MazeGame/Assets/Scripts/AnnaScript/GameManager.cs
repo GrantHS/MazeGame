@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
 
 public enum UIMenu
 {
@@ -16,6 +14,7 @@ public enum UIMenu
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance; //singleton
     public InputControls controls;
 
     //controlling menus
@@ -24,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject levelSelectMenu;
+    [SerializeField] private GameObject victoryScreen;
 
     public UIMenu lastMenuOpened;
     public UIMenu currentMenuOpened;
@@ -40,17 +40,25 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        //singleton setup
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
+
         controls = new InputControls();
         countingTime = true;
 
+        //adding menus into the menu dictionary
         menuDictionary.Add(UIMenu.LevelSelect, levelSelectMenu);
         menuDictionary.Add(UIMenu.MainMenu, mainMenu);
         menuDictionary.Add(UIMenu.Options, optionsMenu);
         menuDictionary.Add(UIMenu.Pause, pauseMenu);
-        menuDictionary.Add(UIMenu.Victory, FindAnyObjectByType<VictoryScreen>().gameObject);
+        menuDictionary.Add(UIMenu.Victory, victoryScreen);
 
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);
+        victoryScreen.SetActive(false);
     }
 
     private void OnEnable() => controls.Enable();
@@ -121,9 +129,9 @@ public class GameManager : MonoBehaviour
     }
     public void BackButton() //goes back to the previous menu accessed
     {
-        
         DisableMenu(currentMenuOpened);
-        EnableMenu(lastMenuOpened);
+        EnableMenu(lastMenuOpened);       
+        
     }
 
     /*public void PauseDaGame()
@@ -158,6 +166,9 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        levelFinished = !levelFinished;
+        Time.timeScale = 1;
+
         GameObject.FindGameObjectWithTag("Player").transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
         GameObject.FindGameObjectWithTag("Farmer").transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
 
@@ -172,12 +183,30 @@ public class GameManager : MonoBehaviour
     {
         lastMenuOpened = currentMenuOpened;
 
+        Time.timeScale = 0;
+
         DisableMenu(lastMenuOpened);
         optionsMenu.SetActive(true);
     }
-    public void CloseOptionsMenu()
+    public void CloseOptionsMenu() //unused at the moment
     {
         EnableMenu(lastMenuOpened);
         optionsMenu.SetActive(false);
+    }
+    public void OpenLevelSelectMenu()
+    {
+        lastMenuOpened = currentMenuOpened;
+
+        Time.timeScale = 0;
+
+        DisableMenu(lastMenuOpened);
+        levelSelectMenu.SetActive(true);
+    }
+
+    public void LevelSelectToVictoryScreenTransition() //this is a placeholder
+    {
+        lastMenuOpened = currentMenuOpened;
+        DisableMenu(lastMenuOpened);
+        victoryScreen.SetActive(true);
     }
 }
