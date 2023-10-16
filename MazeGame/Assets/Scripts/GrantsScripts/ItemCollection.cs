@@ -80,13 +80,13 @@ public class ItemCollection : MonoBehaviour
                 case ItemCollectables.Clairvoyance:
                     //Give player invisibility when they push ability button
                     Debug.Log("You found a " + _activeItem + " orb!");
-                    //itemSprite.GetComponent<Image>().sprite = clairvoyanceSprite; //(Swap this with line below after sprites are generated)
-                    itemSprite.GetComponent<Image>().color = Color.white;
+                    itemSprite.GetComponent<Image>().sprite = clairvoyanceSprite; //(Swap this with line below after sprites are generated)
+                    //itemSprite.GetComponent<Image>().color = Color.white;
                     itemSprite.SetActive(true);
                     break;
                 case ItemCollectables.Jump:
                     Debug.Log("You found a " + _activeItem + " orb!");
-                    itemSprite.GetComponent<Image>().sprite = clairvoyanceSprite; //(Swap this with line below after sprites are generated)
+                    itemSprite.GetComponent<Image>().sprite = jumpSprite; //(Swap this with line below after sprites are generated)
                     //itemSprite.GetComponent<Image>().color = Color.blue;
                     itemSprite.SetActive(true);
                     break;

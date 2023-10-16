@@ -19,7 +19,8 @@ public class PowerUp : MonoBehaviour
         strengthEffect.gameObject.SetActive(false);
         Array values = Enum.GetValues(typeof(ItemCollectables));
         System.Random random = new System.Random();
-        power = ItemCollectables.Speed; //power = (ItemCollectables)values.GetValue(random.Next(values.Length));
+        power = (ItemCollectables)values.GetValue(random.Next(values.Length)); //Comment this out when using line below
+        //power = ItemCollectables.Freeze; //Uncomment and change this variable to get specific abilities to spawn
         //Debug.Log("Item power: " +  power);
 
         switch (power)
