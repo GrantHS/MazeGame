@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class VictoryScreen : MonoBehaviour
+public class VictoryScreen : MenuParent
 {
-    [SerializeField] private UIMenu menu;
     [SerializeField] private TextMeshProUGUI timeText;
 
 
     private void OnEnable()
     {
         DisplayTime();
+        Time.timeScale = 0;
+        GameManager.Instance.currentMenuOpened = UIMenu.Victory;
     }
 
     private void DisplayTime()
     {
-        timeText.text = "Time: " + FindAnyObjectByType<GameManager>().TimeCounter();
+        timeText.text = "Time: " + GameManager.Instance.TimeCounter();
     }
 
     public void ExitGame()

@@ -1,28 +1,60 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovementScript : MonoBehaviour
 {
     private PlayerMovement controls;
-    
+    private ItemCollection _itemCollection;
     private float moveSpeed = 6f;
     public Vector3 velocity;
     private float gravity = -9.81f;
     private Vector2 move;
-    private float JumpHeight = 2.4f;
+    private float JumpHeight = 4.2f;
     private CharacterController controller;
     public Transform ground;
     public float distancetoGround = 0.2f;
     public LayerMask groundMask;
     public bool isGrounded;
+    Array values = Enum.GetValues(typeof(ItemCollectables));
+    private IAbility[] abilities;
+    private float speedBoost;
+    private float _duration = 5f;
+    private bool _canJump = false;
+    private int maxJumps = 3;
+    private int jumpCount = 0;
+    public bool _isInvisible = false;
+    private Material originMat;
+    private GameObject compass;
+    private Animation compassAnims;
+    public GameObject frostBallPrefab;
+    private Camera playerCam;
+    public Material freezeMat;
+    public GameObject invisibleEffect, speedEffect, strengthEffect;
 
 
     private void Awake()
     {
+        invisibleEffect.gameObject.SetActive(false);
+        speedEffect.gameObject.SetActive(false);
+        strengthEffect.gameObject.SetActive(false);
+
+        speedBoost = moveSpeed / 1.5f;
+        abilities = new IAbility[values.Length - 1];
+        abilities[1] = gameObject.AddComponent<Invisibility>();
         controls = new PlayerMovement();
         controller = this.GetComponent<CharacterController>();
+        _itemCollection = GetComponent<ItemCollection>();
+
+        compass = GetComponentInChildren<Compass>().gameObject;
+        compass.SetActive(false);
+        compassAnims = compass.GetComponent<Animation>();
+        playerCam = GetComponentInChildren<Camera>();
+        //animator = GetComponent<Animator>();
     }
   private void Update()
     {
@@ -34,9 +66,6 @@ public class PlayerMovementScript : MonoBehaviour
         Gravity();
         //Paused();
         Jump();
-
-        
-
     }
 
     private void Gravity()
@@ -55,17 +84,26 @@ public class PlayerMovementScript : MonoBehaviour
     private void PlayerMoving()
     {
         move = controls.PlayerActions.Movement.ReadValue<Vector2>();
-
-        Vector3 movement = (move.y * transform.forward) + (move.x * transform.right);
-        controller.Move(movement * moveSpeed * Time.deltaTime);
+        if (isGrounded)
+        {
+            Vector3 movement = (move.y * transform.forward) + (move.x * transform.right);
+            controller.Move(movement * moveSpeed * Time.deltaTime);
+        }
+        
     }
 
     private void Jump()
     {
 
-        if (controls.PlayerActions.Jump.triggered && isGrounded)
+        if (controls.PlayerActions.Jump.triggered && isGrounded && _canJump && jumpCount < maxJumps)
         {
             velocity.y = Mathf.Sqrt(JumpHeight * -2f * -9.81f);
+            jumpCount++;
+        }
+        else if(jumpCount >= maxJumps)
+        {
+            _canJump = false;
+            jumpCount = 0;
         }
        
     }
@@ -83,10 +121,120 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (controls.PlayerActions.UseItems.triggered)
         {
-            Debug.Log("Player will USE up an object that is stored");
+            if (_itemCollection != null && _itemCollection.itemSprite.activeSelf)
+            {
+                _itemCollection.itemSprite.SetActive(false);
+
+                switch (_itemCollection._activeItem)
+                {
+                    case ItemCollectables.Speed:
+                        StartCoroutine(SpeedBoost());
+                        Debug.Log("You used " + _itemCollection._activeItem);
+                        break;
+                    case ItemCollectables.Strength:
+                        if (!GetComponent<WallBreak>())
+                        {
+                            gameObject.AddComponent<WallBreak>();
+                        }
+                        else if (!GetComponent<WallBreak>().isActiveAndEnabled)
+                        {
+                            GetComponent<WallBreak>().enabled = true;
+                        }
+                        gameObject.GetComponent<WallBreak>().strengthEffect = strengthEffect;
+                        Debug.Log("You used " + _itemCollection._activeItem);
+                        break;
+                    case ItemCollectables.Invisibility:
+                        StartCoroutine(BecomeInvisible());
+                        Debug.Log("You used " + _itemCollection._activeItem);
+                        break;
+                    case ItemCollectables.Clairvoyance:
+                        StartCoroutine(EquipCompass());
+                        Debug.Log("You used " + _itemCollection._activeItem);
+                        break;
+                    case ItemCollectables.Jump:
+                        _canJump = true;
+                        Debug.Log("You used: " + _itemCollection._activeItem);
+                        break;
+                    case ItemCollectables.Freeze:
+                        ShootFrostBall();
+                        Debug.Log("You used: " + _itemCollection._activeItem);
+                        break;
+                    default:
+                        Debug.Log("Unknown power used");
+                        break;
+                }
+
+                
+            }
+            else Debug.Log("You have no item to use");
 
         }
     }
+    public void UseAbility(IAbility ability)
+    {
+        ability.activateAbility();
+    }
+
+    private void ShootFrostBall()
+    {
+        GameObject frostBall = Instantiate(frostBallPrefab, playerCam.transform.position + playerCam.transform.forward, playerCam.transform.rotation);
+        FrostBall ball = frostBall.AddComponent<FrostBall>();
+        //FrostBall ball = frostBall.GetComponent<FrostBall>();
+        ball.master = playerCam.transform;
+        ball.freezeMat = freezeMat;
+
+    }
+
+    private IEnumerator BecomeInvisible()
+    {
+        Debug.Log("Is Invisible");
+        originMat = this.gameObject.GetComponentInChildren<MeshRenderer>().material;
+        this.gameObject.GetComponentInChildren<MeshRenderer>().material = _itemCollection.invisibleMat;
+        invisibleEffect.SetActive(true);
+        //Need GameManager to send invisible signal to AI
+        _isInvisible = true;
+        yield return new WaitForSeconds(_duration);
+        _isInvisible = false;
+        Debug.Log("Is not Invisible");
+        invisibleEffect.SetActive(false);
+        this.gameObject.GetComponentInChildren<MeshRenderer>().material = originMat;
+    }
+
+    private IEnumerator SpeedBoost()
+    {
+        moveSpeed += speedBoost;
+        Debug.Log("Zoom");
+        speedEffect.SetActive(true);
+        yield return new WaitForSeconds(_duration);
+        speedEffect.SetActive(false);
+        Debug.Log("No Zoom");
+        moveSpeed -= speedBoost;
+    }
+
+    private IEnumerator EquipCompass()
+    {
+
+        if(!compass.activeInHierarchy)
+        {
+            compass.SetActive(true);
+        }
+
+        compassAnims.Play();
+        //animator.Play("CompassEquip");
+
+        yield return new WaitForSeconds(_duration);
+
+        compassAnims.Play("CompassDrop");
+        //animator.Play("CompassDrop");
+
+    }
+    /*
+    private IEnumerator SupaJump()
+    {
+        velocity.y = Mathf.Sqrt(JumpHeight * -2f * -9.81f);
+        jumpCount++;
+    }
+    */
 
     private void Attacking()
     {

@@ -4,30 +4,41 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
-    float playerHealth = 100;
-    float playerYPos;
-    public Vector3 spawnPos;
+    public float PlayerHealth
+    {
+        get { return _playerHealth; }
+        set { _playerHealth = value; }
+    }
 
-    [Tooltip("Empty game object where the player will die if they fall below")]
-    public Transform minYPos;
+    public float _playerHealth;
+    private float _fullHealth = 100f;
+    private float playerYPos;
+    private Vector3 spawnPos;
 
-    private List<GameObject> _checkPoints = new List<GameObject>();
+    [Tooltip("The depth from spawn that the player respawns after passing")]
+    public float maxDepth = 20f;
+
+    private float minYPos;
 
     private bool _isSpawning = false;
     private float _blinkInterval = 0.5f;
 
     //Temp parameters for animation alternative
-    public GameObject bud;
-    private Color _inactiveColor = Color.grey;
-    private Color _activeColor = Color.yellow;
+    private GameObject newCheckpoint;
+    private GameObject oldCheckpoint;
+    public Material _inactiveMat;
+    public Material _activeMat;
 
     private void Awake()
     {
-        bud.GetComponent<MeshRenderer>().material.color = _inactiveColor;
+        //bud.GetComponent<MeshRenderer>().material.color = _inactiveColor;
+        
     }
     void Start()
     {
         spawnPos = this.transform.position;
+        minYPos = transform.position.y - maxDepth;
+        _playerHealth = _fullHealth;
     }
 
     void Update()
@@ -38,9 +49,12 @@ public class Respawn : MonoBehaviour
         {
             if (!_isSpawning)
             {
+                Debug.Log("Respawning");
                 _isSpawning = true;
+                _playerHealth = _fullHealth;
                 this.transform.position = spawnPos;
-                StartCoroutine(Blink(this.gameObject, _blinkInterval));
+                _isSpawning = false;
+                //StartCoroutine(Blink(this.gameObject, _blinkInterval));
             } 
                 
         }
@@ -50,18 +64,32 @@ public class Respawn : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Checkpoint"))
         {
-            _checkPoints.Add(other.gameObject);
+            if(newCheckpoint == null)
+            {
+                newCheckpoint = other.gameObject;
+            }
+            else
+            {
+                oldCheckpoint = newCheckpoint;
+                newCheckpoint = other.gameObject;
+            }
+
+            if(oldCheckpoint != null)
+            {
+                oldCheckpoint.GetComponent<MeshRenderer>().material = _inactiveMat;
+            }
+
             spawnPos = this.transform.position;
             //Start bloom animation for flower
             //Alternative to animation
-            bud.GetComponent<MeshRenderer>().material.color = _activeColor;
+            newCheckpoint.GetComponent<MeshRenderer>().material = _activeMat;
             Debug.Log("Checkpoint Reached!");
         }
     }
 
     bool CheckDeath()
     {
-        if (playerHealth <= 0 || playerYPos <= minYPos.position.y)
+        if (_playerHealth <= 0 || playerYPos <= minYPos)
         {
             return true;
         }

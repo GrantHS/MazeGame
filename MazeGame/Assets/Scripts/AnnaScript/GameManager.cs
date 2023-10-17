@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
 
 public enum UIMenu
 {
@@ -16,20 +14,51 @@ public enum UIMenu
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance; //singleton
+    public InputControls controls;
+
+    //controlling menus
     [SerializeField] private bool isPaused;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
-    public InputControls controls;
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject levelSelectMenu;
+    [SerializeField] private GameObject victoryScreen;
+
+    public UIMenu lastMenuOpened;
+    public UIMenu currentMenuOpened;
+    [SerializeField] private Dictionary<UIMenu, GameObject> menuDictionary = new Dictionary<UIMenu, GameObject>();
+     
     public bool levelFinished;
+    
+    //Time Counter
     public float playerTime;
     public bool countingTime;
-    
+
+    public GameObject playerSpawn;
+    public GameObject farmerSpawn;
+
     private void Awake()
     {
+        //singleton setup
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
+
         controls = new InputControls();
         countingTime = true;
+
+        //adding menus into the menu dictionary
+        menuDictionary.Add(UIMenu.LevelSelect, levelSelectMenu);
+        menuDictionary.Add(UIMenu.MainMenu, mainMenu);
+        menuDictionary.Add(UIMenu.Options, optionsMenu);
+        menuDictionary.Add(UIMenu.Pause, pauseMenu);
+        menuDictionary.Add(UIMenu.Victory, victoryScreen);
+
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);
+        victoryScreen.SetActive(false);
     }
 
     private void OnEnable() => controls.Enable();
@@ -66,11 +95,13 @@ public class GameManager : MonoBehaviour
         }*/
         if (Input.GetKeyDown(KeyCode.Escape) && levelFinished == false) 
         {
-            PauseDaGame();
+            pauseMenu.SetActive(true);
+            countingTime = false;
         }
         if (controls.Player1.Pause.triggered && levelFinished == false)
         {
-            PauseDaGame();
+            pauseMenu.SetActive(true);
+            countingTime = false;
         }
         
         if(countingTime == true)
@@ -80,21 +111,48 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PauseDaGame()
+    public void EnableMenu(UIMenu menu)
+    {
+        if (!menuDictionary.ContainsKey(menu))
+            return;
+
+        GameObject menuToEnable = menuDictionary[menu];
+        menuToEnable.SetActive(true);
+    }
+
+    public void DisableMenu(UIMenu menu)
+    {
+        if (!menuDictionary.ContainsKey(menu))
+            return;
+        GameObject menuToDisable = menuDictionary[menu];
+        menuToDisable.SetActive(false);
+    }
+    public void BackButton() //goes back to the previous menu accessed
+    {
+        DisableMenu(currentMenuOpened);
+        EnableMenu(lastMenuOpened);       
+        
+    }
+
+    /*public void PauseDaGame()
     {
         pauseMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         isPaused = !isPaused;
+        countingTime = !countingTime;
         Time.timeScale = 0;
+        currentMenuOpened = UIMenu.Pause;
     }
 
     public void UnpauseDaGame()
     {
         pauseMenu.SetActive(false);
         isPaused = !isPaused;
+        countingTime = !countingTime;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
-    }
+        lastMenuOpened = UIMenu.Pause;
+    }*/
     
     public string TimeCounter()
     {
@@ -106,12 +164,49 @@ public class GameManager : MonoBehaviour
         return niceTime;
     }
 
+    public void RestartLevel()
+    {
+        levelFinished = !levelFinished;
+        Time.timeScale = 1;
+
+        GameObject.FindGameObjectWithTag("Player").transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
+        GameObject.FindGameObjectWithTag("Farmer").transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
+
+        playerTime = 0;
+        countingTime = true;
+
+        DisableMenu(currentMenuOpened);
+        lastMenuOpened = currentMenuOpened;
+    }
+
     public void OpenOptionsMenu()
     {
+        lastMenuOpened = currentMenuOpened;
+
+        Time.timeScale = 0;
+
+        DisableMenu(lastMenuOpened);
         optionsMenu.SetActive(true);
     }
-    public void CloseOptionsMenu()
+    public void CloseOptionsMenu() //unused at the moment
     {
+        EnableMenu(lastMenuOpened);
         optionsMenu.SetActive(false);
+    }
+    public void OpenLevelSelectMenu()
+    {
+        lastMenuOpened = currentMenuOpened;
+
+        Time.timeScale = 0;
+
+        DisableMenu(lastMenuOpened);
+        levelSelectMenu.SetActive(true);
+    }
+
+    public void LevelSelectToVictoryScreenTransition() //this is a placeholder
+    {
+        lastMenuOpened = currentMenuOpened;
+        DisableMenu(lastMenuOpened);
+        victoryScreen.SetActive(true);
     }
 }

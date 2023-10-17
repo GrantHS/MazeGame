@@ -11,9 +11,9 @@ public class PushDoor : MonoBehaviour
     [SerializeField]
     private float _pushPower;
 
-    public bool yellowKey;
-    public bool orangeKey;
-    public bool redKey;
+    public bool yellowKey = false;
+    public bool orangeKey = false;
+    public bool redKey = false;
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -36,17 +36,23 @@ public class PushDoor : MonoBehaviour
                     Debug.Log("Color of door unknown");
                     break;
             }
+            if (!_door.isLocked)
+            {
+                /*
+                if (_door == null || _door.gameObject.transform.position.y <= this.gameObject.transform.position.y)
+                {
+                    Debug.Log("I can't open the door");
+                    return;
+                }
+                else
+                {
+                */
+                    StartCoroutine(PushOpen(hit, 3f));
 
-            if(_door == null || _door.isLocked || _door.gameObject.transform.position.y <= this.gameObject.transform.position.y)
-            {
-                Debug.Log("I can't open the door");
-                return;
-            }
-            else
-            {
-                StartCoroutine(PushOpen(hit, 3f));
                 
             }
+            else Debug.Log("I can't open the door");
+
 
             /*dont push the door if it is already on the ground
             if(_door.gameObject.transform.position.y <= this.gameObject.transform.position.y)
@@ -55,7 +61,7 @@ public class PushDoor : MonoBehaviour
             }
             */
 
-            
+
         }
     }
 
@@ -82,13 +88,18 @@ public class PushDoor : MonoBehaviour
 
     private IEnumerator PushOpen(ControllerColliderHit hit, float vanishTime)
     {
-        Debug.Log("pushing");
+        
         Rigidbody rb = hit.collider.attachedRigidbody;
 
         Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+        Vector3 shrinkage = new Vector3(0.05f, 0f);
+
+        hit.gameObject.transform.localScale -= shrinkage;
 
         rb.velocity = pushDirection * _pushPower;
-        hit.gameObject.GetComponent<BoxCollider>().enabled = false;
+        //hit.gameObject.GetComponent<BoxCollider>().enabled = false;
+
+        Debug.Log("pushing");
 
         yield return new WaitForSeconds(vanishTime);
 

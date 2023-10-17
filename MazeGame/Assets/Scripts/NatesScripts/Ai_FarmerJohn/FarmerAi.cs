@@ -11,37 +11,49 @@ public class FarmerAi : MonoBehaviour
 
     //Patroling
     public Vector3 wayPoints;
-    bool wayPointSet;
+   public bool wayPointSet;
     public float walkRange;
+    public Light spotlight;
 
     // Attacking 
     public float timeToAttack;
     bool attacked;
 
+    //Respawn Placeholder
+    //public GameObject playerSpawn; <= player already has one
+
     //Farmer States
     public float sightRange, attackRange;
     public bool playerInSight, playerInAttackRange;
+    public bool playerInvisible;
+    public float viewAngle;
+   
+
+    private PlayerMovementScript isInvisible;
 
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
         nav = GetComponent<NavMeshAgent>();
+        viewAngle = spotlight.spotAngle;
+        //playerSpawn.transform.position = player.transform.position; <= Don't need
     }
 
     private void Update()
     {
-        playerInSight = Physics.CheckSphere(transform.position, sightRange, thisIsPlayer);
+        playerInvisible = player.GetComponent<PlayerMovementScript>()._isInvisible;
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, thisIsPlayer);
 
-        if (!playerInSight && !playerInAttackRange) 
-        {
-            Patrolling();
-        }
-        if (playerInSight && !playerInAttackRange)
+        if (canSeePlayer())
         {
             ChasingPlayer();
         }
-        if (playerInAttackRange && playerInAttackRange)
+        else
+        {
+            Patrolling();
+        }
+
+        if (playerInAttackRange && !playerInvisible)
         {
             Attacking();
         }
@@ -58,10 +70,38 @@ public class FarmerAi : MonoBehaviour
             nav.SetDestination(wayPoints);
         }
         Vector3 distanceToWalkPoint = transform.position - wayPoints;
-        if (distanceToWalkPoint.magnitude < 1f)
+      
+        if (distanceToWalkPoint.magnitude < 2f)
         {
             wayPointSet = false;
         }
+    }
+
+    private bool canSeePlayer()
+    {
+     Vector3 dirToPlayer = (player.position - transform.position).normalized;
+     float angleBetweenFarmer_Player = Vector3.Angle(transform.forward, dirToPlayer);
+
+
+        if (Vector3.Distance(transform.position, player.position) < sightRange)
+        {
+          
+           
+            if (angleBetweenFarmer_Player < viewAngle / 2f)
+            {
+              //  Debug.Log("TARGET LOCKED");
+                playerInSight = true;
+                if (!Physics.Linecast(transform.position, player.position, thisIsGround))
+                    {
+                    return true;
+                }
+
+            }
+          
+        }
+        playerInSight = false;
+        return false;
+
     }
     private void WalkPoints()
     {
@@ -69,7 +109,7 @@ public class FarmerAi : MonoBehaviour
         float randomX = Random.Range(-walkRange, walkRange);
 
         wayPoints = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        if (Physics.Raycast(wayPoints, -transform.up, 2f, thisIsGround))
+        if (Physics.Raycast(wayPoints, -transform.up, 1f, thisIsGround))
         {
             wayPointSet = true;
         }
@@ -77,14 +117,31 @@ public class FarmerAi : MonoBehaviour
 
     private void Attacking()
     {
-        nav.SetDestination(transform.position);
+        nav.SetDestination(player.transform.position);
         Debug.Log("Attacking Player");
-        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(7, 0.5f, -5);
+        //player.transform.position = playerSpawn.transform.position;
+        player.GetComponent<Respawn>().PlayerHealth = 0;
     }
 
     private void ChasingPlayer()
     {
+
         nav.SetDestination(player.position);
+
+
+    }
+
+
+  
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(transform.position, attackRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward * sightRange);
+        Gizmos.color = Color.green;
+       // Gizmos.DrawRay(transform.position, transform.forward * sightRange);
+
     }
 
 }
