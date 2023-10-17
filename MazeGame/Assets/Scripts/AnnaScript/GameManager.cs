@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject levelSelectMenu;
     [SerializeField] private GameObject victoryScreen;
 
+    public UIMenu secondLastMenuOpened;
     public UIMenu lastMenuOpened;
     public UIMenu currentMenuOpened;
     [SerializeField] private Dictionary<UIMenu, GameObject> menuDictionary = new Dictionary<UIMenu, GameObject>();

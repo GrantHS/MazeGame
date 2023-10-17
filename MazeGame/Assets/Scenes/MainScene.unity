@@ -17944,6 +17944,7 @@ MonoBehaviour:
   mainMenu: {fileID: 0}
   levelSelectMenu: {fileID: 180392981}
   victoryScreen: {fileID: 565130054}
+  secondLastMenuOpened: 0
   lastMenuOpened: 0
   currentMenuOpened: 0
   levelFinished: 0
