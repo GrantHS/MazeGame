@@ -179,6 +179,12 @@ public class GameManager : MonoBehaviour
         lastMenuOpened = currentMenuOpened;
     }
 
+    public void ExitGame()
+    {
+        //Application.Quit(); //use for quitting in builds
+        UnityEditor.EditorApplication.isPlaying = false; //use for quitting play mode
+    }
+
     public void OpenOptionsMenu()
     {
         lastMenuOpened = currentMenuOpened;
