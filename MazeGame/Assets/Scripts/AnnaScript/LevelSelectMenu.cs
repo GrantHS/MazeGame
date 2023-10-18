@@ -148,6 +148,7 @@ public class LevelSelectMenu : MenuParent
 
             GameManager.Instance.DisableMenu(FindAnyObjectByType<GameManager>().currentMenuOpened);
             GameManager.Instance.lastMenuOpened = FindAnyObjectByType<GameManager>().currentMenuOpened;
+            Debug.Log("this happened");
         }
     }
 }
