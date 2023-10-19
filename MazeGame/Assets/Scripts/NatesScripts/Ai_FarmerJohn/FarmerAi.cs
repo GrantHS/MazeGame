@@ -8,6 +8,7 @@ public class FarmerAi : MonoBehaviour
     public NavMeshAgent nav;
     public Transform player;
     public LayerMask thisIsGround, thisIsPlayer;
+    public Transform AIposition;
 
     //Patroling
     public Vector3 wayPoints;
@@ -41,6 +42,8 @@ public class FarmerAi : MonoBehaviour
 
     private void Update()
     {
+        
+       
         playerInvisible = player.GetComponent<PlayerMovementScript>()._isInvisible;
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, thisIsPlayer);
 
@@ -68,10 +71,12 @@ public class FarmerAi : MonoBehaviour
         if (wayPointSet)
         {
             nav.SetDestination(wayPoints);
+           
+          
         }
         Vector3 distanceToWalkPoint = transform.position - wayPoints;
       
-        if (distanceToWalkPoint.magnitude < 2f)
+        if (distanceToWalkPoint.magnitude < 0f)
         {
             wayPointSet = false;
         }
@@ -109,9 +114,10 @@ public class FarmerAi : MonoBehaviour
         float randomX = Random.Range(-walkRange, walkRange);
 
         wayPoints = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        if (Physics.Raycast(wayPoints, -transform.up, 1f, thisIsGround))
+        if (Physics.Raycast(wayPoints, -transform.up, 0.5f, thisIsGround))
         {
-            wayPointSet = true;
+          // wayPointSet = true;
+            StartCoroutine(waypointRest());
         }
     }
 
@@ -129,6 +135,13 @@ public class FarmerAi : MonoBehaviour
         nav.SetDestination(player.position);
 
 
+    }
+
+    public IEnumerator waypointRest()
+    {
+        wayPointSet = true;
+        yield return new WaitForSeconds(3f);
+        wayPointSet = false;
     }
 
 

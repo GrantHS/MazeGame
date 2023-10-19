@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance; //singleton
     public InputControls controls;
 
+    public GameObject farmerAI;
+    private FarmerAi farmerAiScript;
+
     //controlling menus
     [SerializeField] private bool isPaused;
     [SerializeField] private GameObject pauseMenu;
@@ -40,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        farmerAiScript = new FarmerAi();
         //singleton setup
         if (Instance != null && Instance != this)
             Destroy(this);
@@ -170,15 +174,18 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
 
         GameObject.Find("Player").transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
-        GameObject.Find("FarmerAI").transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
-
+        // GameObject.Find("FarmerAI").transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
+        // farmerAI.transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
+        StartCoroutine(spawnFarmer());
+        
+        farmerAiScript.wayPointSet = false;
         playerTime = 0;
         countingTime = true;
 
         DisableMenu(currentMenuOpened);
         lastMenuOpened = currentMenuOpened;
 
-        Debug.Log("Farmer Respawned at: " + GameObject.Find("FarmerAI").transform.position);
+       // Debug.Log("Farmer Respawned at: " + GameObject.Find("FarmerAI").transform.position);
         Debug.Log("Player Respawned at: " + GameObject.Find("Player").transform.position);
     }
 
@@ -211,5 +218,18 @@ public class GameManager : MonoBehaviour
         lastMenuOpened = currentMenuOpened;
         DisableMenu(lastMenuOpened);
         victoryScreen.SetActive(true);
+    }
+
+    private IEnumerator spawnFarmer()
+    {
+        farmerAI.gameObject.SetActive(false);
+        farmerAI.GetComponent<FarmerAi>().wayPointSet = false;
+        yield return new WaitForSeconds(1);
+         farmerAI.transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
+        // farmerAI.transform.position = farmerSpawn.transform.position;
+       
+        farmerAI.gameObject.SetActive(true);
+       
+
     }
 }

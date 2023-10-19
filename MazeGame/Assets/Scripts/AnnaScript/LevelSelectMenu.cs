@@ -138,6 +138,7 @@ public class LevelSelectMenu : MenuParent
 
         GameManager.Instance.playerSpawn = selectedPlayerSpawn;
         GameManager.Instance.farmerSpawn = selectedFarmerSpawn;
+       
 
         GameManager.Instance.RestartLevel();
     }
