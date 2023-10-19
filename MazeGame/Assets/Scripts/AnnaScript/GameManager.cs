@@ -166,17 +166,20 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        levelFinished = !levelFinished;
+        levelFinished = false;
         Time.timeScale = 1;
 
-        GameObject.FindGameObjectWithTag("Player").transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
-        GameObject.FindGameObjectWithTag("Farmer").transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
+        GameObject.Find("Player").transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
+        GameObject.Find("FarmerAI").transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
 
         playerTime = 0;
         countingTime = true;
 
         DisableMenu(currentMenuOpened);
         lastMenuOpened = currentMenuOpened;
+
+        Debug.Log("Farmer Respawned at: " + GameObject.Find("FarmerAI").transform.position);
+        Debug.Log("Player Respawned at: " + GameObject.Find("Player").transform.position);
     }
 
     public void OpenOptionsMenu()

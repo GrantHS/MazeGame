@@ -9,7 +9,8 @@ public class LevelInfoHolder : MonoBehaviour
     public LevelSelectInfo levelInfo;
     [SerializeField] private TextMeshProUGUI ratingTextPlaceholder;
     [SerializeField] private TextMeshProUGUI sizeText;
-
+    [SerializeField] private GameObject playerSpawn;
+    [SerializeField] private GameObject farmerSpawn;
     
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,8 @@ public class LevelInfoHolder : MonoBehaviour
     public void OnLevelSelected()
     {
         FindAnyObjectByType<LevelSelectMenu>().selectedLevelNameText.text = levelInfo.levelName;
-        FindAnyObjectByType<LevelSelectMenu>().selectedMazeLevel = levelInfo.mazeLevelObject;
+        FindAnyObjectByType<LevelSelectMenu>().selectedFarmerSpawn = farmerSpawn;
+        FindAnyObjectByType<LevelSelectMenu>().selectedPlayerSpawn = playerSpawn;
     }
 
 }

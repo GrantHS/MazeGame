@@ -25,7 +25,8 @@ public class LevelSelectMenu : MenuParent
 
     //Selecting the Level Variables
     [SerializeField] private int selectedLevelIndex = 0; //currently unused
-    public GameObject selectedMazeLevel;
+    public GameObject selectedPlayerSpawn;
+    public GameObject selectedFarmerSpawn;
 
     private void Awake()
     {
@@ -134,21 +135,10 @@ public class LevelSelectMenu : MenuParent
 
     public void SelectLevel()
     {
-        if(selectedMazeLevel != null)
-        {
-            GameObject farmerSpawn = selectedMazeLevel.transform.Find("FarmerSpawn").gameObject;
-            GameObject playerSpawn = selectedMazeLevel.transform.Find("PlayerSpawn").gameObject;
 
-            GameObject.FindGameObjectWithTag("Player").transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
-            GameObject.FindGameObjectWithTag("Farmer").transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
+        GameManager.Instance.playerSpawn = selectedPlayerSpawn;
+        GameManager.Instance.farmerSpawn = selectedFarmerSpawn;
 
-            Time.timeScale = 1;
-            GameManager.Instance.playerTime = 0;
-            GameManager.Instance.countingTime = true;
-
-            GameManager.Instance.DisableMenu(FindAnyObjectByType<GameManager>().currentMenuOpened);
-            GameManager.Instance.lastMenuOpened = FindAnyObjectByType<GameManager>().currentMenuOpened;
-            Debug.Log("this happened");
-        }
+        GameManager.Instance.RestartLevel();
     }
 }
