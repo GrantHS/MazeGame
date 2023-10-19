@@ -61,7 +61,17 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4e2b70885c2362a43817816fb522f38e,
         type: 3}
       propertyPath: m_Name
-      value: InnerCornerV2
+      value: VeryEdge
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e2b70885c2362a43817816fb522f38e,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e2b70885c2362a43817816fb522f38e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
