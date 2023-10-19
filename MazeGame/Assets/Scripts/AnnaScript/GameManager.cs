@@ -38,8 +38,16 @@ public class GameManager : MonoBehaviour
     public float playerTime;
     public bool countingTime;
 
+    //Level Objects
     public GameObject playerSpawn;
     public GameObject farmerSpawn;
+    public GameObject yellowKey;
+    public GameObject redKey;
+    public GameObject orangeKey;
+    //probably placeholder but whatev
+    public GameObject currentLevel;
+    public GameObject tutorialLevel;
+    public GameObject firstLevel;
 
     private void Awake()
     {
@@ -63,6 +71,8 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);
         victoryScreen.SetActive(false);
+
+        firstLevel.SetActive(false);
     }
 
     private void OnEnable() => controls.Enable();
@@ -187,6 +197,14 @@ public class GameManager : MonoBehaviour
 
        // Debug.Log("Farmer Respawned at: " + GameObject.Find("FarmerAI").transform.position);
         Debug.Log("Player Respawned at: " + GameObject.Find("Player").transform.position);
+
+        FindAnyObjectByType<PushDoor>().yellowKey = false;
+        FindAnyObjectByType<PushDoor>().orangeKey = false;
+        FindAnyObjectByType<PushDoor>().redKey = false;
+
+        yellowKey.SetActive(true);
+        orangeKey.SetActive(true);
+        redKey.SetActive(true);
     }
 
     public void OpenOptionsMenu()

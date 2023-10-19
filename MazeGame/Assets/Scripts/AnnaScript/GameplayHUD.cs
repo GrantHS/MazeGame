@@ -23,13 +23,23 @@ public class GameplayHUD : MonoBehaviour
         {
             redkeysprite.SetActive(true);
         }
-        if(FindAnyObjectByType<PushDoor>().orangeKey == true)
+        else
         {
-            orangekeysprite.SetActive(true);
+            redkeysprite.SetActive(false);
         }
-        if(FindAnyObjectByType<PushDoor>().yellowKey == true)
+        if (FindAnyObjectByType<PushDoor>().orangeKey == true)
+            orangekeysprite.SetActive(false);
+        else
+        {
+            orangekeysprite.SetActive(false);
+        }
+        if (FindAnyObjectByType<PushDoor>().yellowKey == true)
         {
             yellowkeysprite.SetActive(true);
+        }
+        else
+        {
+            yellowkeysprite.SetActive(false);
         }
     }
 }

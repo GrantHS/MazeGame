@@ -96,7 +96,7 @@ public class PushDoor : MonoBehaviour
 
         hit.gameObject.transform.localScale -= shrinkage;
 
-        rb.velocity = pushDirection * _pushPower;
+        //rb.velocity = pushDirection * _pushPower;
         //hit.gameObject.GetComponent<BoxCollider>().enabled = false;
 
         Debug.Log("pushing");

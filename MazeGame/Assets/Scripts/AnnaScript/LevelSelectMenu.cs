@@ -25,8 +25,12 @@ public class LevelSelectMenu : MenuParent
 
     //Selecting the Level Variables
     [SerializeField] private int selectedLevelIndex = 0; //currently unused
+    public GameObject selectedMazeLevel;
     public GameObject selectedPlayerSpawn;
     public GameObject selectedFarmerSpawn;
+    public GameObject selectedYellowKey;
+    public GameObject selectedRedKey;
+    public GameObject selectedOrangeKey;
 
     private void Awake()
     {
@@ -135,10 +139,23 @@ public class LevelSelectMenu : MenuParent
 
     public void SelectLevel()
     {
-
+        GameManager.Instance.currentLevel = selectedMazeLevel;
         GameManager.Instance.playerSpawn = selectedPlayerSpawn;
         GameManager.Instance.farmerSpawn = selectedFarmerSpawn;
-       
+        GameManager.Instance.yellowKey = selectedYellowKey;
+        GameManager.Instance.redKey = selectedRedKey;
+        GameManager.Instance.orangeKey = selectedOrangeKey;
+
+        if(GameManager.Instance.currentLevel == GameManager.Instance.tutorialLevel)
+        {
+            GameManager.Instance.firstLevel.SetActive(false);
+            GameManager.Instance.tutorialLevel.SetActive(true);
+        }
+        if(GameManager.Instance.currentLevel == GameManager.Instance.firstLevel)
+        {
+            GameManager.Instance.tutorialLevel.SetActive(false);
+            GameManager.Instance.firstLevel.SetActive(true);
+        }
 
         GameManager.Instance.RestartLevel();
     }
