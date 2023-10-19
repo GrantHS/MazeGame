@@ -46,10 +46,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5645961377160571903}
     m_Modifications:
+    - target: {fileID: 198008125999622210, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198008125999622210, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2449870216697306534, guid: c36bf928f2ddd524386517ac3083f822,
         type: 3}
       propertyPath: m_Name
       value: WallNorth (45)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2449870216697306534, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2449870216697306534, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3077224461179356956, guid: c36bf928f2ddd524386517ac3083f822,
         type: 3}
@@ -140,6 +160,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallEastWest (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3714154330124606780, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714154330124606780, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4089412513962002310, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -205,6 +235,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5211283157830969333, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5211283157830969333, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -224,10 +264,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5645961377160571903}
     m_Modifications:
+    - target: {fileID: 198008125999622210, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198008125999622210, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2449870216697306534, guid: c36bf928f2ddd524386517ac3083f822,
         type: 3}
       propertyPath: m_Name
       value: WallNorth (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2449870216697306534, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2449870216697306534, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3077224461179356956, guid: c36bf928f2ddd524386517ac3083f822,
         type: 3}
@@ -383,6 +443,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: EdgeWest (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9042671646628288253, guid: 147492ee5178e7142a4ed3db604d1d93,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042671646628288253, guid: 147492ee5178e7142a4ed3db604d1d93,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -406,6 +476,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WallEastWest (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714154330124606780, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714154330124606780, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4089412513962002310, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
         type: 3}
@@ -471,6 +551,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5211283157830969333, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5211283157830969333, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -561,6 +651,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: OuterCornerV2 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5540489501055352018, guid: 382621f7811028c45a54260737570712,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540489501055352018, guid: 382621f7811028c45a54260737570712,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -580,10 +680,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5645961377160571903}
     m_Modifications:
+    - target: {fileID: 198008125999622210, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198008125999622210, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2449870216697306534, guid: c36bf928f2ddd524386517ac3083f822,
         type: 3}
       propertyPath: m_Name
       value: WallNorth (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2449870216697306534, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2449870216697306534, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3077224461179356956, guid: c36bf928f2ddd524386517ac3083f822,
         type: 3}

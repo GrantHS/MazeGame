@@ -15,3 +15,5 @@ MonoBehaviour:
   levelName: Level 2
   rating: 2
   levelSize: 10x10
+  mazeLevelObject: {fileID: 9077350083284019034, guid: b13dfe36a644bc94fbc6cb8a8b6b2870,
+    type: 3}

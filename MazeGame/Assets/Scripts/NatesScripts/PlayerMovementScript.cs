@@ -34,16 +34,22 @@ public class PlayerMovementScript : MonoBehaviour
     public GameObject frostBallPrefab;
     private Camera playerCam;
     public Material freezeMat;
+    public GameObject invisibleEffect, speedEffect, strengthEffect;
 
 
     private void Awake()
     {
+        invisibleEffect.gameObject.SetActive(false);
+        speedEffect.gameObject.SetActive(false);
+        strengthEffect.gameObject.SetActive(false);
+
         speedBoost = moveSpeed / 1.5f;
         abilities = new IAbility[values.Length - 1];
         abilities[1] = gameObject.AddComponent<Invisibility>();
         controls = new PlayerMovement();
         controller = this.GetComponent<CharacterController>();
         _itemCollection = GetComponent<ItemCollection>();
+
         compass = GetComponentInChildren<Compass>().gameObject;
         compass.SetActive(false);
         compassAnims = compass.GetComponent<Animation>();
@@ -134,6 +140,7 @@ public class PlayerMovementScript : MonoBehaviour
                         {
                             GetComponent<WallBreak>().enabled = true;
                         }
+                        gameObject.GetComponent<WallBreak>().strengthEffect = strengthEffect;
                         Debug.Log("You used " + _itemCollection._activeItem);
                         break;
                     case ItemCollectables.Invisibility:
@@ -183,21 +190,23 @@ public class PlayerMovementScript : MonoBehaviour
         Debug.Log("Is Invisible");
         originMat = this.gameObject.GetComponentInChildren<MeshRenderer>().material;
         this.gameObject.GetComponentInChildren<MeshRenderer>().material = _itemCollection.invisibleMat;
+        invisibleEffect.SetActive(true);
         //Need GameManager to send invisible signal to AI
         _isInvisible = true;
         yield return new WaitForSeconds(_duration);
         _isInvisible = false;
         Debug.Log("Is not Invisible");
+        invisibleEffect.SetActive(false);
         this.gameObject.GetComponentInChildren<MeshRenderer>().material = originMat;
-
-
     }
 
     private IEnumerator SpeedBoost()
     {
         moveSpeed += speedBoost;
         Debug.Log("Zoom");
+        speedEffect.SetActive(true);
         yield return new WaitForSeconds(_duration);
+        speedEffect.SetActive(false);
         Debug.Log("No Zoom");
         moveSpeed -= speedBoost;
     }

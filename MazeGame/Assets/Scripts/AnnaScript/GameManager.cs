@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance; //singleton
     public InputControls controls;
 
+    public GameObject farmerAI;
+    private FarmerAi farmerAiScript;
+
     //controlling menus
     [SerializeField] private bool isPaused;
     [SerializeField] private GameObject pauseMenu;
@@ -36,11 +39,20 @@ public class GameManager : MonoBehaviour
     public float playerTime;
     public bool countingTime;
 
+    //Level Objects
     public GameObject playerSpawn;
     public GameObject farmerSpawn;
+    public GameObject yellowKey;
+    public GameObject redKey;
+    public GameObject orangeKey;
+    //probably placeholder but whatev
+    public GameObject currentLevel;
+    public GameObject tutorialLevel;
+    public GameObject firstLevel;
 
     private void Awake()
     {
+        farmerAiScript = new FarmerAi();
         //singleton setup
         if (Instance != null && Instance != this)
             Destroy(this);
@@ -60,6 +72,8 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);
         victoryScreen.SetActive(false);
+
+        firstLevel.SetActive(false);
     }
 
     private void OnEnable() => controls.Enable();
@@ -167,17 +181,31 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        levelFinished = !levelFinished;
+        levelFinished = false;
         Time.timeScale = 1;
 
-        GameObject.FindGameObjectWithTag("Player").transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
-        GameObject.FindGameObjectWithTag("Farmer").transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
-
+        GameObject.Find("Player").transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
+        // GameObject.Find("FarmerAI").transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
+        // farmerAI.transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
+        StartCoroutine(spawnFarmer());
+        
+        farmerAiScript.wayPointSet = false;
         playerTime = 0;
         countingTime = true;
 
         DisableMenu(currentMenuOpened);
         lastMenuOpened = currentMenuOpened;
+
+       // Debug.Log("Farmer Respawned at: " + GameObject.Find("FarmerAI").transform.position);
+        Debug.Log("Player Respawned at: " + GameObject.Find("Player").transform.position);
+
+        FindAnyObjectByType<PushDoor>().yellowKey = false;
+        FindAnyObjectByType<PushDoor>().orangeKey = false;
+        FindAnyObjectByType<PushDoor>().redKey = false;
+
+        yellowKey.SetActive(true);
+        orangeKey.SetActive(true);
+        redKey.SetActive(true);
     }
 
     public void ExitGame()
@@ -215,5 +243,18 @@ public class GameManager : MonoBehaviour
         lastMenuOpened = currentMenuOpened;
         DisableMenu(lastMenuOpened);
         victoryScreen.SetActive(true);
+    }
+
+    private IEnumerator spawnFarmer()
+    {
+        farmerAI.gameObject.SetActive(false);
+        farmerAI.GetComponent<FarmerAi>().wayPointSet = false;
+        yield return new WaitForSeconds(1);
+         farmerAI.transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
+        // farmerAI.transform.position = farmerSpawn.transform.position;
+       
+        farmerAI.gameObject.SetActive(true);
+       
+
     }
 }

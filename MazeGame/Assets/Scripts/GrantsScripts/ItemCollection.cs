@@ -17,11 +17,13 @@ public class ItemCollection : MonoBehaviour
     public Sprite freezeSprite;
     public Material invisibleMat;
     private GameObject _barrel;
+    public GameObject explosionEffect;
     private Vector3 _barrelSpawn;
+    private Vector3 barrelPos;
+    private float barrelOffset = 1f;
     private float _barrelSpawnDistance = 100f;
     public ItemCollectables _activeItem;
     public IAbility _activeAbility;
-    private List<IAbility> _abilities;
 
     private void Start()
     {
@@ -34,9 +36,11 @@ public class ItemCollection : MonoBehaviour
         {
             //Debug.Log("You got a special item!");
             _barrel = hit.gameObject;
-            Vector3 barrelPos = _barrel.transform.position;
-            _barrel.GetComponent<MeshRenderer>().enabled = false;
+            barrelPos = _barrel.transform.position;
 
+            StartCoroutine(Explosion());
+                      
+            _barrel.GetComponent<MeshRenderer>().enabled = false;            
             Instantiate(itemPrefab, barrelPos, _barrel.transform.rotation);
 
             _barrelSpawn = _barrel.transform.position;
@@ -76,13 +80,13 @@ public class ItemCollection : MonoBehaviour
                 case ItemCollectables.Clairvoyance:
                     //Give player invisibility when they push ability button
                     Debug.Log("You found a " + _activeItem + " orb!");
-                    //itemSprite.GetComponent<Image>().sprite = clairvoyanceSprite; //(Swap this with line below after sprites are generated)
-                    itemSprite.GetComponent<Image>().color = Color.white;
+                    itemSprite.GetComponent<Image>().sprite = clairvoyanceSprite; //(Swap this with line below after sprites are generated)
+                    //itemSprite.GetComponent<Image>().color = Color.white;
                     itemSprite.SetActive(true);
                     break;
                 case ItemCollectables.Jump:
                     Debug.Log("You found a " + _activeItem + " orb!");
-                    itemSprite.GetComponent<Image>().sprite = clairvoyanceSprite; //(Swap this with line below after sprites are generated)
+                    itemSprite.GetComponent<Image>().sprite = jumpSprite; //(Swap this with line below after sprites are generated)
                     //itemSprite.GetComponent<Image>().color = Color.blue;
                     itemSprite.SetActive(true);
                     break;
@@ -112,6 +116,21 @@ public class ItemCollection : MonoBehaviour
         _barrel.transform.position = _barrelSpawn;
         _barrel.GetComponent<MeshRenderer>().enabled = true;
     }
+
+    
+    private IEnumerator Explosion()
+    {
+        Vector3 origin = barrelPos;
+        origin.y += barrelOffset;
+        GameObject go = Instantiate(explosionEffect, origin, explosionEffect.transform.rotation); 
+        //explosionEffect.transform.position = barrelPos;
+        go.SetActive(true);
+        Debug.Log("Explostion active");
+        yield return new WaitForSeconds(1f);
+        explosionEffect.SetActive(false);
+        Debug.Log("Explostion inactive");
+    }
+    
 
 
 }
