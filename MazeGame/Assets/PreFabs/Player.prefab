@@ -921,7 +921,7 @@ MonoBehaviour:
   _playerHealth: 0
   maxDepth: 20
   _inactiveMat: {fileID: 2100000, guid: d2e864f6166f1ac43a0c758604028b32, type: 2}
-  _activeMat: {fileID: 2100000, guid: af464a2bc03cfed42a71c4a7f18d18b5, type: 2}
+  _activeMat: {fileID: 2100000, guid: 6ef60a05822a5b645bb03a2338288af1, type: 2}
 --- !u!114 &4405808814039031499
 MonoBehaviour:
   m_ObjectHideFlags: 0
