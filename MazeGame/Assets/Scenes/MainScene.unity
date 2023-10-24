@@ -25467,17 +25467,17 @@ PrefabInstance:
     - target: {fileID: 4631183201801353744, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
       propertyPath: redKey
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4631183201801353744, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
       propertyPath: orangeKey
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4631183201801353744, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
       propertyPath: yellowKey
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4631183201801353744, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
