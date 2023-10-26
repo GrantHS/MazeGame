@@ -14,6 +14,7 @@ public class PushDoor : MonoBehaviour
     public bool yellowKey = false;
     public bool orangeKey = false;
     public bool redKey = false;
+    private bool _pushing = false;
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -48,6 +49,8 @@ public class PushDoor : MonoBehaviour
                 {
                 */
                     StartCoroutine(PushOpen(hit, 3f));
+            
+                    
 
                 
             }
@@ -88,15 +91,24 @@ public class PushDoor : MonoBehaviour
 
     private IEnumerator PushOpen(ControllerColliderHit hit, float vanishTime)
     {
-        
+        if (!hit.gameObject.GetComponent<Rigidbody>())
+        {
+            hit.gameObject.AddComponent<Rigidbody>();
+        }
+
         Rigidbody rb = hit.collider.attachedRigidbody;
 
         Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-        Vector3 shrinkage = new Vector3(0.05f, 0f);
+        
+        Vector3 shrinkage = new Vector3(0.05f, 0.05f, 0.05f);
 
-        hit.gameObject.transform.localScale -= shrinkage;
+        if (!_pushing)
+        {
+            _pushing = true;
+            hit.gameObject.transform.localScale -= shrinkage;
+        }
 
-        //rb.velocity = pushDirection * _pushPower;
+        rb.velocity = pushDirection * _pushPower;
         //hit.gameObject.GetComponent<BoxCollider>().enabled = false;
 
         Debug.Log("pushing");
@@ -104,5 +116,6 @@ public class PushDoor : MonoBehaviour
         yield return new WaitForSeconds(vanishTime);
 
         hit.gameObject.SetActive(false);
+        _pushing = false;
     }
 }
