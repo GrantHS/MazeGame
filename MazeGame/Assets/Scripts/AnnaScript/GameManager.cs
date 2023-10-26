@@ -59,6 +59,10 @@ public class GameManager : MonoBehaviour
         else
             Instance = this;
 
+        //Application.targetFrameRate = -1; //this is to make the game not lag
+        Application.targetFrameRate = 300;
+        //QualitySettings.vSyncCount = 0;
+
         controls = new InputControls();
         countingTime = true;
 
@@ -210,8 +214,8 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame()
     {
-        //Application.Quit(); //use for quitting in builds
-        UnityEditor.EditorApplication.isPlaying = false; //use for quitting play mode
+        Application.Quit(); //use for quitting in builds
+        //UnityEditor.EditorApplication.isPlaying = false; //use for quitting play mode
     }
 
     public void OpenOptionsMenu()
