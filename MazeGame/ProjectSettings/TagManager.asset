@@ -15,6 +15,7 @@ TagManager:
   - Breakable Wall
   - Farmer
   - Particle Effect
+  - Ladder
   layers:
   - Default
   - TransparentFX
