@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5520612854727291418
 Transform:
@@ -41,10 +41,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5520612854727291418}
     m_Modifications:
+    - target: {fileID: 558018408274878905, guid: b8fa04608fb2b014ba03707a640d3dd2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 755183156990224593, guid: b8fa04608fb2b014ba03707a640d3dd2,
         type: 3}
       propertyPath: m_Name
       value: WallFullNorth
+      objectReference: {fileID: 0}
+    - target: {fileID: 755183156990224593, guid: b8fa04608fb2b014ba03707a640d3dd2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1807203690582220893, guid: b8fa04608fb2b014ba03707a640d3dd2,
         type: 3}
@@ -96,6 +106,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4075073346654867896, guid: b8fa04608fb2b014ba03707a640d3dd2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110266606773087485, guid: b8fa04608fb2b014ba03707a640d3dd2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815465616887502388, guid: b8fa04608fb2b014ba03707a640d3dd2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851766970262317937, guid: b8fa04608fb2b014ba03707a640d3dd2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964163328589536112, guid: b8fa04608fb2b014ba03707a640d3dd2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -119,6 +154,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EdgeSouth
+      objectReference: {fileID: 0}
+    - target: {fileID: 8556812150353944431, guid: e92b261845573ca4599ac1b6c1380579,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9075940704750372309, guid: e92b261845573ca4599ac1b6c1380579,
         type: 3}

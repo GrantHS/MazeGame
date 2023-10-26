@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4890907345457869676
 Transform:
@@ -50,6 +50,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EdgeSouth
+      objectReference: {fileID: 0}
+    - target: {fileID: 8556812150353944431, guid: e92b261845573ca4599ac1b6c1380579,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9075940704750372309, guid: e92b261845573ca4599ac1b6c1380579,
         type: 3}
@@ -120,10 +125,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4890907345457869676}
     m_Modifications:
+    - target: {fileID: 198008125999622210, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2449870216697306534, guid: c36bf928f2ddd524386517ac3083f822,
         type: 3}
       propertyPath: m_Name
       value: WallNorth (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2449870216697306534, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3077224461179356956, guid: c36bf928f2ddd524386517ac3083f822,
         type: 3}
@@ -209,6 +224,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallEastWest
       objectReference: {fileID: 0}
+    - target: {fileID: 3714154330124606780, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4089412513962002310, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -244,6 +264,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5211283157830969333, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -267,6 +292,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WallEastWest (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714154330124606780, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4089412513962002310, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
         type: 3}
@@ -307,6 +337,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5211283157830969333, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -392,6 +427,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EtoSCorner
       objectReference: {fileID: 0}
+    - target: {fileID: 5586568669403851143, guid: b08324da08b312544b77cb6b9bd95eb6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -415,6 +455,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WallEastWest (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714154330124606780, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4089412513962002310, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
         type: 3}
@@ -456,6 +501,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5211283157830969333, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -475,10 +525,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4890907345457869676}
     m_Modifications:
+    - target: {fileID: 198008125999622210, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2449870216697306534, guid: c36bf928f2ddd524386517ac3083f822,
         type: 3}
       propertyPath: m_Name
       value: WallNorth (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2449870216697306534, guid: c36bf928f2ddd524386517ac3083f822,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3077224461179356956, guid: c36bf928f2ddd524386517ac3083f822,
         type: 3}

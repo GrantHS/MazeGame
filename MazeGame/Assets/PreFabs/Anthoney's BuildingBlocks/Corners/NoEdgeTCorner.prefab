@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5399145037670609802
 Transform:
@@ -91,10 +91,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 794421432981710293, guid: d8fff58e2eaf6c2419c5d20552ba608b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3656781817435971917, guid: d8fff58e2eaf6c2419c5d20552ba608b,
         type: 3}
       propertyPath: m_Name
       value: Full EdgeNorth (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3656781817435971917, guid: d8fff58e2eaf6c2419c5d20552ba608b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3762107962987386324, guid: d8fff58e2eaf6c2419c5d20552ba608b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869358916749142161, guid: d8fff58e2eaf6c2419c5d20552ba608b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650848389288514136, guid: d8fff58e2eaf6c2419c5d20552ba608b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759207298299588381, guid: d8fff58e2eaf6c2419c5d20552ba608b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8133285221503541020, guid: d8fff58e2eaf6c2419c5d20552ba608b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014994846057748084, guid: d8fff58e2eaf6c2419c5d20552ba608b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -116,6 +156,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5399145037670609802}
     m_Modifications:
+    - target: {fileID: 479968802045049988, guid: 02e16e95204de074f83537bb06ab55f2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1830696684910338537, guid: 02e16e95204de074f83537bb06ab55f2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993004687871354231, guid: 02e16e95204de074f83537bb06ab55f2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2519048677884667998, guid: 02e16e95204de074f83537bb06ab55f2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5864735855037974393, guid: 02e16e95204de074f83537bb06ab55f2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -166,10 +226,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6425533487239418519, guid: 02e16e95204de074f83537bb06ab55f2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7115284078615796512, guid: 02e16e95204de074f83537bb06ab55f2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582632571287438797, guid: 02e16e95204de074f83537bb06ab55f2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9038813313585759821, guid: 02e16e95204de074f83537bb06ab55f2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 9203906878435817597, guid: 02e16e95204de074f83537bb06ab55f2,
         type: 3}
       propertyPath: m_Name
       value: Full EdgeEast (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203906878435817597, guid: 02e16e95204de074f83537bb06ab55f2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

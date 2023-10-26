@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4504158420013023735
 Transform:
@@ -46,6 +46,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WallEastWest
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714154330124606780, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4089412513962002310, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
         type: 3}
@@ -112,6 +117,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5211283157830969333, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -135,6 +145,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WallEastWest (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714154330124606780, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4089412513962002310, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
         type: 3}
@@ -201,6 +216,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5211283157830969333, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -224,6 +244,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WallEastWest (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714154330124606780, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4089412513962002310, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
         type: 3}
@@ -289,6 +314,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5211283157830969333, guid: 5bae0919a914dbb4385c6a5d7e0f7f95,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
