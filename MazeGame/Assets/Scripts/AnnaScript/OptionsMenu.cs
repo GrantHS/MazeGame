@@ -38,4 +38,14 @@ public class OptionsMenu : MenuParent
         FindAnyObjectByType<MouseLook>().mouseSen = mouseSensitivity;
         sensitivityText.text = mouseSensitivitySlider.value.ToString();
     }
+
+    public void FullscreenToggle()
+    {
+        Screen.SetResolution(1920, 1080, true);
+    }
+
+    public void WindowedToggle()
+    {
+        Screen.SetResolution(1920, 1080, false);
+    }
 }
