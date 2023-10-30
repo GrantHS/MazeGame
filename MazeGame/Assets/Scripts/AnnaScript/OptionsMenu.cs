@@ -9,6 +9,7 @@ public class OptionsMenu : MenuParent
     [SerializeField] private GameObject gameplayHUD;
     [SerializeField] private Slider mouseSensitivitySlider;
     [SerializeField] private TextMeshProUGUI sensitivityText;
+    public GameObject MIniMap_Heater;
 
     private void Awake()
     {
@@ -18,19 +19,21 @@ public class OptionsMenu : MenuParent
 
     private void OnEnable()
     {
+       // MIniMap_Heater.SetActive(true);
         GameManager.Instance.currentMenuOpened = UIMenu.Options;
         GameManager.Instance.countingTime = !GameManager.Instance.countingTime;
-        Cursor.lockState = CursorLockMode.None;
+       Cursor.lockState = CursorLockMode.None;
     }
 
     //private void OnDisable() => GameManager.Instance.lastMenuOpened = UIMenu.Options;
 
     public void HUDOn()
     {
-        gameplayHUD.SetActive(true);
+         gameplayHUD.SetActive(true);
         gameplayHUD.GetComponent<Canvas>().sortingOrder = GetComponent<Canvas>().sortingOrder - 2; //number probably subject to change
+        MIniMap_Heater.SetActive(true);
     }
-    public void HUDOff() => gameplayHUD.SetActive(false);
+    public void HUDOff() => MIniMap_Heater.SetActive(false);
 
     public void MouseSensitivitySlider()
     {
