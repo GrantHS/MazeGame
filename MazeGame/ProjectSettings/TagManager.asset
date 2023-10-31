@@ -16,6 +16,8 @@ TagManager:
   - Farmer
   - Particle Effect
   - Ladder
+  - Top
+  - Bottom
   layers:
   - Default
   - TransparentFX
