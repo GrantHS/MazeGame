@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     public GameObject currentLevel;
     public GameObject tutorialLevel;
     public GameObject firstLevel;
-    [SerializeField] private Dictionary<string, GameObject> levelDictionary = new Dictionary<string, GameObject>();
+    [SerializeField] private List<GameObject> levelList = new List<GameObject>();
 
     private void Awake()
     {
@@ -68,6 +68,11 @@ public class GameManager : MonoBehaviour
         menuDictionary.Add(UIMenu.Options, optionsMenu);
         menuDictionary.Add(UIMenu.Pause, pauseMenu);
         menuDictionary.Add(UIMenu.Victory, victoryScreen);
+
+        //adding levels into level list
+        levelList.Add(tutorialLevel);
+        levelList.Add(firstLevel);
+
 
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);
@@ -100,6 +105,23 @@ public class GameManager : MonoBehaviour
             TimeCounter();
         }
     }
+
+    public void EnableLevel(GameObject level) //if this works correctly, it should enable the selected level and disable all others
+    {
+        if (!levelList.Contains(level))
+            return;
+
+        int levelIndex = levelList.IndexOf(level);
+
+        foreach (GameObject levels in levelList)
+        {
+            levels.SetActive(false);
+        }
+
+        GameObject levelToEnable = levelList[levelIndex];
+        levelToEnable.SetActive(true);
+    }
+
 
     public void EnableMenu(UIMenu menu)
     {

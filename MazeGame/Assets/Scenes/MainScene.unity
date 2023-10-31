@@ -20440,9 +20440,10 @@ MonoBehaviour:
   yellowKey: {fileID: 2132543002}
   redKey: {fileID: 668823898}
   orangeKey: {fileID: 1483260020}
-  currentLevel: {fileID: 0}
+  currentLevel: {fileID: 1654600342}
   tutorialLevel: {fileID: 1654600342}
   firstLevel: {fileID: 1960071442}
+  levelList: []
 --- !u!4 &837728366
 Transform:
   m_ObjectHideFlags: 0
