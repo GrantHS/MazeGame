@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public enum UIMenu
 {
-    MainMenu,
+    StartMenu,
     LevelSelect,
     Options,
     Pause,
@@ -24,11 +24,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool isPaused;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
-    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject startMenu;
     [SerializeField] private GameObject levelSelectMenu;
     [SerializeField] private GameObject victoryScreen;
 
-    public UIMenu secondLastMenuOpened;
     public UIMenu lastMenuOpened;
     public UIMenu currentMenuOpened;
     [SerializeField] private Dictionary<UIMenu, GameObject> menuDictionary = new Dictionary<UIMenu, GameObject>();
@@ -45,10 +44,11 @@ public class GameManager : MonoBehaviour
     public GameObject yellowKey;
     public GameObject redKey;
     public GameObject orangeKey;
-    //probably placeholder but whatev
+    //Selecting Levels
     public GameObject currentLevel;
     public GameObject tutorialLevel;
     public GameObject firstLevel;
+    [SerializeField] private Dictionary<string, GameObject> levelDictionary = new Dictionary<string, GameObject>();
 
     private void Awake()
     {
@@ -59,16 +59,12 @@ public class GameManager : MonoBehaviour
         else
             Instance = this;
 
-        //Application.targetFrameRate = -1; //this is to make the game not lag
-        Application.targetFrameRate = 300;
-        //QualitySettings.vSyncCount = 0;
-
         controls = new InputControls();
         countingTime = true;
 
         //adding menus into the menu dictionary
         menuDictionary.Add(UIMenu.LevelSelect, levelSelectMenu);
-        menuDictionary.Add(UIMenu.MainMenu, mainMenu);
+        menuDictionary.Add(UIMenu.StartMenu, startMenu);
         menuDictionary.Add(UIMenu.Options, optionsMenu);
         menuDictionary.Add(UIMenu.Pause, pauseMenu);
         menuDictionary.Add(UIMenu.Victory, victoryScreen);
@@ -87,31 +83,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        /*if (Input.GetKeyDown(KeyCode.Escape)) //currently doesn't work for some reason
-        {
-            if (!isPaused)
-            {
-                PauseDaGame();
-            }
-            else
-            {
-                Debug.Log("this happened");
-                UnpauseDaGame();
-            }
-        }
-        if (controls.Player1.Pause.triggered)
-        {
-            if (isPaused == false)
-            {
-                PauseDaGame();
-            }
-            else
-            {
-                Debug.Log("this happened");
-                UnpauseDaGame();
-            }
-        }*/
         if (Input.GetKeyDown(KeyCode.Escape) && levelFinished == false) 
         {
             pauseMenu.SetActive(true);
@@ -152,26 +123,6 @@ public class GameManager : MonoBehaviour
         EnableMenu(lastMenuOpened);       
         
     }
-
-    /*public void PauseDaGame()
-    {
-        pauseMenu.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        isPaused = !isPaused;
-        countingTime = !countingTime;
-        Time.timeScale = 0;
-        currentMenuOpened = UIMenu.Pause;
-    }
-
-    public void UnpauseDaGame()
-    {
-        pauseMenu.SetActive(false);
-        isPaused = !isPaused;
-        countingTime = !countingTime;
-        Cursor.lockState = CursorLockMode.Locked;
-        Time.timeScale = 1;
-        lastMenuOpened = UIMenu.Pause;
-    }*/
     
     public string TimeCounter()
     {
@@ -189,8 +140,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
 
         GameObject.Find("Player").transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
-        // GameObject.Find("FarmerAI").transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
-        // farmerAI.transform.SetPositionAndRotation(farmerSpawn.transform.position, farmerSpawn.transform.rotation);
         StartCoroutine(spawnFarmer());
         
         farmerAiScript.wayPointSet = false;
@@ -242,11 +191,11 @@ public class GameManager : MonoBehaviour
         levelSelectMenu.SetActive(true);
     }
 
-    public void LevelSelectToVictoryScreenTransition() //this is a placeholder
+    public void LevelSelectToStartMenuTransition() //this is a placeholder
     {
         lastMenuOpened = currentMenuOpened;
         DisableMenu(lastMenuOpened);
-        victoryScreen.SetActive(true);
+        startMenu.SetActive(true);
     }
 
     private IEnumerator spawnFarmer()
