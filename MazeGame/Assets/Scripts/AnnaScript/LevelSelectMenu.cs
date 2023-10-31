@@ -146,16 +146,7 @@ public class LevelSelectMenu : MenuParent
         GameManager.Instance.redKey = selectedRedKey;
         GameManager.Instance.orangeKey = selectedOrangeKey;
 
-        if(GameManager.Instance.currentLevel == GameManager.Instance.tutorialLevel)
-        {
-            GameManager.Instance.firstLevel.SetActive(false);
-            GameManager.Instance.tutorialLevel.SetActive(true);
-        }
-        if(GameManager.Instance.currentLevel == GameManager.Instance.firstLevel)
-        {
-            GameManager.Instance.tutorialLevel.SetActive(false);
-            GameManager.Instance.firstLevel.SetActive(true);
-        }
+        GameManager.Instance.EnableLevel(GameManager.Instance.currentLevel);
 
         GameManager.Instance.RestartLevel();
     }
