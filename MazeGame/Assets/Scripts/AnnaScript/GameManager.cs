@@ -172,6 +172,18 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         lastMenuOpened = UIMenu.Pause;
     }*/
+
+
+
+    public void LoadData(DataStuff data)
+    {
+        this.playerTime = data.GameTime;
+    }
+    public void SaveData(ref DataStuff data)
+    {
+        data.GameTime = this.playerTime;
+    }
+
     
     public string TimeCounter()
     {
