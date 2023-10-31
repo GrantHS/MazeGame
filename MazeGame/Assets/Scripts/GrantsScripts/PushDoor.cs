@@ -20,6 +20,7 @@ public class PushDoor : MonoBehaviour
     {
         if (hit.gameObject.CompareTag("Door"))
         {
+            //Debug.Log("Hit door");
             _door = hit.gameObject.GetComponent<LockedDoor>();
 
             switch (_door.color)
@@ -96,7 +97,7 @@ public class PushDoor : MonoBehaviour
             hit.gameObject.AddComponent<Rigidbody>();
         }
 
-        Rigidbody rb = hit.collider.attachedRigidbody;
+        Rigidbody rb = hit.collider.gameObject.GetComponent<Rigidbody>();
 
         Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
         
