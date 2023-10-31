@@ -1197,6 +1197,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 31404964}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &32502818 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 696927329557622922, guid: b13dfe36a644bc94fbc6cb8a8b6b2870,
+    type: 3}
+  m_PrefabInstance: {fileID: 1387008934}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &32526679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6427,6 +6433,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4712087099867215386, guid: 1caa269122abab04ebb1a029daa9d22c,
+        type: 3}
+      propertyPath: color
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722579130045682006, guid: 1caa269122abab04ebb1a029daa9d22c,
         type: 3}
       propertyPath: color
       value: 2
@@ -12132,6 +12143,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 470629812}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &470810967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4595419149961218429, guid: b13dfe36a644bc94fbc6cb8a8b6b2870,
+    type: 3}
+  m_PrefabInstance: {fileID: 1387008934}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &475927180
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13129,12 +13146,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 100, y: 300, z: 100}
   m_Center: {x: 50, y: 150, z: 50.000122}
---- !u!1 &506807821 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7418424954904599023, guid: b13dfe36a644bc94fbc6cb8a8b6b2870,
-    type: 3}
-  m_PrefabInstance: {fileID: 1387008934}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &507394349 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5482004000762223496, guid: b13dfe36a644bc94fbc6cb8a8b6b2870,
@@ -17119,12 +17130,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1993530039}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &674400646 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4436252502184979171, guid: b13dfe36a644bc94fbc6cb8a8b6b2870,
-    type: 3}
-  m_PrefabInstance: {fileID: 1387008934}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &681715974 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c01f2769bfb2ff94ab80c3b01aad32f9,
@@ -19639,6 +19644,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlowerCheckpoint (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3957086175900094340, guid: 4b28e782c59efa74c95518ca5220f196,
+        type: 3}
+      propertyPath: m_TagString
+      value: Checkpoint
+      objectReference: {fileID: 0}
     - target: {fileID: 4441028919475443006, guid: 4b28e782c59efa74c95518ca5220f196,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19888,6 +19898,7 @@ MonoBehaviour:
   mainMenu: {fileID: 0}
   levelSelectMenu: {fileID: 180392981}
   victoryScreen: {fileID: 565130054}
+  secondLastMenuOpened: 0
   lastMenuOpened: 0
   currentMenuOpened: 0
   levelFinished: 0
@@ -24175,10 +24186,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3308624660807937617, guid: 4b28e782c59efa74c95518ca5220f196,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d2e864f6166f1ac43a0c758604028b32, type: 2}
     - target: {fileID: 3957086175900094340, guid: 4b28e782c59efa74c95518ca5220f196,
         type: 3}
       propertyPath: m_Name
       value: FlowerCheckpoint (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957086175900094340, guid: 4b28e782c59efa74c95518ca5220f196,
+        type: 3}
+      propertyPath: m_TagString
+      value: Checkpoint
       objectReference: {fileID: 0}
     - target: {fileID: 4441028919475443006, guid: 4b28e782c59efa74c95518ca5220f196,
         type: 3}
@@ -25432,17 +25453,17 @@ PrefabInstance:
     - target: {fileID: 1924791278039599393, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.13
+      value: 10.04
       objectReference: {fileID: 0}
     - target: {fileID: 1924791278039599393, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.1
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 1924791278039599393, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.71
+      value: 14.99
       objectReference: {fileID: 0}
     - target: {fileID: 1924791278039599393, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
@@ -25548,17 +25569,17 @@ PrefabInstance:
     - target: {fileID: 4631183201801353744, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
       propertyPath: redKey
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4631183201801353744, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
       propertyPath: orangeKey
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4631183201801353744, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
       propertyPath: yellowKey
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4631183201801353744, guid: 3360bbae49225324094866abb7041da1,
         type: 3}
@@ -30904,6 +30925,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlowerCheckpoint
       objectReference: {fileID: 0}
+    - target: {fileID: 3957086175900094340, guid: 4b28e782c59efa74c95518ca5220f196,
+        type: 3}
+      propertyPath: m_TagString
+      value: Checkpoint
+      objectReference: {fileID: 0}
     - target: {fileID: 4441028919475443006, guid: 4b28e782c59efa74c95518ca5220f196,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31269,6 +31295,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4712087099867215386, guid: 1caa269122abab04ebb1a029daa9d22c,
+        type: 3}
+      propertyPath: color
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722579130045682006, guid: 1caa269122abab04ebb1a029daa9d22c,
         type: 3}
       propertyPath: color
       value: 1
@@ -62842,7 +62873,7 @@ PrefabInstance:
         type: 3}
       propertyPath: farmerSpawn
       value: 
-      objectReference: {fileID: 674400646}
+      objectReference: {fileID: 470810967}
     - target: {fileID: 2745207598913798930, guid: f032f8e72d730f14fa117e36e281995d,
         type: 3}
       propertyPath: levelObject
@@ -62852,7 +62883,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerSpawn
       value: 
-      objectReference: {fileID: 506807821}
+      objectReference: {fileID: 32502818}
     - target: {fileID: 3929627909905067760, guid: f032f8e72d730f14fa117e36e281995d,
         type: 3}
       propertyPath: m_Pivot.x
@@ -66400,7 +66431,7 @@ PrefabInstance:
     - target: {fileID: 1103392001039753434, guid: 3f358c99b19ab374a9953a966198ba30,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.6242077
+      value: -3.34
       objectReference: {fileID: 0}
     - target: {fileID: 1103392001039753434, guid: 3f358c99b19ab374a9953a966198ba30,
         type: 3}
@@ -66410,7 +66441,7 @@ PrefabInstance:
     - target: {fileID: 1103392001039753434, guid: 3f358c99b19ab374a9953a966198ba30,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.7880344
+      value: 3.31
       objectReference: {fileID: 0}
     - target: {fileID: 1103392001039753434, guid: 3f358c99b19ab374a9953a966198ba30,
         type: 3}
@@ -71293,6 +71324,16 @@ PrefabInstance:
     - target: {fileID: 3027743615311994399, guid: 1caa269122abab04ebb1a029daa9d22c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6966279150104859614, guid: 1caa269122abab04ebb1a029daa9d22c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 6966279150104859614, guid: 1caa269122abab04ebb1a029daa9d22c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -77798,10 +77839,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3308624660807937617, guid: 4b28e782c59efa74c95518ca5220f196,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d2e864f6166f1ac43a0c758604028b32, type: 2}
     - target: {fileID: 3957086175900094340, guid: 4b28e782c59efa74c95518ca5220f196,
         type: 3}
       propertyPath: m_Name
       value: FlowerCheckpoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957086175900094340, guid: 4b28e782c59efa74c95518ca5220f196,
+        type: 3}
+      propertyPath: m_TagString
+      value: Checkpoint
       objectReference: {fileID: 0}
     - target: {fileID: 4441028919475443006, guid: 4b28e782c59efa74c95518ca5220f196,
         type: 3}

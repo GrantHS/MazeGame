@@ -10,10 +10,14 @@ public class Respawn : MonoBehaviour
         set { _playerHealth = value; }
     }
 
+    public Vector3 SpawnPos { get => spawnPos; set => spawnPos = value; }
+
     public float _playerHealth;
     private float _fullHealth = 100f;
     private float playerYPos;
     private Vector3 spawnPos;
+    private Vector3 rotOffset = new Vector3(0, -135, 0);
+    private Quaternion spawnRot;
 
     [Tooltip("The depth from spawn that the player respawns after passing")]
     public float maxDepth = 20f;
@@ -36,7 +40,8 @@ public class Respawn : MonoBehaviour
     }
     void Start()
     {
-        spawnPos = this.transform.position;
+        SpawnPos = this.transform.position;
+        spawnRot = this.transform.rotation;
         minYPos = transform.position.y - maxDepth;
         _playerHealth = _fullHealth;
     }
@@ -52,7 +57,9 @@ public class Respawn : MonoBehaviour
                 Debug.Log("Respawning");
                 _isSpawning = true;
                 _playerHealth = _fullHealth;
-                this.transform.position = spawnPos;
+                this.transform.position = SpawnPos;
+                this.transform.rotation = spawnRot;
+                transform.Rotate(rotOffset);
                 _isSpawning = false;
                 //StartCoroutine(Blink(this.gameObject, _blinkInterval));
             } 
@@ -79,7 +86,8 @@ public class Respawn : MonoBehaviour
                 oldCheckpoint.GetComponent<MeshRenderer>().material = _inactiveMat;
             }
 
-            spawnPos = this.transform.position;
+            SpawnPos = this.transform.position;
+            spawnRot = other.gameObject.transform.rotation;
             //Start bloom animation for flower
             //Alternative to animation
             newCheckpoint.GetComponent<MeshRenderer>().material = _activeMat;
@@ -91,7 +99,7 @@ public class Respawn : MonoBehaviour
     {
         if (_playerHealth <= 0 || playerYPos <= minYPos)
         {
-            Debug.Log("Player position: " + playerYPos);
+            //Debug.Log("Player position: " + playerYPos);
             return true;
         }
         else return false;

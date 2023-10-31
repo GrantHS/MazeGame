@@ -80,7 +80,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d32c20612173b49498ac94a2b2308bf2,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.83
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d32c20612173b49498ac94a2b2308bf2,
         type: 3}
@@ -95,7 +95,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d32c20612173b49498ac94a2b2308bf2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.000011920929
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d32c20612173b49498ac94a2b2308bf2,
         type: 3}
@@ -259,7 +259,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e93098dd4adfa86478cd13de6a36fa48,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.82416
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e93098dd4adfa86478cd13de6a36fa48,
         type: 3}
@@ -274,7 +274,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e93098dd4adfa86478cd13de6a36fa48,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e93098dd4adfa86478cd13de6a36fa48,
         type: 3}
@@ -323,8 +323,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e93098dd4adfa86478cd13de6a36fa48,
         type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e93098dd4adfa86478cd13de6a36fa48,
+        type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -334,6 +339,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6034625581170377658}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e93098dd4adfa86478cd13de6a36fa48,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4722579130045682006}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e93098dd4adfa86478cd13de6a36fa48,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2255193877316701881}
   m_SourcePrefab: {fileID: 100100000, guid: e93098dd4adfa86478cd13de6a36fa48, type: 3}
 --- !u!1 &6966279150104859614 stripped
 GameObject:
@@ -362,6 +375,50 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 200, y: 200, z: 50}
   m_Center: {x: 150.07123, y: 100.000015, z: 50.925293}
+--- !u!114 &4722579130045682006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6966279150104859614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 033e9843d0a59ba418239d54c4d0183c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  _mat1: {fileID: 2100000, guid: 11bc0a6af18fdda43b10d15b93bcaa27, type: 2}
+  _mat2: {fileID: 2100000, guid: 3fb970f407390fb4397c5c35182c87c3, type: 2}
+  _mat3: {fileID: 2100000, guid: 448e164b240b91540b5975fb1ba154af, type: 2}
+  isLocked: 1
+--- !u!54 &2255193877316701881
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6966279150104859614}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &7775149570455341412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e93098dd4adfa86478cd13de6a36fa48,
