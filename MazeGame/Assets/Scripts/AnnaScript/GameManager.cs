@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject levelSelectMenu;
     [SerializeField] private GameObject victoryScreen;
 
+    public UIMenu secondLastMenuOpened;
     public UIMenu lastMenuOpened;
     public UIMenu currentMenuOpened;
     [SerializeField] private Dictionary<UIMenu, GameObject> menuDictionary = new Dictionary<UIMenu, GameObject>();
@@ -57,6 +58,10 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         else
             Instance = this;
+
+        //Application.targetFrameRate = -1; //this is to make the game not lag
+        Application.targetFrameRate = 300;
+        //QualitySettings.vSyncCount = 0;
 
         controls = new InputControls();
         countingTime = true;
@@ -205,6 +210,12 @@ public class GameManager : MonoBehaviour
         yellowKey.SetActive(true);
         orangeKey.SetActive(true);
         redKey.SetActive(true);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit(); //use for quitting in builds
+        //UnityEditor.EditorApplication.isPlaying = false; //use for quitting play mode
     }
 
     public void OpenOptionsMenu()
