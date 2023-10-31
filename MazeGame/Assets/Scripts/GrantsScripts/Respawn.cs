@@ -91,6 +91,7 @@ public class Respawn : MonoBehaviour
     {
         if (_playerHealth <= 0 || playerYPos <= minYPos)
         {
+            Debug.Log("Player position: " + playerYPos);
             return true;
         }
         else return false;
