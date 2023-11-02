@@ -92,8 +92,8 @@ public class ItemCollection : MonoBehaviour
                     break;
                 case ItemCollectables.Freeze:
                     Debug.Log("You found a " + _activeItem + " orb!");
-                    //itemSprite.GetComponent<Image>().sprite = freezeSprite; //(Swap this with line below after sprites are generated)
-                    itemSprite.GetComponent<Image>().color = Color.cyan;
+                    itemSprite.GetComponent<Image>().sprite = freezeSprite; //(Swap this with line below after sprites are generated)
+                    //itemSprite.GetComponent<Image>().color = Color.cyan;
                     itemSprite.SetActive(true);
                     break;
                 default:

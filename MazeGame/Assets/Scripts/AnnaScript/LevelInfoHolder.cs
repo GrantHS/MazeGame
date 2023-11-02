@@ -9,6 +9,7 @@ public class LevelInfoHolder : MonoBehaviour
     public LevelSelectInfo levelInfo;
     [SerializeField] private TextMeshProUGUI ratingTextPlaceholder;
     [SerializeField] private TextMeshProUGUI sizeText;
+    [SerializeField] private int indexNumber;
 
     //Level Objects
     [SerializeField] private GameObject levelObject;
@@ -27,6 +28,7 @@ public class LevelInfoHolder : MonoBehaviour
 
     public void OnLevelSelected()
     {
+        FindAnyObjectByType<LevelSelectMenu>().selectedLevelIndex = indexNumber;
         FindAnyObjectByType<LevelSelectMenu>().selectedLevelNameText.text = levelInfo.levelName;
         FindAnyObjectByType<LevelSelectMenu>().selectedMazeLevel = levelObject;
         FindAnyObjectByType<LevelSelectMenu>().selectedFarmerSpawn = farmerSpawn;

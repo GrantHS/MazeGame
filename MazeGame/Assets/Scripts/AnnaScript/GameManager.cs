@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     public GameObject currentLevel;
     public GameObject tutorialLevel;
     public GameObject firstLevel;
-    [SerializeField] private List<GameObject> levelList = new List<GameObject>();
+    public List<GameObject> levelList = new List<GameObject>();
 
     private void Awake()
     {
@@ -167,6 +167,7 @@ public class GameManager : MonoBehaviour
         farmerAiScript.wayPointSet = false;
         playerTime = 0;
         countingTime = true;
+        Cursor.lockState = CursorLockMode.Locked;
 
         DisableMenu(currentMenuOpened);
         lastMenuOpened = currentMenuOpened;
@@ -211,6 +212,16 @@ public class GameManager : MonoBehaviour
 
         DisableMenu(lastMenuOpened);
         levelSelectMenu.SetActive(true);
+    }
+
+    public void OpenStartMenu()
+    {
+        lastMenuOpened = currentMenuOpened;
+
+        Time.timeScale = 0;
+
+        DisableMenu(lastMenuOpened);
+        startMenu.SetActive(true);
     }
 
     public void LevelSelectToStartMenuTransition() //this is a placeholder

@@ -28,7 +28,7 @@ public class GameplayHUD : MonoBehaviour
             redkeysprite.SetActive(false);
         }
         if (FindAnyObjectByType<PushDoor>().orangeKey == true)
-            orangekeysprite.SetActive(false);
+            orangekeysprite.SetActive(true);
         else
         {
             orangekeysprite.SetActive(false);
