@@ -99,8 +99,7 @@ public class LevelSelectMenu : MenuParent
         }
         Debug.Log(selectedLevelIndex);
 
-        selectedMazeLevel = GameManager.Instance.levelList[selectedLevelIndex];
-        selectedLevelNameText.text = levelThumbnailList[selectedLevelIndex].GetComponent<LevelInfoHolder>().levelInfo.levelName;
+        SelectLevel();
 
     } 
     public void ScrollRight() //currently unused
@@ -115,12 +114,15 @@ public class LevelSelectMenu : MenuParent
         }
         Debug.Log(selectedLevelIndex);
 
-        selectedMazeLevel = GameManager.Instance.levelList[selectedLevelIndex];
-        selectedLevelNameText.text = levelThumbnailList[selectedLevelIndex].GetComponent<LevelInfoHolder>().levelInfo.levelName;
+        SelectLevel();
     }
 
     public void SelectLevel()
     {
+        selectedMazeLevel = GameManager.Instance.levelList[selectedLevelIndex];
+
+        levelThumbnailList[selectedLevelIndex].GetComponent<LevelInfoHolder>().OnLevelSelected();
+
         GameManager.Instance.currentLevel = selectedMazeLevel;
         GameManager.Instance.playerSpawn = selectedPlayerSpawn;
         GameManager.Instance.farmerSpawn = selectedFarmerSpawn;
@@ -128,6 +130,11 @@ public class LevelSelectMenu : MenuParent
         GameManager.Instance.redKey = selectedRedKey;
         GameManager.Instance.orangeKey = selectedOrangeKey;
 
+        selectedLevelNameText.text = levelThumbnailList[selectedLevelIndex].GetComponent<LevelInfoHolder>().levelInfo.levelName;
+    }
+
+    public void PlayLevel()
+    {
         GameManager.Instance.EnableLevel(GameManager.Instance.currentLevel);
 
         GameManager.Instance.RestartLevel();

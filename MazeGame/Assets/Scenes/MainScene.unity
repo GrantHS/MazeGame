@@ -7813,7 +7813,7 @@ GameObject:
   - component: {fileID: 289712878}
   - component: {fileID: 289712879}
   m_Layer: 10
-  m_Name: lockedPurpleDOor
+  m_Name: lockedYellowDoor
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7875,7 +7875,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2de74e60a27c99f4da143bb7ae76ecbc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: acd7280afedb46440acdb8b3626ebe75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -14389,7 +14389,7 @@ GameObject:
   - component: {fileID: 576884475}
   - component: {fileID: 576884476}
   m_Layer: 10
-  m_Name: lockedPurpleDOor
+  m_Name: lockedYellowDoor
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14451,7 +14451,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2de74e60a27c99f4da143bb7ae76ecbc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: acd7280afedb46440acdb8b3626ebe75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -56476,7 +56476,7 @@ GameObject:
   - component: {fileID: 1397261575}
   - component: {fileID: 1397261576}
   m_Layer: 10
-  m_Name: lockedPurpleDOor
+  m_Name: lockedYellowDoor
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56538,7 +56538,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2de74e60a27c99f4da143bb7ae76ecbc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: acd7280afedb46440acdb8b3626ebe75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -64384,7 +64384,7 @@ PrefabInstance:
     - target: {fileID: 830901828764193640, guid: f032f8e72d730f14fa117e36e281995d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectLevel
+      value: PlayLevel
       objectReference: {fileID: 0}
     - target: {fileID: 830901828764193640, guid: f032f8e72d730f14fa117e36e281995d,
         type: 3}
@@ -64445,6 +64445,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630396195049814605, guid: f032f8e72d730f14fa117e36e281995d,
+        type: 3}
+      propertyPath: m_Name
+      value: Play Level Button
       objectReference: {fileID: 0}
     - target: {fileID: 2745207598913798930, guid: f032f8e72d730f14fa117e36e281995d,
         type: 3}
