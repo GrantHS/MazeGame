@@ -19,13 +19,11 @@ public class OptionsMenu : MenuParent
 
     private void OnEnable()
     {
-       // MIniMap_Heater.SetActive(true);
-        GameManager.Instance.currentMenuOpened = UIMenu.Options;
-        GameManager.Instance.countingTime = !GameManager.Instance.countingTime;
+       // MiniMap_Heater.SetActive(true);
+       GameManager.Instance.currentMenuOpened = UIMenu.Options;
+       GameManager.Instance.countingTime = !GameManager.Instance.countingTime;
        Cursor.lockState = CursorLockMode.None;
     }
-
-    //private void OnDisable() => GameManager.Instance.lastMenuOpened = UIMenu.Options;
 
     public void HUDOn()
     {

@@ -12,11 +12,14 @@ public class StartMenu : MenuParent
     private void OnEnable()
     {
         GameManager.Instance.currentMenuOpened = UIMenu.StartMenu;
+        
     }
 
-    // Update is called once per frame
+    // This is so level things don't happen while the start menu is up
     void Update()
     {
-        
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
+        GameManager.Instance.countingTime = false;
     }
 }

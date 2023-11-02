@@ -19895,10 +19895,9 @@ MonoBehaviour:
   isPaused: 0
   pauseMenu: {fileID: 1905320584}
   optionsMenu: {fileID: 809847427}
-  mainMenu: {fileID: 0}
+  startMenu: {fileID: 0}
   levelSelectMenu: {fileID: 180392981}
   victoryScreen: {fileID: 565130054}
-  secondLastMenuOpened: 0
   lastMenuOpened: 0
   currentMenuOpened: 0
   levelFinished: 0
@@ -19912,6 +19911,7 @@ MonoBehaviour:
   currentLevel: {fileID: 0}
   tutorialLevel: {fileID: 1654600342}
   firstLevel: {fileID: 1960071442}
+  levelList: []
 --- !u!4 &837728366
 Transform:
   m_ObjectHideFlags: 0
@@ -51675,6 +51675,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912833576700884076, guid: b13dfe36a644bc94fbc6cb8a8b6b2870,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7917122127922603378, guid: b13dfe36a644bc94fbc6cb8a8b6b2870,
         type: 3}
