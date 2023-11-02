@@ -18,6 +18,7 @@ public class Respawn : MonoBehaviour
     private Vector3 spawnPos;
     private Vector3 rotOffset = new Vector3(0, -135, 0);
     private Quaternion spawnRot;
+    private ParticleSystem[] particleSystems;
 
     [Tooltip("The depth from spawn that the player respawns after passing")]
     public float maxDepth = 20f;
@@ -90,6 +91,12 @@ public class Respawn : MonoBehaviour
             spawnRot = other.gameObject.transform.rotation;
             //Start bloom animation for flower
             //Alternative to animation
+            particleSystems = other.gameObject.GetComponentsInChildren<ParticleSystem>();
+            foreach (ParticleSystem particle in particleSystems)
+            {
+                particle.gameObject.SetActive(true);
+                particle.Play();
+            }
             newCheckpoint.GetComponent<MeshRenderer>().material = _activeMat;
             Debug.Log("Checkpoint Reached!");
         }
