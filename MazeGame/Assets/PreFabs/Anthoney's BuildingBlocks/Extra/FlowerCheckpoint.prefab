@@ -155,7 +155,7 @@ PrefabInstance:
     - target: {fileID: 1498307062634885173, guid: 427bab77d51052349b949c04ef6f2421,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2362428285418530390, guid: 427bab77d51052349b949c04ef6f2421,
         type: 3}
@@ -176,6 +176,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SunflowerGlow
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839606405093194145, guid: 427bab77d51052349b949c04ef6f2421,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5970241541613147002, guid: 427bab77d51052349b949c04ef6f2421,
         type: 3}
@@ -250,7 +255,7 @@ PrefabInstance:
     - target: {fileID: 6494620278993068463, guid: 427bab77d51052349b949c04ef6f2421,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8142009111722038074, guid: 427bab77d51052349b949c04ef6f2421,
         type: 3}

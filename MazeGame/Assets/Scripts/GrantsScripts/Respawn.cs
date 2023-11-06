@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class Respawn : MonoBehaviour
 {
@@ -61,11 +62,43 @@ public class Respawn : MonoBehaviour
                 this.transform.position = SpawnPos;
                 this.transform.rotation = spawnRot;
                 transform.Rotate(rotOffset);
+
+                if (particleSystems != null)
+                {
+                    Vector3 temp;
+                    foreach (ParticleSystem particle in particleSystems)
+                    {
+                        temp = particle.transform.position;
+                        /*
+                        
+                        particle.transform.position = this.gameObject.transform.position;
+                        //particle.gameObject.SetActive(true);
+                        particle.Play();
+                        */
+
+                        StartCoroutine(MoveParticle(temp, particle));
+                        
+                    }
+
+                }
+                else Debug.Log("Null Respawn Particle System Array");
                 _isSpawning = false;
                 //StartCoroutine(Blink(this.gameObject, _blinkInterval));
             } 
                 
         }
+    }
+
+    private IEnumerator MoveParticle(Vector3 origPos, ParticleSystem particle)
+    {
+        float waitTime = particle.totalTime;
+        particle.transform.position = this.gameObject.transform.position;
+        particle.transform.position += this.gameObject.transform.forward;
+        //particle.gameObject.SetActive(true);
+        particle.Play();
+        yield return new WaitForSeconds(waitTime);
+        particle.transform.position = origPos;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -94,7 +127,7 @@ public class Respawn : MonoBehaviour
             particleSystems = other.gameObject.GetComponentsInChildren<ParticleSystem>();
             foreach (ParticleSystem particle in particleSystems)
             {
-                particle.gameObject.SetActive(true);
+                //particle.gameObject.SetActive(true);
                 particle.Play();
             }
             newCheckpoint.GetComponent<MeshRenderer>().material = _activeMat;
