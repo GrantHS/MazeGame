@@ -27,6 +27,7 @@ public class PlayerMovementScript : MonoBehaviour
     private bool _canJump = false;
     private int maxJumps = 3;
     private int jumpCount = 0;
+    private Vector3 jumpPos;
     public bool _isInvisible = false;
     private Material originMat;
     private GameObject compass;
@@ -34,7 +35,7 @@ public class PlayerMovementScript : MonoBehaviour
     public GameObject frostBallPrefab;
     private Camera playerCam;
     public Material freezeMat;
-    public GameObject invisibleEffect, speedEffect, strengthEffect;
+    public GameObject invisibleEffect, speedEffect, strengthEffect, featherEffect;
 
 
     private void Awake()
@@ -42,6 +43,7 @@ public class PlayerMovementScript : MonoBehaviour
         invisibleEffect.gameObject.SetActive(false);
         speedEffect.gameObject.SetActive(false);
         strengthEffect.gameObject.SetActive(false);
+        //featherEffect.gameObject.SetActive(false);
 
         speedBoost = moveSpeed / 1.5f;
         abilities = new IAbility[values.Length - 1];
@@ -66,6 +68,25 @@ public class PlayerMovementScript : MonoBehaviour
         Gravity();
         //Paused();
         Jump();
+
+        if (!isGrounded)// && !featherEffect.GetComponent<ParticleSystem>().isPlaying)
+        {
+            //featherEffect.SetActive(true);
+            if (!featherEffect.GetComponent<ParticleSystem>().isEmitting)
+            {
+                Debug.Log("Feathers!");
+                featherEffect.transform.position = this.transform.position;
+                featherEffect.GetComponentInParent<ParticleSystem>().Play();
+            }
+            //else Debug.Log("Not emitting");
+            
+        }
+        else// if (featherEffect.activeSelf)
+        {
+            featherEffect.transform.position = jumpPos;
+            featherEffect.GetComponentInParent<ParticleSystem>().Stop();
+            //featherEffect.SetActive(false);
+        }
     }
 
     private void Gravity()
@@ -97,6 +118,7 @@ public class PlayerMovementScript : MonoBehaviour
 
         if (controls.PlayerActions.Jump.triggered && isGrounded && _canJump && jumpCount < maxJumps)
         {
+            jumpPos = this.transform.position;
             velocity.y = Mathf.Sqrt(JumpHeight * -2f * -9.81f);
             jumpCount++;
         }

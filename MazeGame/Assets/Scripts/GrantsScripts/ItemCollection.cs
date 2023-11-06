@@ -17,7 +17,7 @@ public class ItemCollection : MonoBehaviour
     public Sprite freezeSprite;
     public Material invisibleMat;
     private GameObject _barrel;
-    public GameObject explosionEffect;
+    public GameObject explosionEffect, jumpEffect;
     private Vector3 _barrelSpawn;
     private Vector3 barrelPos;
     private float barrelOffset = 1f;
@@ -28,6 +28,7 @@ public class ItemCollection : MonoBehaviour
     private void Start()
     {
         itemSprite.SetActive(false);
+        jumpEffect.SetActive(false);
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -41,7 +42,11 @@ public class ItemCollection : MonoBehaviour
             StartCoroutine(Explosion());
                       
             _barrel.GetComponent<MeshRenderer>().enabled = false;            
-            Instantiate(itemPrefab, barrelPos, _barrel.transform.rotation);
+            GameObject go = Instantiate(itemPrefab, barrelPos, _barrel.transform.rotation);
+            //jumpEffect.SetActive(true);
+            //jumpEffect.transform.position = go.transform.position;
+            go.GetComponent<PowerUp>().jumpEffectPrefab = jumpEffect;
+            
 
             _barrelSpawn = _barrel.transform.position;
             _barrelSpawn.y += _barrelSpawnDistance;
