@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerMovementScript : MonoBehaviour
 {
@@ -22,24 +23,32 @@ public class PlayerMovementScript : MonoBehaviour
     public bool isGrounded;
     Array values = Enum.GetValues(typeof(ItemCollectables));
     private IAbility[] abilities;
+    public Text abilityStatusText;
+    private int statusNum = 5;
     private float speedBoost;
-    private float _duration = 5f;
+    private int _duration = 5;
     private bool _canJump = false;
     private int maxJumps = 3;
     private int jumpCount = 0;
     private Vector3 jumpPos;
     public bool _isInvisible = false;
     private Material originMat;
+    public GameObject miniMap;
     private GameObject compass;
     private Animation compassAnims;
     public GameObject frostBallPrefab;
     private Camera playerCam;
     public Material freezeMat;
     public GameObject invisibleEffect, speedEffect, strengthEffect, featherEffect;
+    private int speedCount = 5;
+    private int invisibleCount = 5;
+    private int compassCount = 5;
 
 
     private void Awake()
     {
+        abilityStatusText.enabled = false;
+        miniMap.SetActive(false);
         invisibleEffect.gameObject.SetActive(false);
         speedEffect.gameObject.SetActive(false);
         strengthEffect.gameObject.SetActive(false);
@@ -68,6 +77,8 @@ public class PlayerMovementScript : MonoBehaviour
         Gravity();
         //Paused();
         Jump();
+
+        abilityStatusText.enabled = _canJump;
 
         if (!isGrounded)// && !featherEffect.GetComponent<ParticleSystem>().isPlaying)
         {
@@ -115,7 +126,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void Jump()
     {
-
+        abilityStatusText.text = "Springs left: " + (maxJumps - jumpCount);
         if (controls.PlayerActions.Jump.triggered && isGrounded && _canJump && jumpCount < maxJumps)
         {
             jumpPos = this.transform.position;
@@ -146,6 +157,7 @@ public class PlayerMovementScript : MonoBehaviour
             if (_itemCollection != null && _itemCollection.itemSprite.activeSelf)
             {
                 _itemCollection.itemSprite.SetActive(false);
+                _itemCollection.rightClickText.SetActive(false);
 
                 switch (_itemCollection._activeItem)
                 {
@@ -171,6 +183,7 @@ public class PlayerMovementScript : MonoBehaviour
                         break;
                     case ItemCollectables.Clairvoyance:
                         StartCoroutine(EquipCompass());
+                        miniMap.SetActive(true);
                         Debug.Log("You used " + _itemCollection._activeItem);
                         break;
                     case ItemCollectables.Jump:
@@ -224,14 +237,35 @@ public class PlayerMovementScript : MonoBehaviour
 
     private IEnumerator SpeedBoost()
     {
+        abilityStatusText.enabled = true;
+        StartCoroutine(CountDown(_duration, "Caffeine Levels: "));
         moveSpeed += speedBoost;
         Debug.Log("Zoom");
         speedEffect.SetActive(true);
         yield return new WaitForSeconds(_duration);
+        abilityStatusText.enabled = false;
         speedEffect.SetActive(false);
         Debug.Log("No Zoom");
         moveSpeed -= speedBoost;
     }
+
+    private IEnumerator CountDown(int duration, string text)
+    {
+        int count = 0;
+        int temp = statusNum;
+        while(count < duration)
+        {
+            abilityStatusText.text = text + statusNum;
+            yield return new WaitForSeconds(duration/duration);
+            statusNum--;
+            count++;
+            
+        }
+
+        statusNum = temp;
+    }
+
+
 
     private IEnumerator EquipCompass()
     {
