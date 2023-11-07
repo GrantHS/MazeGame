@@ -123,13 +123,6 @@ public class LevelSelectMenu : MenuParent
 
         levelThumbnailList[selectedLevelIndex].GetComponent<LevelInfoHolder>().OnLevelSelected();
 
-        GameManager.Instance.currentLevel = selectedMazeLevel;
-        GameManager.Instance.playerSpawn = selectedPlayerSpawn;
-        GameManager.Instance.farmerSpawn = selectedFarmerSpawn;
-        GameManager.Instance.yellowKey = selectedYellowKey;
-        GameManager.Instance.redKey = selectedRedKey;
-        GameManager.Instance.orangeKey = selectedOrangeKey;
-
         selectedLevelNameText.text = levelThumbnailList[selectedLevelIndex].GetComponent<LevelInfoHolder>().levelInfo.levelName;
     }
 

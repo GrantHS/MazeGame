@@ -30,13 +30,13 @@ public class LevelInfoHolder : MonoBehaviour
     {
         FindAnyObjectByType<LevelSelectMenu>().selectedLevelIndex = indexNumber;
         FindAnyObjectByType<LevelSelectMenu>().selectedLevelNameText.text = levelInfo.levelName;
-        FindAnyObjectByType<LevelSelectMenu>().selectedMazeLevel = levelObject;
-        FindAnyObjectByType<LevelSelectMenu>().selectedFarmerSpawn = farmerSpawn;
-        FindAnyObjectByType<LevelSelectMenu>().selectedPlayerSpawn = playerSpawn;
 
-        FindAnyObjectByType<LevelSelectMenu>().selectedYellowKey = yellowKey;
-        FindAnyObjectByType<LevelSelectMenu>().selectedRedKey = redKey;
-        FindAnyObjectByType<LevelSelectMenu>().selectedOrangeKey = orangeKey;
+        GameManager.Instance.currentLevel = levelObject;
+        GameManager.Instance.playerSpawn = playerSpawn;
+        GameManager.Instance.farmerSpawn = farmerSpawn;
+        GameManager.Instance.yellowKey = yellowKey;
+        GameManager.Instance.redKey = redKey;
+        GameManager.Instance.orangeKey = orangeKey;
     }
 
 }
