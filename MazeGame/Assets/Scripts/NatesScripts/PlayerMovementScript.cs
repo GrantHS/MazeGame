@@ -5,7 +5,10 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
+using UnityEngine.UI; 
+
+//IDK why this is here
+//using static System.Net.Mime.MediaTypeNames;
 
 public class PlayerMovementScript : MonoBehaviour
 {
@@ -78,7 +81,7 @@ public class PlayerMovementScript : MonoBehaviour
         //Paused();
         Jump();
 
-        abilityStatusText.enabled = _canJump;
+        //abilityStatusText.enabled = _canJump;
 
         if (!isGrounded)// && !featherEffect.GetComponent<ParticleSystem>().isPlaying)
         {
@@ -126,18 +129,24 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void Jump()
     {
-        abilityStatusText.text = "Springs left: " + (maxJumps - jumpCount);
-        if (controls.PlayerActions.Jump.triggered && isGrounded && _canJump && jumpCount < maxJumps)
+        if (_canJump)
         {
-            jumpPos = this.transform.position;
-            velocity.y = Mathf.Sqrt(JumpHeight * -2f * -9.81f);
-            jumpCount++;
+            abilityStatusText.enabled = true;
+            abilityStatusText.text = "Springs left: " + (maxJumps - jumpCount);
+            if (controls.PlayerActions.Jump.triggered && isGrounded && jumpCount < maxJumps)
+            {
+                jumpPos = this.transform.position;
+                velocity.y = Mathf.Sqrt(JumpHeight * -2f * -9.81f);
+                jumpCount++;
+            }
+            else if (jumpCount >= maxJumps)
+            {
+                _canJump = false;
+                jumpCount = 0;
+                abilityStatusText.enabled = false;
+            }
         }
-        else if(jumpCount >= maxJumps)
-        {
-            _canJump = false;
-            jumpCount = 0;
-        }
+        
        
     }
 
@@ -223,12 +232,15 @@ public class PlayerMovementScript : MonoBehaviour
     private IEnumerator BecomeInvisible()
     {
         Debug.Log("Is Invisible");
+        abilityStatusText.enabled = true;
+        StartCoroutine(CountDown(_duration, "Magic Left: ", "g"));
         originMat = this.gameObject.GetComponentInChildren<MeshRenderer>().material;
         this.gameObject.GetComponentInChildren<MeshRenderer>().material = _itemCollection.invisibleMat;
         invisibleEffect.SetActive(true);
         //Need GameManager to send invisible signal to AI
         _isInvisible = true;
         yield return new WaitForSeconds(_duration);
+        abilityStatusText.enabled = false;
         _isInvisible = false;
         Debug.Log("Is not Invisible");
         invisibleEffect.SetActive(false);
@@ -238,7 +250,7 @@ public class PlayerMovementScript : MonoBehaviour
     private IEnumerator SpeedBoost()
     {
         abilityStatusText.enabled = true;
-        StartCoroutine(CountDown(_duration, "Caffeine Levels: "));
+        StartCoroutine(CountDown(_duration, "Caffeine Intake: ", "oz"));
         moveSpeed += speedBoost;
         Debug.Log("Zoom");
         speedEffect.SetActive(true);
@@ -265,6 +277,22 @@ public class PlayerMovementScript : MonoBehaviour
         statusNum = temp;
     }
 
+    private IEnumerator CountDown(int duration, string firstText, string secondText)
+    {
+        int count = 0;
+        int temp = statusNum;
+        while (count < duration)
+        {
+            abilityStatusText.text = firstText + statusNum + secondText;
+            yield return new WaitForSeconds(duration / duration);
+            statusNum--;
+            count++;
+
+        }
+
+        statusNum = temp;
+    }
+
 
 
     private IEnumerator EquipCompass()
@@ -276,10 +304,12 @@ public class PlayerMovementScript : MonoBehaviour
         }
 
         compassAnims.Play();
+        abilityStatusText.enabled = true;
+        StartCoroutine(CountDown(_duration, "Compass Breaking in: "));
         //animator.Play("CompassEquip");
 
         yield return new WaitForSeconds(_duration);
-
+        abilityStatusText.enabled = false;
         compassAnims.Play("CompassDrop");
         //animator.Play("CompassDrop");
 
