@@ -18,6 +18,8 @@ public class ItemCollection : MonoBehaviour
     public Material invisibleMat;
     private GameObject _barrel;
     public GameObject explosionEffect, jumpEffect;
+    public GameObject rightClickText;
+    private bool firstAbility = true;
     private Vector3 _barrelSpawn;
     private Vector3 barrelPos;
     private float barrelOffset = 1f;
@@ -27,6 +29,7 @@ public class ItemCollection : MonoBehaviour
 
     private void Start()
     {
+        rightClickText.SetActive(false);
         itemSprite.SetActive(false);
         jumpEffect.SetActive(false);
     }
@@ -58,6 +61,12 @@ public class ItemCollection : MonoBehaviour
         {
             _activeItem = hit.gameObject.GetComponent<PowerUp>().power;
             hit.gameObject.SetActive(false);
+
+            if (firstAbility)
+            {
+                firstAbility = false;
+                rightClickText.SetActive(true);
+            }
 
             switch (_activeItem)
             {
