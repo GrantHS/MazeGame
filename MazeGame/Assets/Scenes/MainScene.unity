@@ -14591,7 +14591,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -21226,6 +21226,7 @@ GameObject:
   - component: {fileID: 837728366}
   - component: {fileID: 837728365}
   - component: {fileID: 837728367}
+  - component: {fileID: 837728368}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -21295,6 +21296,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChickenNoise: {fileID: 999514985}
   keyPressSound: {fileID: 8300000, guid: 93475f71e73320c43bd0d12c94f54045, type: 3}
+--- !u!114 &837728368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837728364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159808324ed507b4888c0c067b42f522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: SneakyGameFIle
 --- !u!1 &840142422 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c01f2769bfb2ff94ab80c3b01aad32f9,
@@ -22427,7 +22441,7 @@ PrefabInstance:
     - target: {fileID: 8349162890869458074, guid: 3eee96c204a53c6499b6ef782d285fee,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 0
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9103704048836501423, guid: 3eee96c204a53c6499b6ef782d285fee,
         type: 3}
@@ -59041,7 +59055,7 @@ PrefabInstance:
     - target: {fileID: 1803500441894507194, guid: dd5756e78bb21a648994eb49d5464d3e,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 0
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2431836488266763546, guid: dd5756e78bb21a648994eb49d5464d3e,
         type: 3}
