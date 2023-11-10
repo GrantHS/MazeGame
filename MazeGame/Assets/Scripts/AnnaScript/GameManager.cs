@@ -12,7 +12,7 @@ public enum UIMenu
     Victory
 }
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDataStuff
 {
     public static GameManager Instance; //singleton
     public InputControls controls;
@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        LoadGame();
+
         farmerAiScript = new FarmerAi();
         //singleton setup
         if (Instance != null && Instance != this)
@@ -243,4 +245,40 @@ public class GameManager : MonoBehaviour
        
 
     }
+
+    public void LoadData(DataStuff data)
+    {
+        data.GameTime = playerTime;
+    }
+
+    public void SaveData(ref DataStuff data)
+    {
+        playerTime = data.GameTime;
+    }
+
+    public void SaveGame()
+    {
+        DataStuff data = new DataStuff();
+        SaveData(ref data);
+
+        // Save the data to PlayerPrefs
+        PlayerPrefs.SetFloat("GameTime", data.GameTime);
+        PlayerPrefs.Save();
+    }
+    public void LoadGame()
+    {
+        DataStuff data = new DataStuff();
+
+        // Load the saved data from PlayerPrefs
+        data.GameTime = PlayerPrefs.GetFloat("GameTime", 0f);
+
+        LoadData(data);
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveGame();
+
+    }
+
 }

@@ -4,10 +4,7 @@ using UnityEngine;
 
 public interface IDataStuff
 {
-
     void LoadData(DataStuff data);
     void SaveData(ref DataStuff data);
-
-
 
 }
