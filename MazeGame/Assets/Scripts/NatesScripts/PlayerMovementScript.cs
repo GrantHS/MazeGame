@@ -43,6 +43,7 @@ public class PlayerMovementScript : MonoBehaviour
     private Camera playerCam;
     public Material freezeMat;
     public GameObject invisibleEffect, speedEffect, strengthEffect, featherEffect;
+    public GameObject strengthParticleTut;
     private int speedCount = 5;
     private int invisibleCount = 5;
     private int compassCount = 5;
@@ -181,9 +182,13 @@ public class PlayerMovementScript : MonoBehaviour
                         }
                         else if (!GetComponent<WallBreak>().isActiveAndEnabled)
                         {
-                            GetComponent<WallBreak>().enabled = true;
+                            
                         }
-                        gameObject.GetComponent<WallBreak>().strengthEffect = strengthEffect;
+                        GetComponent<WallBreak>().enabled = true;
+                        WallBreak wallBreak = GetComponent<WallBreak>();
+                        wallBreak.strengthEffect = strengthEffect;
+                        wallBreak.strengthEffect.SetActive(true);
+                        wallBreak.tutoralParticle = strengthParticleTut;
                         Debug.Log("You used " + _itemCollection._activeItem);
                         break;
                     case ItemCollectables.Invisibility:
