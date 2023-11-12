@@ -8,8 +8,7 @@ public class PushDoor : MonoBehaviour
 {
     private LockedDoor _door;
 
-    [SerializeField]
-    private float _pushPower;
+    public float _pushPower = 10f;
 
     public bool yellowKey = false;
     public bool orangeKey = false;
