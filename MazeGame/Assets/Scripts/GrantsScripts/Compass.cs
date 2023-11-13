@@ -17,6 +17,7 @@ public class Compass : MonoBehaviour
     }
     private void Update()
     {
+        arm.transform.forward = -arm.transform.right;
         arm.transform.LookAt(targetPostition);
     }
 }
