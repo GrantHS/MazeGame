@@ -25,8 +25,8 @@ public class PowerUp : MonoBehaviour
 
         Array values = Enum.GetValues(typeof(ItemCollectables));
         System.Random random = new System.Random();
-        //power = (ItemCollectables)values.GetValue(random.Next(values.Length)); //Comment this out when using line below
-        power = ItemCollectables.Clairvoyance; //Uncomment and change this variable to get specific abilities to spawn
+        power = (ItemCollectables)values.GetValue(random.Next(values.Length)); //Comment this out when using line below
+        //power = ItemCollectables.Clairvoyance; //Uncomment and change this variable to get specific abilities to spawn
         //Debug.Log("Item power: " +  power);
 
         switch (power)
