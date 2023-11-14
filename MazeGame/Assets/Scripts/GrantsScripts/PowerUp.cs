@@ -14,6 +14,7 @@ public class PowerUp : MonoBehaviour
     private Vector3 effectPos;
     public float Vertical = 0.5f;
     public float LoopSpeed = 1f;
+    public bool isRandom = true;
 
     private void OnEnable()
     {
@@ -25,9 +26,11 @@ public class PowerUp : MonoBehaviour
 
         Array values = Enum.GetValues(typeof(ItemCollectables));
         System.Random random = new System.Random();
-        power = (ItemCollectables)values.GetValue(random.Next(values.Length)); //Comment this out when using line below
-        //power = ItemCollectables.Clairvoyance; //Uncomment and change this variable to get specific abilities to spawn
-        //Debug.Log("Item power: " +  power);
+        if (isRandom)
+        {
+            //power = (ItemCollectables)values.GetValue(random.Next(values.Length)); //Comment this out when using line below
+            power = ItemCollectables.Strength; //Uncomment and change this variable to get specific abilities to spawn
+        }
 
         switch (power)
         {
@@ -66,7 +69,7 @@ public class PowerUp : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = UnityEngine.Random.onUnitSphere * _rollSpeed;
+        if (isRandom) rb.velocity = UnityEngine.Random.onUnitSphere * _rollSpeed;
 
         if (power == ItemCollectables.Jump)
         {
