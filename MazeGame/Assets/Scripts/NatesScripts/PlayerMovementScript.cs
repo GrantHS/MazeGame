@@ -180,12 +180,9 @@ public class PlayerMovementScript : MonoBehaviour
                         {
                             gameObject.AddComponent<WallBreak>();
                         }
-                        else if (!GetComponent<WallBreak>().isActiveAndEnabled)
-                        {
-                            
-                        }
                         GetComponent<WallBreak>().enabled = true;
                         WallBreak wallBreak = GetComponent<WallBreak>();
+                        wallBreak.canBreak = true;
                         wallBreak.strengthEffect = strengthEffect;
                         wallBreak.strengthEffect.SetActive(true);
                         wallBreak.tutoralParticle = strengthParticleTut;

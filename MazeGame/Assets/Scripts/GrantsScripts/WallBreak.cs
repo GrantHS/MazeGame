@@ -12,6 +12,7 @@ public class WallBreak : MonoBehaviour
     private float despawnTime = 2f;
     private bool inUse = true;
     public GameObject tutoralParticle;
+    public bool canBreak = true;
 
     private void Start()
     {
@@ -23,24 +24,31 @@ public class WallBreak : MonoBehaviour
         if (hit.collider.gameObject.CompareTag("Breakable Wall"))
         {
             Debug.Log("Hit Breakable Wall");
-            strengthEffect.SetActive(false);
-            tutoralParticle.SetActive(false);
-            wallPieces = hit.gameObject.GetComponentsInChildren<Rigidbody>();
-            hit.collider.isTrigger = true;
-            int pieces = 0;
-            while (pieces < wallPieces.Length)
+            if (canBreak)
             {
-                foreach (Rigidbody piece in wallPieces)
+                strengthEffect.SetActive(false);
+                tutoralParticle.SetActive(false);
+                wallPieces = hit.gameObject.GetComponentsInChildren<Rigidbody>();
+                hit.collider.isTrigger = true;
+                int pieces = 0;
+                while (pieces < wallPieces.Length)
                 {
-                    piece.gameObject.AddComponent<BoxCollider>();
+                    foreach (Rigidbody piece in wallPieces)
+                    {
+                        piece.gameObject.AddComponent<BoxCollider>();
 
-                    StartCoroutine(TNT(piece, hit));
-                    pieces++;
+                        StartCoroutine(TNT(piece, hit));
+                        pieces++;
+                    }
+
+                    canBreak = false;
                 }
-            
             }
+            
 
+            
             inUse = false;
+
 
         }
     }
