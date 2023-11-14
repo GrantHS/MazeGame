@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour, IDataStuff
     public float playerTime;
     public bool countingTime;
 
+
     //Level Objects
     public GameObject playerSpawn;
     public GameObject farmerSpawn;
@@ -49,6 +50,11 @@ public class GameManager : MonoBehaviour, IDataStuff
     public GameObject tutorialLevel;
     public GameObject firstLevel;
     public List<GameObject> levelList = new List<GameObject>();
+
+
+    // Rating Levels Time Objects
+    public GameObject Starsprites_1, Starsprites_2, Starsprites_3;
+
 
     private void Awake()
     {
@@ -152,6 +158,7 @@ public class GameManager : MonoBehaviour, IDataStuff
     {
         int minutes = Mathf.FloorToInt(playerTime/60f);
         int seconds = Mathf.FloorToInt(playerTime - minutes * 60f);
+        Debug.Log("Current Time: " + playerTime);
 
         string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
 
@@ -278,6 +285,56 @@ public class GameManager : MonoBehaviour, IDataStuff
     private void OnApplicationQuit()
     {
         SaveGame();
+
+    }
+
+
+    private void GiveRating()
+    {
+        if (playerTime < 45 )
+        {
+            StarsActive(3);
+        }
+       else if (playerTime < 60)
+        {
+            StarsActive(2);
+        }
+       else if (playerTime < 90)
+        {
+            StarsActive(1);
+        }
+    }
+
+    private void StarsActive(int numstars)
+    {
+        Starsprites_1.SetActive(false);
+        Starsprites_2.SetActive(false);
+        Starsprites_3.SetActive(false);
+
+        switch (numstars)
+        {
+            case 3:
+
+                Starsprites_1.SetActive(true);
+                Starsprites_2.SetActive(true);
+                Starsprites_3.SetActive(true);
+                break;
+
+            case 2:
+
+                Starsprites_1.SetActive(true);
+                Starsprites_2.SetActive(true);
+
+                break;
+
+            case 1:
+
+                Starsprites_1.SetActive(true);
+                break;
+            default:
+                break;
+        }
+
 
     }
 
