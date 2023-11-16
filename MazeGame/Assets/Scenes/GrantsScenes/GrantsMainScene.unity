@@ -14180,7 +14180,7 @@ PrefabInstance:
     - target: {fileID: 5884685826542834194, guid: 2d6d62f456f8c9041a9164cb21250c7d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.02
+      value: -1.94
       objectReference: {fileID: 0}
     - target: {fileID: 5884685826542834194, guid: 2d6d62f456f8c9041a9164cb21250c7d,
         type: 3}
@@ -14190,7 +14190,7 @@ PrefabInstance:
     - target: {fileID: 5884685826542834194, guid: 2d6d62f456f8c9041a9164cb21250c7d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.76
+      value: -3.94
       objectReference: {fileID: 0}
     - target: {fileID: 5884685826542834194, guid: 2d6d62f456f8c9041a9164cb21250c7d,
         type: 3}
@@ -21653,6 +21653,7 @@ MonoBehaviour:
   lastMenuOpened: 0
   currentMenuOpened: 0
   levelFinished: 0
+  bestTimeUI: {fileID: 0}
   playerTime: 0
   countingTime: 0
   playerSpawn: {fileID: 520751130}
@@ -21664,6 +21665,9 @@ MonoBehaviour:
   tutorialLevel: {fileID: 1654600342}
   firstLevel: {fileID: 1960071442}
   levelList: []
+  Starsprites_1: {fileID: 0}
+  Starsprites_2: {fileID: 0}
+  Starsprites_3: {fileID: 0}
 --- !u!4 &837728366
 Transform:
   m_ObjectHideFlags: 0
