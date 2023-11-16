@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class LevelInfoHolder : MonoBehaviour
 {
     public LevelSelectInfo levelInfo;
-    [SerializeField] private TextMeshProUGUI ratingTextPlaceholder;
     [SerializeField] private TextMeshProUGUI sizeText;
     [SerializeField] private int indexNumber;
 
@@ -22,7 +21,6 @@ public class LevelInfoHolder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ratingTextPlaceholder.text = "Rating: " + levelInfo.rating.ToString();
         sizeText.text = levelInfo.levelSize.ToString();
     }
 

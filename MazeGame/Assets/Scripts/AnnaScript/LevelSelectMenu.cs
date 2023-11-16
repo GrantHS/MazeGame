@@ -129,7 +129,7 @@ public class LevelSelectMenu : MenuParent
     public void PlayLevel()
     {
         GameManager.Instance.EnableLevel(GameManager.Instance.currentLevel);
-
+        this.gameObject.SetActive(false); //not sure why it's not disabling rn so this is here
         GameManager.Instance.RestartLevel();
     }
 }

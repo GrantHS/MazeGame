@@ -9,6 +9,8 @@ public class OptionsMenu : MenuParent, IDataStuff
     [SerializeField] private GameObject gameplayHUD;
     [SerializeField] private Slider mouseSensitivitySlider;
     [SerializeField] private TextMeshProUGUI sensitivityText;
+    [SerializeField] private TextMeshProUGUI resolutionCheckText;
+    [SerializeField] private int resolutionMultiplier;
     public GameObject MiniMap_Heater;
 
     public float mouseSensitivity;
@@ -32,6 +34,11 @@ public class OptionsMenu : MenuParent, IDataStuff
        Cursor.lockState = CursorLockMode.None;
     }
 
+    private void Update()
+    {
+        resolutionCheckText.text = "Current Screen Resolution is: " + Screen.width + "x" + Screen.height;
+    }
+
     public void HUDOn()
     {
         gameplayHUD.SetActive(true);
@@ -51,9 +58,39 @@ public class OptionsMenu : MenuParent, IDataStuff
         sensitivityText.text = mouseSensitivitySlider.value.ToString();
     }
 
+    private int GetDivisor(int x, int y)
+    {
+        int d;
+        d = GCD(x, y);
+        
+        Debug.Log("Divisor is:" + d);
+        
+        return d;
+    }
+
+    static int GCD(int a, int b)
+    {
+        if (b == 0)
+            return a;
+        return GCD(b, a % b);
+    }
+
     public void FullscreenToggle()
     {
-        Screen.SetResolution(1920, 1080, true);
+        int screenWidth = Screen.currentResolution.width;
+        int screenHeight = Screen.currentResolution.height;
+
+        int divisor = GetDivisor(screenWidth, screenHeight);
+
+        screenWidth /= divisor;
+        screenHeight /= divisor;
+        Debug.Log("Aspect Ratio of Monitor is: " + screenWidth + ":" + screenHeight);
+
+        screenWidth *= resolutionMultiplier;
+        screenHeight *= resolutionMultiplier;
+        Debug.Log("Current Screen Resolution is: " + screenWidth + "x" + screenHeight);
+        
+        Screen.SetResolution(screenWidth, screenHeight, true);
     }
 
     public void WindowedToggle()
