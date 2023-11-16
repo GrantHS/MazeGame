@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public enum UIMenu
 {
@@ -33,11 +34,12 @@ public class GameManager : MonoBehaviour, IDataStuff
     [SerializeField] private Dictionary<UIMenu, GameObject> menuDictionary = new Dictionary<UIMenu, GameObject>();
      
     public bool levelFinished;
-    
+    public Text bestTimeUI;
     //Time Counter
     public float playerTime;
     public bool countingTime;
 
+    private float FinishTime;
 
     //Level Objects
     public GameObject playerSpawn;
@@ -110,6 +112,8 @@ public class GameManager : MonoBehaviour, IDataStuff
         if(countingTime == true)
         {
             playerTime += Time.deltaTime;
+            FinishTime = playerTime;
+            
             TimeCounter();
         }
     }
@@ -158,7 +162,7 @@ public class GameManager : MonoBehaviour, IDataStuff
     {
         int minutes = Mathf.FloorToInt(playerTime/60f);
         int seconds = Mathf.FloorToInt(playerTime - minutes * 60f);
-        Debug.Log("Current Time: " + playerTime);
+       // Debug.Log("Current Time: " + playerTime);
 
         string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
 
@@ -255,12 +259,12 @@ public class GameManager : MonoBehaviour, IDataStuff
 
     public void LoadData(DataStuff data)
     {
-        data.GameTime = playerTime;
+        FinishTime = data.GameTime;
     }
 
     public void SaveData(ref DataStuff data)
     {
-        playerTime = data.GameTime;
+       data.GameTime = FinishTime;
     }
 
     public void SaveGame()
@@ -288,18 +292,25 @@ public class GameManager : MonoBehaviour, IDataStuff
 
     }
 
+    public void LevelCompleted()
+    {
+        SaveGame();
+        GiveRating();
+
+    }
+
 
     private void GiveRating()
     {
-        if (playerTime < 45 )
+        if (FinishTime < 45 )
         {
             StarsActive(3);
         }
-       else if (playerTime < 60)
+       else if (FinishTime < 60)
         {
             StarsActive(2);
         }
-       else if (playerTime < 90)
+       else if (FinishTime < 90)
         {
             StarsActive(1);
         }
@@ -337,5 +348,24 @@ public class GameManager : MonoBehaviour, IDataStuff
 
 
     }
+
+    private void DisplayBestTime()
+    {
+        float bestTime = PlayerPrefs.GetFloat("BestTime", float.MaxValue);
+
+        // Check if the current completion time is better than the saved best time
+        if (FinishTime < bestTime)
+        {
+            // Update the best time and save it
+            bestTime = FinishTime;
+            PlayerPrefs.SetFloat("BestTime", bestTime);
+            PlayerPrefs.Save();
+        }
+
+        // Display the best time on the canvas
+        bestTimeUI.text = "Best Time: " + TimeCounter();
+    }
+
+
 
 }

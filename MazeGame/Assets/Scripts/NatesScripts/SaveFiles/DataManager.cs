@@ -66,7 +66,7 @@ public class DataManager : MonoBehaviour
            
         }
 
-        Debug.Log("Load Mouse sens is: " + dataStuff.MouseSens);
+       // Debug.Log("Load Mouse sens is: " + dataStuff.MouseSens);
         Debug.Log("Load Time is: " + dataStuff.GameTime);
     }
 

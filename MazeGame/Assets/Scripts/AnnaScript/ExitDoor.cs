@@ -23,6 +23,7 @@ public class ExitDoor : MonoBehaviour
             GameManager.Instance.countingTime = false;
             Cursor.lockState = CursorLockMode.None;
             victoryScreen.SetActive(true);
+            GameManager.Instance.LevelCompleted();
         }
     }
 }
