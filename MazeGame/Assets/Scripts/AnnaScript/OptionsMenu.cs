@@ -11,6 +11,8 @@ public class OptionsMenu : MenuParent, IDataStuff
     [SerializeField] private TextMeshProUGUI sensitivityText;
     [SerializeField] private TextMeshProUGUI resolutionCheckText;
     [SerializeField] private int resolutionMultiplier;
+    [SerializeField] private Slider resolutionSlider;
+    [SerializeField] private TextMeshProUGUI resolutionMultiplierText;
     public GameObject MiniMap_Heater;
 
     public float mouseSensitivity;
@@ -19,8 +21,10 @@ public class OptionsMenu : MenuParent, IDataStuff
     {
         LoadFromStorage();
 
-      //  mouseSensitivitySlider.value = FindAnyObjectByType<MouseLook>().mouseSen / 10;
+        //mouseSensitivitySlider.value = FindAnyObjectByType<MouseLook>().mouseSen / 10;
         sensitivityText.text = mouseSensitivitySlider.value.ToString();
+        resolutionMultiplierText.text = resolutionSlider.value.ToString();
+
     }
 
     //Save Game Stuff
@@ -77,8 +81,8 @@ public class OptionsMenu : MenuParent, IDataStuff
 
     public void FullscreenToggle()
     {
-        int screenWidth = Screen.currentResolution.width;
-        int screenHeight = Screen.currentResolution.height;
+        int screenWidth = Display.main.systemWidth;
+        int screenHeight = Display.main.systemHeight;
 
         int divisor = GetDivisor(screenWidth, screenHeight);
 
@@ -89,15 +93,33 @@ public class OptionsMenu : MenuParent, IDataStuff
         screenWidth *= resolutionMultiplier;
         screenHeight *= resolutionMultiplier;
         Debug.Log("Current Screen Resolution is: " + screenWidth + "x" + screenHeight);
-        
+
         Screen.SetResolution(screenWidth, screenHeight, true);
     }
 
     public void WindowedToggle()
     {
-        Screen.SetResolution(1920, 1080, false);
+        int screenWidth = Display.main.systemWidth;
+        int screenHeight = Display.main.systemHeight;
+
+        int divisor = GetDivisor(screenWidth, screenHeight);
+
+        screenWidth /= divisor;
+        screenHeight /= divisor;
+        Debug.Log("Aspect Ratio of Monitor is: " + screenWidth + ":" + screenHeight);
+
+        screenWidth *= resolutionMultiplier;
+        screenHeight *= resolutionMultiplier;
+        Debug.Log("Current Screen Resolution is: " + screenWidth + "x" + screenHeight);
+
+        Screen.SetResolution(screenWidth, screenHeight, false);
     }
 
+    public void ResolutionMultiplierSlider()
+    {
+        resolutionMultiplier = (int)resolutionSlider.value;
+        resolutionMultiplierText.text = resolutionSlider.value.ToString();
+    }
 
      //Save Game Stuff
 
