@@ -176,7 +176,9 @@ public class GameManager : MonoBehaviour, IDataStuff
 
         GameObject.Find("Player").transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
         StartCoroutine(spawnFarmer());
-        
+
+        GameObject.Find("Player").GetComponent<ItemCollection>().itemSprite.SetActive(false);
+
         farmerAiScript.wayPointSet = false;
         playerTime = 0;
         countingTime = true;
@@ -211,11 +213,6 @@ public class GameManager : MonoBehaviour, IDataStuff
 
         DisableMenu(lastMenuOpened);
         optionsMenu.SetActive(true);
-    }
-    public void CloseOptionsMenu() //unused at the moment
-    {
-        EnableMenu(lastMenuOpened);
-        optionsMenu.SetActive(false);
     }
     public void OpenLevelSelectMenu()
     {
