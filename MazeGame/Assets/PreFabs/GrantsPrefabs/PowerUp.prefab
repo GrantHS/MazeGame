@@ -150,15 +150,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73abc48f21f35544d9805e37cdc57d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 0
+  power: 3
   freezeEffect: {fileID: 7502546740001926612}
   invisibleEffect: {fileID: 2023311129108309690}
   speedEffect: {fileID: 6784955729299905878}
   strengthEffect: {fileID: 6189791723972962127}
-  jumpEffect: {fileID: 0}
+  jumpEffectPrefab: {fileID: 0}
   invisibleMat: {fileID: 2100000, guid: b70c792dcf1c3434eb8bbeb9399af029, type: 2}
   Vertical: 0.5
   LoopSpeed: 1
+  isRandom: 1
 --- !u!1001 &1819583338419463245
 PrefabInstance:
   m_ObjectHideFlags: 0
