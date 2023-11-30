@@ -143,10 +143,15 @@ public class FarmerAi : MonoBehaviour
     private void Attacking()
     {
         nav.SetDestination(player.transform.position);
+        /*
+         * Following has been put into a coroutine
         Debug.Log("Attacking Player");
         
         //player.transform.position = playerSpawn.transform.position;
         player.GetComponent<Respawn>().PlayerHealth = 0;
+        */
+
+        StartCoroutine(AttackAnimation());
     }
 
     private void ChasingPlayer()
@@ -179,4 +184,14 @@ public class FarmerAi : MonoBehaviour
 
     }
 
+    private IEnumerator AttackAnimation()
+    {
+        Debug.Log("Attacking Player");
+        anim.SetBool("isWalking", false);
+        anim.SetBool("isAttacking", true);
+        yield return new WaitForSeconds(1.1f);
+        anim.SetBool("isWalking", true);
+        anim.SetBool("isAttacking", false);
+        player.GetComponent<Respawn>().PlayerHealth = 0;
+    }
 }
