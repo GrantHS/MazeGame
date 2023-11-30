@@ -32,12 +32,17 @@ public class FarmerAi : MonoBehaviour
 
     private PlayerMovementScript isInvisible;
 
+    //Animation Control
+    Animator anim;
+
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
         nav = GetComponent<NavMeshAgent>();
         viewAngle = spotlight.spotAngle;
         //playerSpawn.transform.position = player.transform.position; <= Don't need
+
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -49,16 +54,24 @@ public class FarmerAi : MonoBehaviour
 
         if (canSeePlayer())
         {
+            anim.SetBool("isWalking", true);
             ChasingPlayer();
         }
         else
         {
+            anim.SetBool("isWalking", true);
             Patrolling();
         }
 
         if (playerInAttackRange && !playerInvisible)
         {
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isAttacking", true);
             Attacking();
+        }
+        else
+        {
+            anim.SetBool("isAttacking", false);
         }
     }
 
@@ -70,6 +83,7 @@ public class FarmerAi : MonoBehaviour
         }
         if (wayPointSet)
         {
+            //anim.SetBool("isWalking", true);
             nav.SetDestination(wayPoints);
            
           
@@ -118,6 +132,11 @@ public class FarmerAi : MonoBehaviour
         {
           // wayPointSet = true;
             StartCoroutine(waypointRest());
+            //anim.SetBool("isWalking", false);
+        }
+        else
+        {
+            //anim.SetBool("isWalking", true);
         }
     }
 
@@ -125,6 +144,7 @@ public class FarmerAi : MonoBehaviour
     {
         nav.SetDestination(player.transform.position);
         Debug.Log("Attacking Player");
+        
         //player.transform.position = playerSpawn.transform.position;
         player.GetComponent<Respawn>().PlayerHealth = 0;
     }
@@ -140,7 +160,9 @@ public class FarmerAi : MonoBehaviour
     public IEnumerator waypointRest()
     {
         wayPointSet = true;
+        anim.SetBool("isWalking", false);
         yield return new WaitForSeconds(3f);
+        anim.SetBool("isWalking", true);
         wayPointSet = false;
     }
 
