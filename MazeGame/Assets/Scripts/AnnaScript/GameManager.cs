@@ -174,10 +174,25 @@ public class GameManager : MonoBehaviour, IDataStuff
         levelFinished = false;
         Time.timeScale = 1;
 
+        //reset player and mazekeeper position
         GameObject.Find("Player").transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
         StartCoroutine(spawnFarmer());
 
+        //reset checkpoints
+        GameObject.Find("Player").GetComponent<Respawn>().spawnPos = playerSpawn.transform.position;
+        GameObject.Find("Player").GetComponent<Respawn>().spawnRot = playerSpawn.transform.rotation;
+
+        //reset item
         GameObject.Find("Player").GetComponent<ItemCollection>().itemSprite.SetActive(false);
+
+        //reset doors
+        GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
+
+        foreach (GameObject door in doors)
+        {
+            door.SetActive(true);
+            door.GetComponent<LockedDoor>().isLocked = true;
+        }
 
         farmerAiScript.wayPointSet = false;
         playerTime = 0;

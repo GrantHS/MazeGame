@@ -16,9 +16,9 @@ public class Respawn : MonoBehaviour
     public float _playerHealth;
     private float _fullHealth = 100f;
     private float playerYPos;
-    private Vector3 spawnPos;
+    public Vector3 spawnPos;
     private Vector3 rotOffset = new Vector3(0, -135, 0);
-    private Quaternion spawnRot;
+    public Quaternion spawnRot;
     private ParticleSystem[] particleSystems;
 
     [Tooltip("The depth from spawn that the player respawns after passing")]

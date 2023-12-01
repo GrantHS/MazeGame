@@ -38,54 +38,13 @@ public class LevelSelectMenu : MenuParent
         scrollVelocity = Vector2.zero;
         int itemsToAdd = Mathf.CeilToInt(levelViewportTransform.rect.width / (levelThumbnailList[0].rect.width + levelHLG.spacing));
 
-        /*for (int i = 0; i < itemsToAdd; i++)
-        {
-            RectTransform rt = Instantiate(levelList[i % levelList.Length], levelContentTransform);
-            rt.SetAsLastSibling();
-        }
-
-        for (int i = 0; i < itemsToAdd; i++)
-        {
-            int num = levelList.Length - i - 1;
-            while (num < 0)
-            {
-                num += levelList.Length;
-            }
-            RectTransform rt = Instantiate(levelList[num], levelContentTransform);
-            rt.SetAsFirstSibling();
-        }*/
-
         levelContentTransform.localPosition = new Vector3((0 - (levelThumbnailList[0].rect.width + levelHLG.spacing)*itemsToAdd), 
             levelContentTransform.localPosition.y, levelContentTransform.localPosition.z);
 
         selectedLevelNameText.text = levelThumbnailList[selectedLevelIndex].GetComponent<LevelInfoHolder>().levelInfo.levelName;
-        //please take note of anchored position, perhaps that might help in getting the element centered when selected
     }
 
     private void OnEnable() => GameManager.Instance.currentMenuOpened = UIMenu.LevelSelect;
-
-    private void Update()
-    {
-        /*if(isUpdated)
-        {
-            isUpdated = false;
-            levelScrollRect.velocity = scrollVelocity;
-        }
-        if (levelContentTransform.localPosition.x > 0)
-        {
-            Canvas.ForceUpdateCanvases();
-            scrollVelocity = levelScrollRect.velocity;
-            levelContentTransform.localPosition -= new Vector3(levelList.Length * (levelList[0].rect.width + levelHLG.spacing), 0, 0);
-            isUpdated = true;
-        }
-        if (levelContentTransform.localPosition.x < 0 - (levelList.Length * (levelList[0].rect.width + levelHLG.spacing)))
-        {
-            Canvas.ForceUpdateCanvases();
-            scrollVelocity = levelScrollRect.velocity;
-            levelContentTransform.localPosition += new Vector3(levelList.Length * (levelList[0].rect.width + levelHLG.spacing), 0, 0);
-            isUpdated = true;
-        }*/
-    }
 
     public void ScrollLeft() //currently unused
     {
