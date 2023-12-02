@@ -89,7 +89,7 @@ public class PushDoor : MonoBehaviour
         }
     }
 
-    private IEnumerator PushOpen(ControllerColliderHit hit, float vanishTime)
+    public IEnumerator PushOpen(ControllerColliderHit hit, float vanishTime)
     {
         if (!hit.gameObject.GetComponent<Rigidbody>())
         {

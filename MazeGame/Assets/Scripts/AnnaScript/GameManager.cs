@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -22,7 +23,6 @@ public class GameManager : MonoBehaviour, IDataStuff
     private FarmerAi farmerAiScript;
 
     //controlling menus
-    [SerializeField] private bool isPaused;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject startMenu;
@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour, IDataStuff
     public GameObject yellowKey;
     public GameObject redKey;
     public GameObject orangeKey;
+    [SerializeField] private GameObject[] doors;
+    [SerializeField] private Dictionary<GameObject, Transform> doorDictionary;
     //Selecting Levels
     public GameObject currentLevel;
     public GameObject tutorialLevel;
@@ -60,7 +62,7 @@ public class GameManager : MonoBehaviour, IDataStuff
 
     private void Awake()
     {
-        LoadGame();
+        LoadGame();        
 
         farmerAiScript = new FarmerAi();
         //singleton setup
@@ -89,6 +91,8 @@ public class GameManager : MonoBehaviour, IDataStuff
         victoryScreen.SetActive(false);
 
         firstLevel.SetActive(false);
+
+        doors = GameObject.FindGameObjectsWithTag("Door");
     }
 
     private void OnEnable() => controls.Enable();
@@ -186,12 +190,12 @@ public class GameManager : MonoBehaviour, IDataStuff
         GameObject.Find("Player").GetComponent<ItemCollection>().itemSprite.SetActive(false);
 
         //reset doors
-        GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
-
         foreach (GameObject door in doors)
         {
+            //StopCoroutine("PushOpen");
+            door.transform.SetLocalPositionAndRotation(UnityEngine.Vector3.zero, UnityEngine.Quaternion.Euler(0, 0, 0));
+            door.transform.localScale = new UnityEngine.Vector3(1, (float)0.82416, 1);
             door.SetActive(true);
-            door.GetComponent<LockedDoor>().isLocked = true;
         }
 
         farmerAiScript.wayPointSet = false;

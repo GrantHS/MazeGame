@@ -23559,7 +23559,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farmerAI: {fileID: 892115940}
-  isPaused: 0
   pauseMenu: {fileID: 1905320584}
   optionsMenu: {fileID: 809847427}
   startMenu: {fileID: 595949304}
@@ -23576,6 +23575,7 @@ MonoBehaviour:
   yellowKey: {fileID: 2132543002}
   redKey: {fileID: 668823898}
   orangeKey: {fileID: 1483260020}
+  doors: []
   currentLevel: {fileID: 1654600342}
   tutorialLevel: {fileID: 1654600342}
   firstLevel: {fileID: 1960071442}
@@ -81272,6 +81272,16 @@ PrefabInstance:
       propertyPath: _mat3
       value: 
       objectReference: {fileID: 2100000, guid: 82c4847accc03c84c8632ada5a8126e2, type: 2}
+    - target: {fileID: 6034625581170377658, guid: 1caa269122abab04ebb1a029daa9d22c,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034625581170377658, guid: 1caa269122abab04ebb1a029daa9d22c,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
