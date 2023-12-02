@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -48,7 +47,8 @@ public class GameManager : MonoBehaviour, IDataStuff
     public GameObject redKey;
     public GameObject orangeKey;
     [SerializeField] private GameObject[] doors;
-    [SerializeField] private Dictionary<GameObject, Transform> doorDictionary;
+    [SerializeField] private GameObject[] breakableWallPieces;
+    private Dictionary<GameObject, Transform> breakableWallDictionary = new Dictionary<GameObject, Transform>();
     //Selecting Levels
     public GameObject currentLevel;
     public GameObject tutorialLevel;
@@ -93,6 +93,13 @@ public class GameManager : MonoBehaviour, IDataStuff
         firstLevel.SetActive(false);
 
         doors = GameObject.FindGameObjectsWithTag("Door");
+        breakableWallPieces = GameObject.FindGameObjectsWithTag("Breakable Wall");
+
+        foreach(GameObject wallPiece in breakableWallPieces)
+        {
+            breakableWallDictionary.Add(wallPiece, wallPiece.transform);
+            Debug.Log("Piece Added: " + wallPiece.name + ", " + wallPiece.transform.position.ToString() + ", " + wallPiece.transform.rotation);
+        }
     }
 
     private void OnEnable() => controls.Enable();
@@ -192,10 +199,22 @@ public class GameManager : MonoBehaviour, IDataStuff
         //reset doors
         foreach (GameObject door in doors)
         {
-            //StopCoroutine("PushOpen");
+            StopAllCoroutines();
             door.transform.SetLocalPositionAndRotation(UnityEngine.Vector3.zero, UnityEngine.Quaternion.Euler(0, 0, 0));
-            door.transform.localScale = new UnityEngine.Vector3(1, (float)0.82416, 1);
+            door.transform.localScale = new Vector3(1, (float)0.82416, 1);
             door.SetActive(true);
+        }
+        
+        //reset breakable wall
+        foreach(KeyValuePair<GameObject, Transform> pair in breakableWallDictionary)
+        {
+            GameObject piece = pair.Key;
+            Transform pieceTransform = pair.Value;
+
+            piece.transform.SetLocalPositionAndRotation(pieceTransform.position, pieceTransform.rotation);
+            piece.transform.localScale = Vector3.one;
+            piece.SetActive(true);
+
         }
 
         farmerAiScript.wayPointSet = false;
