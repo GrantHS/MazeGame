@@ -11,7 +11,8 @@ public enum UIMenu
     LevelSelect,
     Options,
     Pause,
-    Victory
+    Victory,
+    Credits
 }
 
 public class GameManager : MonoBehaviour, IDataStuff
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour, IDataStuff
     [SerializeField] private GameObject startMenu;
     [SerializeField] private GameObject levelSelectMenu;
     [SerializeField] private GameObject victoryScreen;
+    [SerializeField] private GameObject creditsScreen;
 
     public UIMenu lastMenuOpened;
     public UIMenu currentMenuOpened;
@@ -311,8 +313,19 @@ public class GameManager : MonoBehaviour, IDataStuff
 
         DisableMenu(lastMenuOpened);
         startMenu.SetActive(true);
+        currentMenuOpened = UIMenu.StartMenu;
     }
 
+    public void OpenCreditsMenu()
+    {
+        lastMenuOpened = currentMenuOpened;
+        
+        Time.timeScale = 0;
+
+        DisableMenu(lastMenuOpened);
+        creditsScreen.SetActive(true);
+        currentMenuOpened = UIMenu.Credits;
+    }
     public void LevelSelectToStartMenuTransition() //this is a placeholder
     {
         lastMenuOpened = currentMenuOpened;
