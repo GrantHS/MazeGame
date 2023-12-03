@@ -9,11 +9,11 @@ public class StartMenu : MenuParent
         //maybe make it so that the start menu checks for any save data here
     }
 
-    private void OnEnable()
+    /*private void OnEnable()
     {
         GameManager.Instance.currentMenuOpened = UIMenu.StartMenu;
         
-    }
+    }*/
 
     // This is so level things don't happen while the start menu is up
     void Update()
