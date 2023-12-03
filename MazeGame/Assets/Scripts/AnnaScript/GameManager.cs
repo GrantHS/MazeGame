@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public enum UIMenu
 {
@@ -59,6 +60,10 @@ public class GameManager : MonoBehaviour, IDataStuff
 
     // Rating Levels Time Objects
     public GameObject Starsprites_1, Starsprites_2, Starsprites_3;
+    public GameObject[] Stars;
+    [SerializeField] private TextMeshProUGUI BestText_Level1;
+
+
 
 
     private void Awake()
@@ -295,6 +300,7 @@ public class GameManager : MonoBehaviour, IDataStuff
 
         DisableMenu(lastMenuOpened);
         levelSelectMenu.SetActive(true);
+        BestText_Level1.text =TimeCounter();
     }
 
     public void OpenStartMenu()
@@ -372,11 +378,11 @@ public class GameManager : MonoBehaviour, IDataStuff
 
     private void GiveRating()
     {
-        if (FinishTime < 45 )
+        if (FinishTime < 60 )
         {
             StarsActive(3);
         }
-       else if (FinishTime < 60)
+       else if (FinishTime < 75)
         {
             StarsActive(2);
         }
@@ -388,30 +394,65 @@ public class GameManager : MonoBehaviour, IDataStuff
 
     private void StarsActive(int numstars)
     {
+
+        //Vicotry Screen Stars
         Starsprites_1.SetActive(false);
         Starsprites_2.SetActive(false);
-        Starsprites_3.SetActive(false);
+        Starsprites_3.SetActive(false); 
+        
+
+        // Level 1 Rating System
+        Stars[0].SetActive(false);
+        Stars[1].SetActive(false);
+        Stars[2].SetActive(false);
+
+        //Level 2 Rating System
+        Stars[3].SetActive(false);
+        Stars[4].SetActive(false);
+        Stars[5].SetActive(false);
+
 
         switch (numstars)
         {
             case 3:
 
+                //Vicotry Screen
                 Starsprites_1.SetActive(true);
                 Starsprites_2.SetActive(true);
                 Starsprites_3.SetActive(true);
+                
+                //Level 1
+                Stars[0].SetActive(true);
+                Stars[1].SetActive(true);
+                Stars[2].SetActive(true);
+
+
+
                 break;
 
             case 2:
 
+                //Vicotry Screen
                 Starsprites_1.SetActive(true);
                 Starsprites_2.SetActive(true);
+
+                //Level 1
+                Stars[1].SetActive(true);
+                Stars[2].SetActive(true);
 
                 break;
 
             case 1:
 
+                //Vicotry Screen
                 Starsprites_1.SetActive(true);
+
+                //Level 1
+                Stars[1].SetActive(true);
+
+
                 break;
+
             default:
                 break;
         }

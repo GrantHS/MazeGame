@@ -24,6 +24,7 @@ public class ExitDoor : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             victoryScreen.SetActive(true);
             GameManager.Instance.LevelCompleted();
+            GameManager.Instance.SaveGame();
         }
     }
 }

@@ -13,6 +13,9 @@ public class LevelSelectMenu : MenuParent
     [SerializeField] private RectTransform levelContentTransform;
     [SerializeField] private HorizontalLayoutGroup levelHLG;
 
+    [SerializeField] private TextMeshProUGUI Level_1_timeText;
+    [SerializeField] private TextMeshProUGUI Level_2_timeText;
+
 
     [SerializeField] private LevelScrollButton leftButton;
     [SerializeField] private LevelScrollButton rightButton;
@@ -38,8 +41,12 @@ public class LevelSelectMenu : MenuParent
         selectedLevelNameText.text = levelThumbnailList[selectedLevelIndex].GetComponent<LevelInfoHolder>().levelInfo.levelName;
     }
 
-    private void OnEnable() => GameManager.Instance.currentMenuOpened = UIMenu.LevelSelect;
-
+    private void OnEnable()
+    {
+       GameManager.Instance.currentMenuOpened = UIMenu.LevelSelect;
+        DisplayTime();
+        Time.timeScale = 0;
+    }
     public void ScrollLeft() //currently unused
     {
         
@@ -54,7 +61,18 @@ public class LevelSelectMenu : MenuParent
 
         SelectLevel();
 
-    } 
+    }
+
+    private void DisplayTime()
+    {
+        Level_1_timeText.text = "Best Time: " + GameManager.Instance.TimeCounter();
+       // Level_2_timeText.text = "Best Time: " + GameManager.Instance.TimeCounter();
+    }
+
+
+
+
+
     public void ScrollRight() //currently unused
     {
         
