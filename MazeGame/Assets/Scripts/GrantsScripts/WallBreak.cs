@@ -10,7 +10,7 @@ public class WallBreak : MonoBehaviour
     private float force;
     private float blastRadius = 100f;
     private float despawnTime = 2f;
-    private bool inUse = true;
+    public bool inUse = true;
     public GameObject tutoralParticle;
     public bool canBreak = true;
 
@@ -66,7 +66,7 @@ public class WallBreak : MonoBehaviour
         //strengthEffect.SetActive(false);
     }
 
-    private IEnumerator TNT(Rigidbody victim, ControllerColliderHit hit)
+    public IEnumerator TNT(Rigidbody victim, ControllerColliderHit hit)
     {
         Debug.Log("Boom");
         victim.isKinematic = false;

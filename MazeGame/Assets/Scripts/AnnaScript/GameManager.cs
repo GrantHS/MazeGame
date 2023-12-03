@@ -47,8 +47,9 @@ public class GameManager : MonoBehaviour, IDataStuff
     public GameObject redKey;
     public GameObject orangeKey;
     [SerializeField] private GameObject[] doors;
+    [SerializeField] private Dictionary<GameObject, Vector3> doorDictionary = new Dictionary<GameObject, Vector3>();
     [SerializeField] private GameObject[] breakableWallPieces;
-    private Dictionary<GameObject, Transform> breakableWallDictionary = new Dictionary<GameObject, Transform>();
+    private Dictionary<GameObject, Vector3> breakableWallDictionary = new Dictionary<GameObject, Vector3>();
     //Selecting Levels
     public GameObject currentLevel;
     public GameObject tutorialLevel;
@@ -86,20 +87,25 @@ public class GameManager : MonoBehaviour, IDataStuff
         levelList.Add(firstLevel);
 
 
+        doors = GameObject.FindGameObjectsWithTag("Door");
+        breakableWallPieces = GameObject.FindGameObjectsWithTag("Breakable Wall");
+
+        foreach(GameObject door in doors)
+        {
+            doorDictionary.Add(door, door.transform.localScale);
+        }
+
+        foreach (GameObject wallPiece in breakableWallPieces)
+        {
+            breakableWallDictionary.Add(wallPiece, wallPiece.transform.localPosition);
+            //Debug.Log(wallPiece.name + ", " + wallPiece.transform.localPosition);
+        }
+
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);
         victoryScreen.SetActive(false);
 
-        firstLevel.SetActive(false);
-
-        doors = GameObject.FindGameObjectsWithTag("Door");
-        breakableWallPieces = GameObject.FindGameObjectsWithTag("Breakable Wall");
-
-        foreach(GameObject wallPiece in breakableWallPieces)
-        {
-            breakableWallDictionary.Add(wallPiece, wallPiece.transform);
-            Debug.Log("Piece Added: " + wallPiece.name + ", " + wallPiece.transform.position.ToString() + ", " + wallPiece.transform.rotation);
-        }
+        firstLevel.SetActive(false);       
     }
 
     private void OnEnable() => controls.Enable();
@@ -197,23 +203,52 @@ public class GameManager : MonoBehaviour, IDataStuff
         GameObject.Find("Player").GetComponent<ItemCollection>().itemSprite.SetActive(false);
 
         //reset doors
-        foreach (GameObject door in doors)
+        GameObject.Find("Player").GetComponent<PushDoor>().StopAllCoroutines();
+        /*foreach (GameObject door in doors)
+        {           
+            door.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(0, 0, 0));
+            door.transform.localScale = Vector3.one;
+            
+        }*/
+        foreach(KeyValuePair<GameObject, Vector3> doorPair in doorDictionary)
         {
-            StopAllCoroutines();
-            door.transform.SetLocalPositionAndRotation(UnityEngine.Vector3.zero, UnityEngine.Quaternion.Euler(0, 0, 0));
-            door.transform.localScale = new Vector3(1, (float)0.82416, 1);
+            GameObject door = doorPair.Key;
+            Vector3 doorScale = doorPair.Value;
+
+            door.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(0, 0, 0));
+            door.transform.localScale = doorScale;
             door.SetActive(true);
         }
         
         //reset breakable wall
-        foreach(KeyValuePair<GameObject, Transform> pair in breakableWallDictionary)
+        foreach(KeyValuePair<GameObject, Vector3> pair in breakableWallDictionary)
         {
             GameObject piece = pair.Key;
-            Transform pieceTransform = pair.Value;
+            Vector3 piecePosition = pair.Value;
 
-            piece.transform.SetLocalPositionAndRotation(pieceTransform.position, pieceTransform.rotation);
-            piece.transform.localScale = Vector3.one;
-            piece.SetActive(true);
+            if (piece.name.Contains("Breakable"))
+            {
+                piece.GetComponent<BoxCollider>().isTrigger = false;
+                piece.transform.localScale = Vector3.one;
+                //Debug.Log("reset prefab breakable: " + piece.name + ", " + piece.transform.localScale);
+            }
+
+            if (piece.transform.localPosition != piecePosition)
+            {
+                if (piece.name.Contains("pCube"))
+                {
+                    piece.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                    Destroy(piece.GetComponent<BoxCollider>());
+                }
+
+                FindAnyObjectByType<WallBreak>().StopAllCoroutines();
+                FindAnyObjectByType<WallBreak>().inUse = true;
+                piece.transform.SetLocalPositionAndRotation(piecePosition, Quaternion.Euler(0, 0, 0));
+                
+                //Debug.Log(piece.name + piece.transform.localPosition);
+                
+                piece.SetActive(true);
+            }
 
         }
 

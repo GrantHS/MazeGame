@@ -17,10 +17,6 @@ public class LevelSelectMenu : MenuParent
     [SerializeField] private LevelScrollButton leftButton;
     [SerializeField] private LevelScrollButton rightButton;
 
-    [SerializeField] private float scrollSpeed = 0.01f;
-    private bool isUpdated;
-    private Vector2 scrollVelocity;
-
     public TextMeshProUGUI selectedLevelNameText;
 
     //Selecting the Level Variables
@@ -34,8 +30,6 @@ public class LevelSelectMenu : MenuParent
 
     private void Awake()
     {
-        isUpdated = false;
-        scrollVelocity = Vector2.zero;
         int itemsToAdd = Mathf.CeilToInt(levelViewportTransform.rect.width / (levelThumbnailList[0].rect.width + levelHLG.spacing));
 
         levelContentTransform.localPosition = new Vector3((0 - (levelThumbnailList[0].rect.width + levelHLG.spacing)*itemsToAdd), 
