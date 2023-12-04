@@ -13,8 +13,8 @@ public class LevelSelectMenu : MenuParent
     [SerializeField] private RectTransform levelContentTransform;
     [SerializeField] private HorizontalLayoutGroup levelHLG;
 
-    [SerializeField] private TextMeshProUGUI Level_1_timeText;
-    [SerializeField] private TextMeshProUGUI Level_2_timeText;
+    //[SerializeField] private TextMeshProUGUI Level_1_timeText;
+    //[SerializeField] private TextMeshProUGUI Level_2_timeText;
 
 
     [SerializeField] private LevelScrollButton leftButton;
@@ -65,7 +65,7 @@ public class LevelSelectMenu : MenuParent
 
     private void DisplayTime()
     {
-        Level_1_timeText.text = "Best Time: " + GameManager.Instance.TimeCounter();
+        //Level_1_timeText.text = "Best Time: " + GameManager.Instance.TimeCounter();
        // Level_2_timeText.text = "Best Time: " + GameManager.Instance.TimeCounter();
     }
 

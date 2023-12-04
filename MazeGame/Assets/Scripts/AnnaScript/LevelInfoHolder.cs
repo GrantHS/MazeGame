@@ -8,6 +8,7 @@ public class LevelInfoHolder : MonoBehaviour
 {
     public LevelSelectInfo levelInfo;
     [SerializeField] private TextMeshProUGUI sizeText;
+    [SerializeField] private TextMeshProUGUI savedTimeText;
     [SerializeField] private int indexNumber;
 
     //Level Objects
@@ -18,10 +19,21 @@ public class LevelInfoHolder : MonoBehaviour
     [SerializeField] private GameObject redKey;
     [SerializeField] private GameObject orangeKey;
     
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         sizeText.text = levelInfo.levelSize.ToString();
+        savedTimeText.text = "Best Time: " + TimeFixer();
+    }
+
+
+    private string TimeFixer()
+    {
+        int minutes = Mathf.FloorToInt(levelInfo.savedTime / 60f);
+        int seconds = Mathf.FloorToInt(levelInfo.savedTime - minutes * 60f);
+
+        string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
+
+        return niceTime;
     }
 
     public void OnLevelSelected()

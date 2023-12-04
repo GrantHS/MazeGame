@@ -152,7 +152,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (controls.PlayerActions.PickUp.triggered)
         {
-            Debug.Log("Player will PICK UP an object to be stored");
+            //Debug.Log("Player will PICK UP an object to be stored");
 
         }
     }

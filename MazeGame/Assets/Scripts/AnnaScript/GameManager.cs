@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour, IDataStuff
     public GameObject yellowKey;
     public GameObject redKey;
     public GameObject orangeKey;
+
     [SerializeField] private GameObject[] doors;
     [SerializeField] private Dictionary<GameObject, Vector3> doorDictionary = new Dictionary<GameObject, Vector3>();
     [SerializeField] private GameObject[] breakableWallPieces;
@@ -64,8 +65,8 @@ public class GameManager : MonoBehaviour, IDataStuff
     public GameObject Starsprites_1, Starsprites_2, Starsprites_3;
     public GameObject[] Stars;
     [SerializeField] private TextMeshProUGUI BestText_Level1;
-
-
+    public LevelInfoHolder tutorialLevelHolder;
+    public LevelInfoHolder firstLevelHolder;
 
 
     private void Awake()
@@ -302,7 +303,7 @@ public class GameManager : MonoBehaviour, IDataStuff
 
         DisableMenu(lastMenuOpened);
         levelSelectMenu.SetActive(true);
-        BestText_Level1.text =TimeCounter();
+        //BestText_Level1.text = TimeCounter();
     }
 
     public void OpenStartMenu()
@@ -354,6 +355,17 @@ public class GameManager : MonoBehaviour, IDataStuff
     public void SaveData(ref DataStuff data)
     {
        data.GameTime = FinishTime;
+
+        if(firstLevel.activeInHierarchy == false)
+        {
+            tutorialLevelHolder.levelInfo.savedTime = data.GameTime;
+            Debug.Log("Tutorial Level: " + tutorialLevelHolder.levelInfo.savedTime);
+        }
+        if(tutorialLevel.activeInHierarchy == false)
+        {
+            firstLevelHolder.levelInfo.savedTime = data.GameTime;
+            Debug.Log("First Level: " + firstLevelHolder.levelInfo.savedTime);
+        }
     }
 
     public void SaveGame()
