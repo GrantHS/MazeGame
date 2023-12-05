@@ -24,6 +24,7 @@ public class PlayerMovementScript : MonoBehaviour
     Array values = Enum.GetValues(typeof(ItemCollectables));
     private IAbility[] abilities;
     public Text abilityStatusText;
+    public Text itemTuorialText;
     private int statusNum = 5;
     private float speedBoost;
     private int _duration = 5;
@@ -48,6 +49,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void Awake()
     {
+        itemTuorialText.enabled = false;
         abilityStatusText.enabled = false;
         miniMap.SetActive(false);
         invisibleEffect.gameObject.SetActive(false);
@@ -129,10 +131,12 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (_canJump)
         {
+            
             abilityStatusText.enabled = true;
             abilityStatusText.text = "Springs left: " + (maxJumps - jumpCount);
             if (controls.PlayerActions.Jump.triggered && isGrounded && jumpCount < maxJumps)
             {
+                itemTuorialText.enabled = false;
                 jumpPos = this.transform.position;
                 velocity.y = Mathf.Sqrt(JumpHeight * -2f * -9.81f);
                 jumpCount++;
@@ -196,6 +200,8 @@ public class PlayerMovementScript : MonoBehaviour
                         break;
                     case ItemCollectables.Jump:
                         _canJump = true;
+                        itemTuorialText.text = "Press SPACEBAR to jump";
+                        itemTuorialText.enabled = true;
                         Debug.Log("You used: " + _itemCollection._activeItem);
                         break;
                     case ItemCollectables.Freeze:

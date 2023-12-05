@@ -71,13 +71,15 @@ public class FrostBall : MonoBehaviour
     {
         _freezing = true;
         float tempSpeed = target.speed;
-        Material tempMat = target.GetComponentInChildren<MeshRenderer>().material;
+        Material tempMat = target.GetComponentInChildren<SkinnedMeshRenderer>().material;
+        target.gameObject.GetComponent<FarmerAi>().anim.SetBool("isWalking", false);
         target.speed = 0;
-        target.GetComponentInChildren<MeshRenderer>().material = freezeMat;
+        target.GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMat;
         Debug.Log("Farmer frozen");
         yield return new WaitForSeconds(freezeTime);
         Debug.Log("Thawed farmer");
-        target.GetComponentInChildren<MeshRenderer>().material = tempMat;
+        target.gameObject.GetComponent<FarmerAi>().anim.SetBool("isWalking", true);
+        target.GetComponentInChildren<SkinnedMeshRenderer>().material = tempMat;
         target.speed = tempSpeed;
         this.gameObject.SetActive(false);
     }

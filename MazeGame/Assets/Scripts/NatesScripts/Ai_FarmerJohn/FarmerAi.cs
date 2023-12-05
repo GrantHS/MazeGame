@@ -33,7 +33,7 @@ public class FarmerAi : MonoBehaviour
     private PlayerMovementScript isInvisible;
 
     //Animation Control
-    Animator anim;
+    public Animator anim;
 
     private void Awake()
     {
