@@ -290,8 +290,8 @@ RectTransform:
   m_Children:
   - {fileID: 6419727514383315852}
   - {fileID: 3807552245292141990}
-  - {fileID: 3181717262344801364}
   - {fileID: 4457180733502681798}
+  - {fileID: 3181717262344801364}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -390,6 +390,12 @@ MonoBehaviour:
   gameplayHUD: {fileID: 0}
   mouseSensitivitySlider: {fileID: 7069610985012310004}
   sensitivityText: {fileID: 1185729556387387254}
+  resolutionCheckText: {fileID: 0}
+  resolutionMultiplier: 0
+  resolutionSlider: {fileID: 0}
+  resolutionMultiplierText: {fileID: 0}
+  MiniMap_Heater: {fileID: 0}
+  mouseSensitivity: 0
 --- !u!1 &461597092646295791
 GameObject:
   m_ObjectHideFlags: 0

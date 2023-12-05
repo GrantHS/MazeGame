@@ -15,5 +15,5 @@ MonoBehaviour:
   levelName: Level 1
   rating: 1
   levelSize: 10x10
-  savedTime: 1.2891735
+  savedTime: 0
   mazeLevelObject: {fileID: 0}

@@ -18,6 +18,7 @@ public class LevelInfoHolder : MonoBehaviour
     [SerializeField] private GameObject yellowKey;
     [SerializeField] private GameObject redKey;
     [SerializeField] private GameObject orangeKey;
+    [SerializeField] private GameObject exitRoom;
     
     void OnEnable()
     {
@@ -47,6 +48,7 @@ public class LevelInfoHolder : MonoBehaviour
         GameManager.Instance.yellowKey = yellowKey;
         GameManager.Instance.redKey = redKey;
         GameManager.Instance.orangeKey = orangeKey;
+        GameManager.Instance.currentExitRoom = exitRoom;
     }
 
 }

@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour, IDataStuff
     public GameObject yellowKey;
     public GameObject redKey;
     public GameObject orangeKey;
+    public GameObject currentExitRoom;
 
     [SerializeField] private GameObject[] doors;
     [SerializeField] private Dictionary<GameObject, Vector3> doorDictionary = new Dictionary<GameObject, Vector3>();
@@ -113,7 +114,9 @@ public class GameManager : MonoBehaviour, IDataStuff
         optionsMenu.SetActive(false);
         victoryScreen.SetActive(false);
 
-        firstLevel.SetActive(false);       
+        firstLevel.SetActive(false);
+
+        //FindAnyObjectByType<Compass>().target = currentExitRoom.transform;
     }
 
     private void OnEnable() => controls.Enable();
@@ -274,6 +277,7 @@ public class GameManager : MonoBehaviour, IDataStuff
         FindAnyObjectByType<PushDoor>().yellowKey = false;
         FindAnyObjectByType<PushDoor>().orangeKey = false;
         FindAnyObjectByType<PushDoor>().redKey = false;
+        //FindAnyObjectByType<Compass>().target = currentExitRoom.transform;
 
         yellowKey.SetActive(true);
         orangeKey.SetActive(true);

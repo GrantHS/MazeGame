@@ -148,8 +148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelInfo: {fileID: 11400000, guid: fb6fbbd95302aea43b90304224e3b630, type: 2}
-  ratingTextPlaceholder: {fileID: 3265226398959556423}
   sizeText: {fileID: 3090914512014503875}
+  savedTimeText: {fileID: 0}
+  indexNumber: 0
   levelObject: {fileID: 0}
   playerSpawn: {fileID: 0}
   farmerSpawn: {fileID: 0}
@@ -515,8 +516,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelInfo: {fileID: 11400000, guid: 254b947fb43adc441925b2f533a02205, type: 2}
-  ratingTextPlaceholder: {fileID: 3905457727604366138}
   sizeText: {fileID: 4996873084465977319}
+  savedTimeText: {fileID: 0}
+  indexNumber: 0
   levelObject: {fileID: 0}
   playerSpawn: {fileID: 0}
   farmerSpawn: {fileID: 0}
@@ -2201,8 +2203,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelInfo: {fileID: 11400000, guid: 0f3f84769e2e5174db761227cb9c468e, type: 2}
-  ratingTextPlaceholder: {fileID: 1086868796757171135}
   sizeText: {fileID: 7106464697326422818}
+  savedTimeText: {fileID: 0}
+  indexNumber: 0
   levelObject: {fileID: 0}
   playerSpawn: {fileID: 0}
   farmerSpawn: {fileID: 0}
@@ -2655,10 +2658,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3509010386752503787}
   - {fileID: 344938056090389070}
   - {fileID: 4988470496517569705}
   - {fileID: 3489213743165232283}
-  - {fileID: 3509010386752503787}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2742,19 +2745,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: 1
-  levelList:
-  - {fileID: 1962424374030585955}
-  - {fileID: 5539769193783177590}
-  - {fileID: 6253548995089253820}
-  - {fileID: 6638625984848240697}
-  - {fileID: 9135465289700613675}
+  levelThumbnailList: []
   levelScrollRect: {fileID: 8559228516924320340}
   levelViewportTransform: {fileID: 5171031047268300972}
   levelContentTransform: {fileID: 589553846810474163}
   levelHLG: {fileID: 7520383085256902788}
   leftButton: {fileID: 388956487133268985}
   rightButton: {fileID: 1974006056232896877}
-  scrollSpeed: 0.01
   selectedLevelNameText: {fileID: 6663669623288551156}
   selectedLevelIndex: 0
   selectedMazeLevel: {fileID: 0}
@@ -2911,8 +2908,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelInfo: {fileID: 11400000, guid: 0fca5f801a1d58446bb6f2c0dd7c36f6, type: 2}
-  ratingTextPlaceholder: {fileID: 2417520046367212441}
   sizeText: {fileID: 5718030507025312888}
+  savedTimeText: {fileID: 0}
+  indexNumber: 0
   levelObject: {fileID: 0}
   playerSpawn: {fileID: 0}
   farmerSpawn: {fileID: 0}
@@ -3593,8 +3591,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelInfo: {fileID: 11400000, guid: 3100e94138e58844092664c98ab72952, type: 2}
-  ratingTextPlaceholder: {fileID: 8963880683297407581}
   sizeText: {fileID: 1338244610565754734}
+  savedTimeText: {fileID: 0}
+  indexNumber: 0
   levelObject: {fileID: 0}
   playerSpawn: {fileID: 0}
   farmerSpawn: {fileID: 0}

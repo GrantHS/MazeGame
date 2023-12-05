@@ -8,9 +8,10 @@ public class Compass : MonoBehaviour
     private Vector3 targetPostition;
     private GameObject arm;
 
-    private void Awake()
+    private void OnEnable()
     {
         arm = GetComponentInChildren<ChildObject>().gameObject;
+        target = GameManager.Instance.currentExitRoom.transform;
         targetPostition = new Vector3(target.position.x, arm.transform.position.y, target.position.z);
 
     }
